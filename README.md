@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# Capa de datos:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- User
+- Projects
+- UI
 
-## Available Scripts
+## Modificaciones capa de datos
 
-In the project directory, you can run:
+- User:
+  - Estado: Logged / No logged
+  - Projectos propios: añadir / quitar
+  - Projectos apuntado: añadir / quitar
+- Projects:
+  - Borrar project
+  - Crear project
+  - Modificar Project
+  - Cargar projectos
+  - Cargar projectos por usuario
+  - Cargar projecto por ID
+- UI
+  - Cargando: true / false
+  - Modal: cambia texto / cambiar clase
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Componentes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Pager
+- Filter
 
-### `npm test`
+- Button:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - Recibe
+    - Un texto
+    - Una clase
+    - Una acción
+  - Renderiza:
+    - Un boton en funcion del texto y clase recibidos.
 
-### `npm run build`
+- Project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - Recibe:
+    - El nombre de un projecto
+    - El tipo de un proyecto
+    - La imagen de un proyecto
+    - Un listado de instrumentos
+  - Renderiza:
+    - Un título con el nombre del proyecto
+    - La imagen del proyecto recibida
+    - un texto fijo con una parte variable en funcion del tipo y el numero de musicos
+    - un texto fijo y una variable en funcion del
+    - Hasta 3 botones pasandoles texto, clase y acción.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ProjectDetails
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - Recibe:
+    - El nombre de un projecto
+    - La imagen de un proyecto
+    - La descripción de un projecto
+    - Un listado de instrumentos
+    - Un listado de músicos
+  - Renderiza:
+    - Hasta 3 botones pasandoles texto, clase y acción.
 
-### `npm run eject`
+- ProjectList
+  - Recibe:
+    - Un listado de proyectos
+  - Renderiza:
+    - Una lista de Projects en funcion del listado recibido
+- LoadingSpinner
+  - Recibe: El estado cargando de la UI
+  - Renderiza: un spiner de carga en funcion del estado de la UI
+- LogedInChecker
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- FormRegister
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - Renderiza:
+    - un formulario con los campos name, user name, password y roles
+    - un boton de register
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Modal
+  - Recibe: el estado modal de la UI
+  - Renderiza: Un mensaje modal en funcion del estado recibido
