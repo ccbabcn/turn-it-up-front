@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const FormRegister = (): JSX.Element => {
@@ -32,9 +33,12 @@ const FormRegister = (): JSX.Element => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
 
-  const submitRegister = (event: { preventDefault: () => void }) => {
+  const submitRegister = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
+    await axios.post<FormData>(
+      `${process.env.REACT_APP_API_URL}user/register`,
+      formData
+    );
     setFormData(blankFields);
   };
 

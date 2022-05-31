@@ -22,8 +22,8 @@ describe("Given a FormRegister component", () => {
     });
   });
 
-  describe("When a user types a name, username and a password in the respective form fields, and submits", () => {
-    test("Then the fields of the form shall be empty", () => {
+  describe("When a user types a name, username and a password in the respective form fields", () => {
+    test("Then the button register should be able and the user should be able to click it", () => {
       const nameTextField = "Name";
       const inputNAme = "marta";
       const usernameTextField = "Username";
@@ -48,11 +48,8 @@ describe("Given a FormRegister component", () => {
       expect(usernameField).toHaveValue(inputUserNAme);
       expect(pasdwordField).toHaveValue(inputpassword);
 
+      expect(createdButton).toBeEnabled();
       userEvent.click(createdButton);
-
-      expect(nameField).toHaveValue("");
-      expect(usernameField).toHaveValue("");
-      expect(pasdwordField).toHaveValue("");
     });
   });
 });
