@@ -1,5 +1,11 @@
+import FormRegister from "./components/FormRegister/FormRegister";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <FormRegister />
+    </>
+  );
 }
 
 export default App;
