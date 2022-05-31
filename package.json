@@ -22,7 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
-    "test-coverage": "jest -- --coverage --watchAll=false --passWithNoTests",
+    "test-coverage": "react-scripts test --coverage --watchAll=false --passWithNoTests",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
@@ -55,7 +55,9 @@
       "!src/**/*.test.js",
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
-      "!src/setupTests.ts"
+      "!src/setupTests.ts",
+      "!coverage/*/.tsx",
+      "!src/react-app-env.d.ts"
     ]
   }
 }
