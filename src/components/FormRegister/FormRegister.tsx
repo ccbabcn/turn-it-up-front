@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { FormRegisterStyles } from "./FormRegisterStyles";
 
 const FormRegister = (): JSX.Element => {
   interface FormData {
@@ -43,35 +44,43 @@ const FormRegister = (): JSX.Element => {
   };
 
   return (
-    <form autoComplete="off" noValidate onSubmit={submitRegister}>
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        value={formData.name}
-        onChange={changeData}
-        placeholder="Name"
-      />
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        value={formData.username}
-        onChange={changeData}
-        placeholder="Username"
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        value={formData.password}
-        onChange={changeData}
-        placeholder="Password"
-      />
-      <button disabled={buttonDisabled} type="submit" className="form-button">
-        Register
-      </button>
-    </form>
+    <FormRegisterStyles>
+      <form autoComplete="off" noValidate onSubmit={submitRegister}>
+        <div className="formField">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            value={formData.name}
+            onChange={changeData}
+            placeholder="Name"
+          />
+        </div>
+        <div className="formField">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            value={formData.username}
+            onChange={changeData}
+            placeholder="Username"
+          />
+        </div>
+        <div className="formField">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={formData.password}
+            onChange={changeData}
+            placeholder="Password"
+          />
+        </div>
+        <button disabled={buttonDisabled} type="submit" className="form-button">
+          REGISTER
+        </button>
+      </form>
+    </FormRegisterStyles>
   );
 };
 
