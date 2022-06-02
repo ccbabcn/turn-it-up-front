@@ -1,19 +1,6 @@
 import styled from "styled-components";
 
 export const SpinnerStyles = styled.div`
-  width: 100%;
-  height: 100vh;
-  color: #fdfffc;
-  background: #786871;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  span {
-    margin-top: 30px;
-    font-size: 26px;
-    font-weight: 600;
-  }
   .waveform {
     --uib-size: 140px;
     --uib-speed: 1s;
@@ -62,5 +49,28 @@ export const SpinnerStyles = styled.div`
     50% {
       transform: scaleY(1);
     }
+  }
+  .visible {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    color: #fdfffc;
+    background: #786871;
+    opacity: 0.95;
+
+    span {
+      margin-top: 30px;
+      font-size: 26px;
+      font-weight: 600;
+      user-select: none;
+    }
+  }
+  .invisible {
+    display: none;
   }
 `;

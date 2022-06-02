@@ -3,10 +3,12 @@ import { PageStyles } from "../PageStyles";
 
 const LoginPage = () => {
   return (
-    <PageStyles>
-      <h2>LOGIN</h2>
-      <FormLogin />
-    </PageStyles>
+    <>
+      <PageStyles>
+        <h2>LOGIN</h2>
+        <FormLogin />
+      </PageStyles>
+    </>
   );
 };
 
