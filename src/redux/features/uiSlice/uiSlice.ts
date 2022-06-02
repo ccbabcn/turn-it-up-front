@@ -16,9 +16,16 @@ const uiSlice = createSlice({
       ...action.payload,
       loading: true,
     }),
+    loadingOff: (ui, action: PayloadAction<UiState>) => ({
+      ...action.payload,
+      loading: false,
+    }),
   },
 });
 
-export const { loadingOn: loadingOnActionCreator } = uiSlice.actions;
+export const {
+  loadingOn: loadingOnActionCreator,
+  loadingOff: loadingOffActionCreator,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;
