@@ -1,9 +1,12 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "../../../redux/hooks";
+import { registerThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { FormStyles } from "../FormStyles";
 import { FormRegisterData } from "../FormTypes";
 
 const FormRegister = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   const blankFields: FormRegisterData = {
     name: "",
     username: "",
@@ -31,10 +34,7 @@ const FormRegister = (): JSX.Element => {
 
   const submitRegister = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    await axios.post<FormRegisterData>(
-      `${process.env.REACT_APP_API_URL}user/register`,
-      formData
-    );
+    dispatch(registerThunk(formData));
     setFormData(blankFields);
   };
 

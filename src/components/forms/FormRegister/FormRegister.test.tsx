@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import store from "../../../redux/store";
 import FormRegister from "./FormRegister";
 
 describe("Given a FormRegister component", () => {
@@ -8,7 +10,11 @@ describe("Given a FormRegister component", () => {
       const usernameTextField = "Username";
       const inputUserNAme = "hello wolrd";
 
-      render(<FormRegister />);
+      render(
+        <Provider store={store}>
+          <FormRegister />
+        </Provider>
+      );
 
       const createdButton = screen.getByRole("button", {
         name: /register/i,
@@ -31,7 +37,11 @@ describe("Given a FormRegister component", () => {
       const passwordTextField = "Password";
       const inputpassword = "marta";
 
-      render(<FormRegister />);
+      render(
+        <Provider store={store}>
+          <FormRegister />
+        </Provider>
+      );
 
       const createdButton = screen.getByRole("button", {
         name: /register/i,
@@ -50,6 +60,9 @@ describe("Given a FormRegister component", () => {
 
       expect(createdButton).toBeEnabled();
       userEvent.click(createdButton);
+      expect(nameField).toHaveValue("");
+      expect(usernameField).toHaveValue("");
+      expect(pasdwordField).toHaveValue("");
     });
   });
 });
