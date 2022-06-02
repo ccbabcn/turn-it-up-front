@@ -1,6 +1,10 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { UserLoggedIn, UserLogIn } from "../../../types/UserTypes";
+import {
+  UserLoggedIn,
+  UserLogIn,
+  UserRegister,
+} from "../../../types/UserTypes";
 import { userLoginActionCreator } from "../../features/userSlice/userSlice";
 import { AppDispatch } from "../../store";
 
@@ -22,4 +26,11 @@ export const loginThunk =
 
       dispatch(userLoginActionCreator(userInfo));
     }
+  };
+
+export const registerThunk =
+  (userRegisterData: UserRegister) => async (dispatch: AppDispatch) => {
+    const url = process.env.REACT_APP_API_URL as string;
+    const endPoint: string = "user/register";
+    await axios.post(`${url}${endPoint}`, userRegisterData);
   };

@@ -13,3 +13,9 @@ export interface UserLoggedIn {
   username: string;
   id: string;
 }
+
+export interface UserRegister {
+  name: string;
+  username: string;
+  password: string;
+}
