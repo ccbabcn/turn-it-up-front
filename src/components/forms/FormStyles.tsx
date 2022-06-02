@@ -69,7 +69,7 @@ export const FormStyles = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 80%;
+      width: 290px;
       font-size: 18px;
       height: 80px;
       padding-top: 10px;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { registerThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { FormStyles } from "../FormStyles";
@@ -74,6 +75,9 @@ const FormRegister = (): JSX.Element => {
         <button disabled={buttonDisabled} type="submit" className="form-button">
           REGISTER
         </button>
+        <div className="form-options">
+          Already have an account? <NavLink to="/login">Login now</NavLink>
+        </div>
       </form>
     </FormStyles>
   );

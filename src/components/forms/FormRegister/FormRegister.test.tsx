@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import store from "../../../redux/store";
 import FormRegister from "./FormRegister";
 
@@ -12,7 +13,9 @@ describe("Given a FormRegister component", () => {
 
       render(
         <Provider store={store}>
-          <FormRegister />
+          <BrowserRouter>
+            <FormRegister />
+          </BrowserRouter>
         </Provider>
       );
 
@@ -39,7 +42,9 @@ describe("Given a FormRegister component", () => {
 
       render(
         <Provider store={store}>
-          <FormRegister />
+          <BrowserRouter>
+            <FormRegister />
+          </BrowserRouter>
         </Provider>
       );
 

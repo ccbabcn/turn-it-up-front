@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given a LoginPage component When the component is rendered Then it should match it's snapshot 1`] = `
+exports[`Given a RegisterPage component When the component is rendered Then it should match it's snapshot 1`] = `
 <div
   className="sc-gsnTZi kscNpA"
 >
   <h2>
-    LOGIN
+    REGISTER
   </h2>
   <div
     className="sc-bczRLJ dzotba"
@@ -15,6 +15,22 @@ exports[`Given a LoginPage component When the component is rendered Then it shou
       noValidate={true}
       onSubmit={[Function]}
     >
+      <div
+        className="formField"
+      >
+        <label
+          htmlFor="name"
+        >
+          Name
+        </label>
+        <input
+          id="name"
+          onChange={[Function]}
+          placeholder="Name"
+          type="text"
+          value=""
+        />
+      </div>
       <div
         className="formField"
       >
@@ -52,19 +68,18 @@ exports[`Given a LoginPage component When the component is rendered Then it shou
         disabled={false}
         type="submit"
       >
-        LOGIN
+        REGISTER
       </button>
       <div
         className="form-options"
       >
-        Don’t have an account?
-         
+        Already have an account? 
         <a
           className=""
-          href="/register"
+          href="/login"
           onClick={[Function]}
         >
-          Register now
+          Login now
         </a>
       </div>
     </form>
