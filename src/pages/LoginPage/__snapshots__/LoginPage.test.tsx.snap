@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a LoginPage component When the component is rendered Then it should match it's snapshot 1`] = `
+<div
+  className="sc-gsnTZi TsILP"
+>
+  <h2>
+    LOGIN
+  </h2>
+  <div
+    className="sc-bczRLJ bkywCk"
+  >
+    <form
+      autoComplete="off"
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div
+        className="formField"
+      >
+        <label
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <input
+          id="username"
+          onChange={[Function]}
+          placeholder="Username"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="formField"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          id="password"
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="form-button"
+        disabled={false}
+        type="submit"
+      >
+        LOGIN
+      </button>
+      <div
+        className="form-options"
+      >
+        Don’t have an account? 
+        <a
+          className=""
+          href="/login"
+          onClick={[Function]}
+        >
+          Register now
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+`;

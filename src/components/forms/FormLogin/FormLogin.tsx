@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { loginThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { FormStyles } from "../FormStyles";
@@ -35,7 +36,6 @@ const FormLogin = (): JSX.Element => {
 
   return (
     <>
-      {" "}
       <FormStyles>
         <form autoComplete="off" noValidate onSubmit={submitRegister}>
           <div className="formField">
@@ -65,6 +65,9 @@ const FormLogin = (): JSX.Element => {
           >
             LOGIN
           </button>
+          <div className="form-options">
+            Don’t have an account? <NavLink to="/login">Register now</NavLink>
+          </div>
         </form>
       </FormStyles>
     </>
