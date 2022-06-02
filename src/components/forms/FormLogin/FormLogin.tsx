@@ -66,7 +66,8 @@ const FormLogin = (): JSX.Element => {
             LOGIN
           </button>
           <div className="form-options">
-            Don’t have an account? <NavLink to="/login">Register now</NavLink>
+            Don’t have an account?{" "}
+            <NavLink to="/register">Register now</NavLink>
           </div>
         </form>
       </FormStyles>
