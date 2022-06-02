@@ -64,7 +64,8 @@
       "!src/reportWebVitals.ts",
       "!src/setupTests.ts",
       "!coverage/*/.tsx",
-      "!src/react-app-env.d.ts"
+      "!src/react-app-env.d.ts",
+      "!src/**/*.test.tsx.snap"
     ]
   }
 }

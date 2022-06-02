@@ -17,7 +17,7 @@ describe("Given a LoginPage component", () => {
       );
 
       const renderedHeading = screen.getByRole("heading", {
-        name: /expectedHeading/i,
+        name: /LOGIN/i,
       });
 
       expect(renderedHeading).toBeInTheDocument();
