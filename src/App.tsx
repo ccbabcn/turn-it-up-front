@@ -1,9 +1,9 @@
-import FormRegister from "./components/FormRegister/FormRegister";
+import FormLogin from "./components/forms/FormLogin/FormLogin";
 
 function App() {
   return (
     <>
-      <FormRegister />
+      <FormLogin />
     </>
   );
 }

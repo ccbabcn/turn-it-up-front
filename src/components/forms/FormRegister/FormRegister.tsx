@@ -1,21 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FormRegisterStyles } from "./FormRegisterStyles";
+import { FormStyles } from "../FormStyles";
+import { FormRegisterData } from "../FormTypes";
 
 const FormRegister = (): JSX.Element => {
-  interface FormData {
-    name: string;
-    username: string;
-    password: string;
-  }
-
-  const blankFields: FormData = {
+  const blankFields: FormRegisterData = {
     name: "",
     username: "",
     password: "",
   };
 
-  const [formData, setFormData] = useState<FormData>(blankFields);
+  const [formData, setFormData] = useState<FormRegisterData>(blankFields);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,7 +31,7 @@ const FormRegister = (): JSX.Element => {
 
   const submitRegister = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    await axios.post<FormData>(
+    await axios.post<FormRegisterData>(
       `${process.env.REACT_APP_API_URL}user/register`,
       formData
     );
@@ -44,7 +39,7 @@ const FormRegister = (): JSX.Element => {
   };
 
   return (
-    <FormRegisterStyles>
+    <FormStyles>
       <form autoComplete="off" noValidate onSubmit={submitRegister}>
         <div className="formField">
           <label htmlFor="name">Name</label>
@@ -80,7 +75,7 @@ const FormRegister = (): JSX.Element => {
           REGISTER
         </button>
       </form>
-    </FormRegisterStyles>
+    </FormStyles>
   );
 };
 
