@@ -1,7 +1,7 @@
 import FormLogin from "../../components/forms/FormLogin/FormLogin";
 import { PageStyles } from "../PageStyles";
 
-const LoginPage = (): JSX.Element => {
+const LoginPage = () => {
   return (
     <PageStyles>
       <h2>LOGIN</h2>
