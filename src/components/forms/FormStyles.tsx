@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormRegisterStyles = styled.div`
+export const FormStyles = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;

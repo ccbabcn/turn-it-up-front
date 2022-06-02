@@ -14,10 +14,7 @@ export const loginThunk =
     const endPoint: string = "user/login";
     const {
       data: { token },
-    }: AxiosResponse = await axios.post(
-      `${url}${endPoint}` as string,
-      userData
-    );
+    }: AxiosResponse = await axios.post(`${url}${endPoint}`, userData);
 
     if (token) {
       localStorage.setItem("token", token);
