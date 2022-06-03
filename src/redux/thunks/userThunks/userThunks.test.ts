@@ -39,6 +39,27 @@ describe("Given a userThunks", () => {
     });
   });
 
+  describe("When loginThunk it's invoked with incorrect user data", () => {
+    test("Then it should call dispatch with loadingOffActionCreator", async () => {
+      const dispatch = jest.fn();
+
+      const userData: UserLogIn = {
+        username: "",
+        password: "",
+      };
+      const loadingOf: UiState = {
+        loading: false,
+      };
+      axios.post = jest.fn().mockRejectedValueOnce(new Error());
+
+      const expectedAction = loadingOffActionCreator(loadingOf);
+      const thunk = await loginThunk(userData);
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
   describe("When registerThunk it's invoked with correct name, username and password", () => {
     test("Then it should call dispatch with loadingOffActionCreator", async () => {
       const dispatch = jest.fn();
