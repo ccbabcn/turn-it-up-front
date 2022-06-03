@@ -7,7 +7,7 @@ import ListIcon from "@mui/icons-material/List";
 import { NavigationStyles } from "./NavigationStyles";
 import { useLocation } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (): JSX.Element => {
   const { pathname } = useLocation();
 
   return (
