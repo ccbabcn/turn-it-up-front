@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import Spinner from "./components/Spinner/Spinner";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -13,6 +14,7 @@ function App(): JSX.Element {
   return (
     <>
       <Spinner visible={spinnerIsVisible} />
+      <Header />
       {pathname === "/login" && <Navigation />}
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
