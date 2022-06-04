@@ -7,17 +7,14 @@ import {
 } from "../../../types/UserTypes";
 import { userLoginActionCreator } from "../../features/userSlice/userSlice";
 import { AppDispatch } from "../../store";
-import { toast } from "react-toastify";
 import {
   loadingOffActionCreator,
   loadingOnActionCreator,
 } from "../../features/uiSlice/uiSlice";
+import { correctAction, wrongAction } from "../../../modals/modals";
 interface AxiosResponse {
   data: { token: string };
 }
-
-const correctAction = (message: string) => toast.success(message);
-const wrongAction = (message: string) => toast.warning(message);
 
 export const loginThunk =
   (userData: UserLogIn) => async (dispatch: AppDispatch) => {
@@ -35,13 +32,12 @@ export const loginThunk =
         const userInfo = jwtDecode<UserLoggedIn>(token);
 
         dispatch(userLoginActionCreator(userInfo));
-        dispatch(loadingOffActionCreator({ loading: false }));
         correctAction("Logged in!");
       }
     } catch {
-      dispatch(loadingOffActionCreator({ loading: false }));
       wrongAction("Something went worng try again");
     }
+    dispatch(loadingOffActionCreator({ loading: false }));
   };
 
 export const registerThunk =
@@ -54,10 +50,9 @@ export const registerThunk =
 
       await axios.post(`${url}${endPoint}`, userRegisterData);
 
-      dispatch(loadingOffActionCreator({ loading: false }));
       correctAction("Registered, you can log in now!");
     } catch {
-      dispatch(loadingOffActionCreator({ loading: false }));
       wrongAction("Something went worng try again");
     }
+    dispatch(loadingOffActionCreator({ loading: false }));
   };
