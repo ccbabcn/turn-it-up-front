@@ -7,9 +7,9 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState: initialState,
   reducers: {
-    loadAllProjects: (projects, action: PayloadAction<ProjectsState>) => ({
+    loadAllProjects: (projects, action: PayloadAction<ProjectsState>) => [
       ...action.payload,
-    }),
+    ],
   },
 });
 
