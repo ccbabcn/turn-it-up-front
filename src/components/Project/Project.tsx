@@ -31,14 +31,14 @@ const Project = ({
         />
         <CardContent className="project__details">
           <Typography className="project__name" gutterBottom variant="h5">
-            {name}
+            {name?.toUpperCase()}
           </Typography>
           <Typography
             className="project__description"
             variant="body2"
             color="text.secondary"
           >
-            <p className="project__genres">
+            <span className="project__genres">
               THIS{" "}
               {`${
                 genresUppercase.slice(0, -1).join(", ") +
@@ -46,20 +46,26 @@ const Project = ({
                 genresUppercase.slice(-1)
               }`}{" "}
               PROJECT NEEDS:
-            </p>
-            <p className="project_roles">
+            </span>
+            <span className="project__roles">
               {`${
                 rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
                 " & " +
                 rolesFirstLetterUpperCase.slice(-1)
               }`}{" "}
-            </p>
+            </span>
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-          <Button size="small">Learn More</Button>
+        <CardActions className="project__actions">
+          <Button className="project__actions--info" size="small">
+            +INFO
+          </Button>
+          <Button className="project__actions--join" size="small">
+            JOIN
+          </Button>
+          <Button className="project__actions--delete" size="small">
+            DELETE
+          </Button>
         </CardActions>
       </Card>
     </ProjectStyles>

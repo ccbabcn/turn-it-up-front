@@ -17,8 +17,8 @@ function App(): JSX.Element {
     <>
       <Spinner visible={spinnerIsVisible} />
       <Header />
-      <Project project={mockProject} />
       {pathname === "/login" && <Navigation />}
+      <Project project={mockProject} />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
