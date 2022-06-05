@@ -25,5 +25,25 @@ describe("Given Project component", () => {
       expect(expectedHeading).toBeInTheDocument();
       expect(expectedHeading).toHaveTextContent(projectName);
     });
+
+    test("Then it should render a pharragraph with the project genres and roles", () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Project project={mockProject} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const expectedRolesText = screen.getByText(
+        /drummer, guitarrist, bass player, singer & keyboard/i
+      );
+      const expectedGenresText = screen.getByText(
+        /this rock, blues & pop project needs:/i
+      );
+
+      expect(expectedRolesText).toBeInTheDocument();
+      expect(expectedGenresText).toBeInTheDocument();
+    });
   });
 });
