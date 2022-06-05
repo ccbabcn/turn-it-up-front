@@ -1,6 +1,9 @@
 import { mockProjects } from "../../../mocks/mockProjects/mockProjects";
 import { ProjectsState } from "../../../types/ProjectsTypes";
-import projectsReducer, { loadAllProjectsActionCreator } from "./projectsSlice";
+import projectsReducer, {
+  deleteProjectActionCreator,
+  loadAllProjectsActionCreator,
+} from "./projectsSlice";
 
 describe("Given a projectsReducer", () => {
   describe("When it's loadAllprojects it's call with a list of projects", () => {
@@ -12,6 +15,19 @@ describe("Given a projectsReducer", () => {
       const actualState = projectsReducer(initialState, loadProjectsAction);
 
       expect(actualState).toEqual(expectedState);
+    });
+  });
+
+  describe("When it's deleteProject it's call with a project Id", () => {
+    test("Then it should modify the actual status deleting the project with that Id", () => {
+      const initialState = mockProjects;
+
+      const deleteProjectsAction = deleteProjectActionCreator(
+        initialState[0].id
+      );
+      const actualState = projectsReducer(initialState, deleteProjectsAction);
+
+      expect(actualState).not.toContain(initialState[0]);
     });
   });
 });
