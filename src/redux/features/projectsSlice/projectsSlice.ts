@@ -10,10 +10,14 @@ const projectsSlice = createSlice({
     loadAllProjects: (projects, action: PayloadAction<ProjectsState>) => [
       ...action.payload,
     ],
+    deleteProject: (projects, action: PayloadAction<string>) =>
+      projects.filter((project) => project.id !== action.payload),
   },
 });
 
-export const { loadAllProjects: loadAllProjectsActionCreator } =
-  projectsSlice.actions;
+export const {
+  loadAllProjects: loadAllProjectsActionCreator,
+  deleteProject: deleteProjectActionCreator,
+} = projectsSlice.actions;
 
 export default projectsSlice.reducer;
