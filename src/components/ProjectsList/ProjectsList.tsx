@@ -9,7 +9,6 @@ interface Props {
 const ProjectsList = ({ projects }: Props): JSX.Element => {
   return (
     <ProjectsListStyles>
-      <h2>ALL PROJECTS</h2>
       <ul>
         {projects.map((project) => {
           return <Project key={project.id} project={project} />;

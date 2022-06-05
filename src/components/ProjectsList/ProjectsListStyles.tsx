@@ -6,7 +6,6 @@ export const ProjectsListStyles = styled.div`
   flex-direction: column;
   align-items: center;
   user-select: none;
-  margin: 50px 0;
 
   ul {
     display: flex;

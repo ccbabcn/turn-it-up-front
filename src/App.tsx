@@ -1,10 +1,9 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-import ProjectsList from "./components/ProjectsList/ProjectsList";
 import Spinner from "./components/Spinner/Spinner";
-import { mockProjects } from "./mocks/mockProjects/mockProjects";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { spinnerState } from "./redux/features/uiSlice/uiSlice";
 import { useAppSelector } from "./redux/hooks";
@@ -18,11 +17,12 @@ function App(): JSX.Element {
       <Spinner visible={spinnerIsVisible} />
       <Header />
       {pathname === "/login" && <Navigation />}
-      <ProjectsList projects={mockProjects} />
+
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
     </>
   );
