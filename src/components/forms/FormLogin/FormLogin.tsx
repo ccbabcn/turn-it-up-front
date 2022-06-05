@@ -28,7 +28,7 @@ const FormLogin = (): JSX.Element => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
 
-  const submitRegister = async (event: { preventDefault: () => void }) => {
+  const submitLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     dispatch(loginThunk(formData));
     setFormData(blankFields);
@@ -37,7 +37,7 @@ const FormLogin = (): JSX.Element => {
   return (
     <>
       <FormStyles>
-        <form autoComplete="off" noValidate onSubmit={submitRegister}>
+        <form autoComplete="off" noValidate onSubmit={submitLogin}>
           <div className="formField">
             <label htmlFor="username">Username</label>
             <input

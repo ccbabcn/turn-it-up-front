@@ -1,12 +1,21 @@
+import { useEffect } from "react";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
-import { mockProjects } from "../../mocks/mockProjects/mockProjects";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { loadAllProjectsThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 import { PageStyles } from "../PageStyles";
 
 const ProjectsPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const projects = useAppSelector((state) => state.projects);
+  console.log(projects);
+  useEffect(() => {
+    dispatch(loadAllProjectsThunk());
+  }, [dispatch]);
+
   return (
     <PageStyles>
       <h2>ALL PROJECTS</h2>
-      <ProjectsList projects={mockProjects} />
+      <ProjectsList projects={projects} />
     </PageStyles>
   );
 };
