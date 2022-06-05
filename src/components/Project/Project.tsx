@@ -21,9 +21,9 @@ interface Props {
 }
 
 const Project = ({
-  project: { name, genre, image, roles, id },
+  project: { name, genres, image, roles, id },
 }: Props): JSX.Element => {
-  const genresUppercase = genre?.map((genre) => genre.toUpperCase());
+  const genresUppercase = genres?.map((genre) => genre.toUpperCase());
   const rolesFirstLetterUpperCase = roles?.map(
     (role) => role.charAt(0).toUpperCase() + role.slice(1)
   );
