@@ -1,4 +1,4 @@
-export interface Project {
+export interface IProject {
   name: string;
   description: string;
   image: string;
@@ -7,4 +7,4 @@ export interface Project {
   id: string;
 }
 
-export type ProjectsState = Project[];
+export type ProjectsState = IProject[];
