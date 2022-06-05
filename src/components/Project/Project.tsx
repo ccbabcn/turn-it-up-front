@@ -75,42 +75,66 @@ const Project = ({
               switch (role) {
                 case "guitarrist":
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="guitarrist"
+                      className="icon-container"
+                    >
                       <GiGuitarHead className="icon" />
                     </div>
                   );
                   break;
                 case "drummer":
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="drummer"
+                      className="icon-container"
+                    >
                       <GiDrumKit className="icon" />
                     </div>
                   );
                   break;
                 case "bass player":
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="bassplayer"
+                      className="icon-container"
+                    >
                       <GiGuitarBassHead className="icon" />
                     </div>
                   );
                   break;
                 case "singer":
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="singer"
+                      className="icon-container"
+                    >
                       <GiMicrophone className="icon" />
                     </div>
                   );
                   break;
                 case "keyboard":
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="keyboard"
+                      className="icon-container"
+                    >
                       <GiMusicalKeyboard className="icon" />
                     </div>
                   );
                   break;
                 default:
                   currentIcon = (
-                    <div key={index + id} className="icon-container">
+                    <div
+                      key={index + id}
+                      title="otherrole"
+                      className="icon-container"
+                    >
                       <GiMusicSpell className="icon" />
                     </div>
                   );

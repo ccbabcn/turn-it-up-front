@@ -2,7 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store";
-import { mockProject } from "../../mocks/mockProjects/mockProjects";
+import {
+  mockProject,
+  mockProject2,
+} from "../../mocks/mockProjects/mockProjects";
 import Project from "./Project";
 
 describe("Given Project component", () => {
@@ -44,6 +47,56 @@ describe("Given Project component", () => {
 
       expect(expectedRolesText).toBeInTheDocument();
       expect(expectedGenresText).toBeInTheDocument();
+    });
+
+    test("Then it should render three buttons", () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Project project={mockProject} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const createdNumberofButton = screen.getAllByRole("button");
+
+      expect(createdNumberofButton).toHaveLength(3);
+    });
+
+    test("Then it should render three icons matching the project roles drummer, bassplayer and guitarrist", () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Project project={mockProject} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const drummerIcon = screen.getByTitle(/drummer/i);
+      const bassPlayerIcon = screen.getByTitle(/bassplayer/i);
+      const guitarristIcon = screen.getByTitle(/guitarrist/i);
+
+      expect(drummerIcon).toBeInTheDocument();
+      expect(bassPlayerIcon).toBeInTheDocument();
+      expect(guitarristIcon).toBeInTheDocument();
+    });
+
+    test("Then it should render three icons matching the project roles singer, keyboard and otherrole", () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Project project={mockProject2} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const keyboardIcon = screen.getByTitle(/keyboard/i);
+      const singertIcon = screen.getByTitle(/singer/i);
+      const otherroleIcon = screen.getByTitle(/otherrole/i);
+
+      expect(keyboardIcon).toBeInTheDocument();
+      expect(singertIcon).toBeInTheDocument();
+      expect(otherroleIcon).toBeInTheDocument();
     });
   });
 });
