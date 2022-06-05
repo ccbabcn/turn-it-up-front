@@ -13,7 +13,8 @@ describe("Given a projectsThunks", () => {
       const dispatch = jest.fn();
       const expectedAction = loadAllProjectsActionCreator(mockProjects);
       axios.get = jest.fn().mockResolvedValueOnce({
-        data: { projects: mockProjects, status: 200 },
+        data: { projects: mockProjects },
+        status: 200,
       });
 
       const thunk = await loadAllProjectsThunk();
