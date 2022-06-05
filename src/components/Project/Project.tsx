@@ -6,13 +6,22 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { IProject } from "../../types/ProjectsTypes";
 import { ProjectStyles } from "./ProjectStyles";
+import {
+  GiGuitarBassHead,
+  GiGuitarHead,
+  GiMicrophone,
+  GiDrumKit,
+  GiMusicalKeyboard,
+  GiMusicSpell,
+} from "react-icons/gi";
+import { ReactElement } from "react";
 
 interface Props {
   project: IProject;
 }
 
 const Project = ({
-  project: { name, description, genre, image, roles, id },
+  project: { name, genre, image, roles, id },
 }: Props): JSX.Element => {
   const genresUppercase = genre?.map((genre) => genre.toUpperCase());
   const rolesFirstLetterUpperCase = roles?.map(
@@ -21,18 +30,20 @@ const Project = ({
 
   return (
     <ProjectStyles>
-      <Card className="project" sx={{ maxWidth: 345 }}>
+      <Card className="project" sx={{ maxWidth: 450 }}>
         <CardMedia
           className="project__image"
           component="img"
-          alt="green iguana"
+          alt={`Project ${name}`}
           height="330"
           image={image}
         />
         <CardContent className="project__details">
-          <Typography className="project__name" gutterBottom variant="h5">
-            {name?.toUpperCase()}
-          </Typography>
+          <div className="project__name">
+            <Typography gutterBottom variant="h3">
+              {name?.toUpperCase()}
+            </Typography>
+          </div>
           <Typography
             className="project__description"
             variant="body2"
@@ -56,6 +67,92 @@ const Project = ({
             </span>
           </Typography>
         </CardContent>
+
+        <div className="project__genre-icons">
+          {roles.map((role: string, index, array) => {
+            let currentIcon: ReactElement;
+            if (index < 3) {
+              switch (role) {
+                case "guitarrist":
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="guitarrist"
+                      className="icon-container"
+                    >
+                      <GiGuitarHead className="icon" />
+                    </div>
+                  );
+                  break;
+                case "drummer":
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="drummer"
+                      className="icon-container"
+                    >
+                      <GiDrumKit className="icon" />
+                    </div>
+                  );
+                  break;
+                case "bass player":
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="bassplayer"
+                      className="icon-container"
+                    >
+                      <GiGuitarBassHead className="icon" />
+                    </div>
+                  );
+                  break;
+                case "singer":
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="singer"
+                      className="icon-container"
+                    >
+                      <GiMicrophone className="icon" />
+                    </div>
+                  );
+                  break;
+                case "keyboard":
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="keyboard"
+                      className="icon-container"
+                    >
+                      <GiMusicalKeyboard className="icon" />
+                    </div>
+                  );
+                  break;
+                default:
+                  currentIcon = (
+                    <div
+                      key={index + id}
+                      title="otherrole"
+                      className="icon-container"
+                    >
+                      <GiMusicSpell className="icon" />
+                    </div>
+                  );
+                  break;
+              }
+              return currentIcon;
+            }
+            if (index === 4) {
+              currentIcon = (
+                <div key={index + id} className="icon-container">
+                  +{array.length - 3}
+                </div>
+              );
+              return currentIcon;
+            }
+            return "";
+          })}
+        </div>
         <CardActions className="project__actions">
           <Button className="project__actions--info" size="small">
             +INFO
