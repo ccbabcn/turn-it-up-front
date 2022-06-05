@@ -15,6 +15,8 @@ import {
   GiMusicSpell,
 } from "react-icons/gi";
 import { ReactElement } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 
 interface Props {
   project: IProject;
@@ -23,6 +25,12 @@ interface Props {
 const Project = ({
   project: { name, genres, image, roles, id },
 }: Props): JSX.Element => {
+  const dispatch = useAppDispatch();
+
+  const deleteProject = () => {
+    dispatch(deleteProjectThunk(id));
+  };
+
   const genresUppercase = genres?.map((genre) => genre.toUpperCase());
   const rolesFirstLetterUpperCase = roles?.map(
     (role) => role.charAt(0).toUpperCase() + role.slice(1)
@@ -71,7 +79,7 @@ const Project = ({
         <div className="project__genre-icons">
           {roles.map((role: string, index, array) => {
             let currentIcon: ReactElement;
-            if (index <= 3) {
+            if (index < 3) {
               switch (role) {
                 case "guitarrist":
                   currentIcon = (
@@ -142,7 +150,7 @@ const Project = ({
               }
               return currentIcon;
             }
-            if (index === 4) {
+            if (index === 3) {
               currentIcon = (
                 <div key={index + id} className="icon-container">
                   +{array.length - 3}
@@ -150,7 +158,7 @@ const Project = ({
               );
               return currentIcon;
             }
-            return "";
+            return null;
           })}
         </div>
         <CardActions className="project__actions">
@@ -160,7 +168,11 @@ const Project = ({
           <Button className="project__actions--join" size="small">
             JOIN
           </Button>
-          <Button className="project__actions--delete" size="small">
+          <Button
+            className="project__actions--delete"
+            size="small"
+            onClick={deleteProject}
+          >
             DELETE
           </Button>
         </CardActions>

@@ -35,7 +35,7 @@ export const loginThunk =
         correctAction("Logged in!");
       }
     } catch {
-      wrongAction("Something went worng try again");
+      wrongAction("Something went wrong try again");
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };
@@ -52,7 +52,7 @@ export const registerThunk =
 
       correctAction("Registered, you can log in now!");
     } catch {
-      wrongAction("Something went worng try again");
+      wrongAction("Something went wrong try again");
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };
