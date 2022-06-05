@@ -71,7 +71,7 @@ const Project = ({
         <div className="project__genre-icons">
           {roles.map((role: string, index, array) => {
             let currentIcon: ReactElement;
-            if (index < 3) {
+            if (index <= 3) {
               switch (role) {
                 case "guitarrist":
                   currentIcon = (

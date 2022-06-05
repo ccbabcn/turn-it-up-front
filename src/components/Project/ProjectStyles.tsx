@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-export const ProjectStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  user-select: none;
-  background: #51246a;
-  padding: 20px;
-
+export const ProjectStyles = styled.li`
   .project {
     background: #fdfffc;
     box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
