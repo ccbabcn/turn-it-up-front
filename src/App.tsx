@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Spinner from "./components/Spinner/Spinner";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
@@ -16,13 +17,21 @@ function App(): JSX.Element {
     <>
       <Spinner visible={spinnerIsVisible} />
       <Header />
-      {pathname === "/login" && <Navigation />}
+      {pathname.includes("projects") && <Navigation />}
 
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
+
+        <Route
+          path="/projects"
+          element={
+            <PrivateRoute>
+              <ProjectsPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </>
   );

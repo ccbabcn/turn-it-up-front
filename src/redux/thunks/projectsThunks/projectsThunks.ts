@@ -10,11 +10,10 @@ import {
 } from "../../features/uiSlice/uiSlice";
 import { AppDispatch } from "../../store";
 
-const token = localStorage.getItem("token");
-const url = process.env.REACT_APP_API_URL as string;
-
 export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
   try {
+    const token = localStorage.getItem("token");
+    const url = process.env.REACT_APP_API_URL as string;
     dispatch(loadingOnActionCreator({ loading: true }));
     const endPoint: string = "projects";
 
@@ -37,6 +36,8 @@ export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
 export const deleteProjectThunk =
   (id: string) => async (dispatch: AppDispatch) => {
     try {
+      const token = localStorage.getItem("token");
+      const url = process.env.REACT_APP_API_URL as string;
       dispatch(loadingOnActionCreator({ loading: true }));
 
       const endPoint: string = `projects/${id}`;

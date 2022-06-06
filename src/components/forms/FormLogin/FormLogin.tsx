@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../../../redux/hooks";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loginThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { FormStyles } from "../FormStyles";
 import { FormLoginData } from "../FormTypes";
 
 const FormLogin = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const logged = useAppSelector((state) => state.user.logged);
 
   const blankFields: FormLoginData = {
     username: "",
@@ -24,11 +26,17 @@ const FormLogin = (): JSX.Element => {
     }
   }, [formData]);
 
+  useEffect(() => {
+    if (logged) {
+      navigate("/projects");
+    }
+  }, [logged, navigate]);
+
   const changeData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
 
-  const submitLogin = async (event: { preventDefault: () => void }) => {
+  const submitLogin = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     dispatch(loginThunk(formData));
     setFormData(blankFields);
