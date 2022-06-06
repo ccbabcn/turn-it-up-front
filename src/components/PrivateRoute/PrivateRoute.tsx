@@ -21,20 +21,24 @@ const PrivateRoute = ({ children }: Props) => {
     }
   }, [logged, navigate]);
 
-  try {
-    const userData: UserState = jwtDecode(token);
+  useEffect(() => {
+    if (token) {
+      const userData: UserState = jwtDecode(token);
 
-    dispatch(
-      userLoginActionCreator({
-        id: userData.id,
-        username: userData.username,
-      })
-    );
+      dispatch(
+        userLoginActionCreator({
+          id: userData.id,
+          username: userData.username,
+        })
+      );
+    }
+  }, [dispatch, token]);
+
+  if (!logged) {
+    return null;
+  } else {
     return children;
-  } catch (error) {
-    navigate("/login");
   }
-  return null;
 };
 
 export default PrivateRoute;
