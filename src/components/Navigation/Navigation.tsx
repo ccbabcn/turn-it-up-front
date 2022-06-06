@@ -5,10 +5,14 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import ListIcon from "@mui/icons-material/List";
 import { NavigationStyles } from "./NavigationStyles";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navigation = (): JSX.Element => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const navigateToProjects = () => {
+    navigate("/projects");
+  };
 
   return (
     <NavigationStyles>
@@ -18,15 +22,18 @@ const Navigation = (): JSX.Element => {
           showLabels
         >
           <BottomNavigationAction
+            onClick={navigateToProjects}
             className={
-              pathname === "/login" ? "navBar active" : "navBar inactive"
+              pathname === "/projects" ? "navBar active" : "navBar inactive"
             }
             label="All projects"
             icon={<ListIcon />}
           />
 
           <BottomNavigationAction
-            className="navBar"
+            className={
+              pathname === "/myprojects" ? "navBar active" : "navBar inactive"
+            }
             label="My projects"
             icon={<QueueMusicIcon />}
           />
