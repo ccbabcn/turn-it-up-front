@@ -12,6 +12,12 @@ export const mockUserLogged: UserState = {
   logged: true,
 };
 
+export const mockInitialUserState: UserState = {
+  username: "",
+  id: "",
+  logged: false,
+};
+
 export const userToLogIn: UserLogIn = {
   username: "testuser",
   password: "testuser",
