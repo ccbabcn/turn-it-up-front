@@ -7,7 +7,6 @@ import { PageStyles } from "../PageStyles";
 const ProjectsPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const projects = useAppSelector((state) => state.projects);
-  console.log(projects);
   useEffect(() => {
     dispatch(loadAllProjectsThunk());
   }, [dispatch]);
