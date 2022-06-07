@@ -1,6 +1,10 @@
-import { mockProjects } from "../../../mocks/mockProjects/mockProjects";
+import {
+  mockProjects,
+  mocKProjectToCreate,
+} from "../../../mocks/mockProjects/mockProjects";
 import { ProjectsState } from "../../../types/ProjectsTypes";
 import projectsReducer, {
+  createProjectActionCreator,
   deleteProjectActionCreator,
   loadAllProjectsActionCreator,
 } from "./projectsSlice";
@@ -28,6 +32,18 @@ describe("Given a projectsReducer", () => {
       const actualState = projectsReducer(initialState, deleteProjectsAction);
 
       expect(actualState).not.toContain(initialState[0]);
+    });
+  });
+
+  describe("When it's createProject it's called with a proejct", () => {
+    test("Then it should add the received project to the projects state", () => {
+      const initialState = mockProjects;
+
+      const createProjectAction =
+        createProjectActionCreator(mocKProjectToCreate);
+      const actualState = projectsReducer(initialState, createProjectAction);
+
+      expect(actualState).toContain(mocKProjectToCreate);
     });
   });
 });
