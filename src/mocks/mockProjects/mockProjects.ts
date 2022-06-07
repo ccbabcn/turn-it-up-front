@@ -41,3 +41,12 @@ export const mockProject2: IProject = {
   genres: ["rock", "blues", "pop"],
   roles: ["singer", "keyboard", "ukelele"],
 };
+
+export const mocKProjectToCreate: IProject = {
+  id: "newid",
+  name: "new project",
+  description: "project to add to the state",
+  image: "https://Secreto-Legendario-Tempo-4-1024x683.jpg",
+  genres: ["rock", "pop"],
+  roles: ["singer", "keyboard", "guitarrist"],
+};
