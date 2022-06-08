@@ -15,7 +15,7 @@ import {
   GiMusicSpell,
 } from "react-icons/gi";
 import { ReactElement } from "react";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 
 interface Props {
@@ -23,13 +23,15 @@ interface Props {
 }
 
 const Project = ({
-  project: { name, genres, image, roles, id },
+  project: { name, genres, image, roles, id, owner },
 }: Props): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const deleteProject = () => {
     dispatch(deleteProjectThunk(id));
   };
+
+  const userId = useAppSelector((state) => state.user.id);
 
   const genresUppercase = genres?.map((genre) => genre.toUpperCase());
   const rolesFirstLetterUpperCase = roles?.map(
@@ -169,13 +171,15 @@ const Project = ({
           <Button className="project__actions--join" size="small">
             JOIN
           </Button>
-          <Button
-            className="project__actions--delete"
-            size="small"
-            onClick={deleteProject}
-          >
-            DELETE
-          </Button>
+          {owner === userId && (
+            <Button
+              className="project__actions--delete"
+              size="small"
+              onClick={deleteProject}
+            >
+              DELETE
+            </Button>
+          )}
         </CardActions>
       </Card>
     </ProjectStyles>
