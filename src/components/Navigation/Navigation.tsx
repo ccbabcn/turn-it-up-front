@@ -3,6 +3,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LogoutIcon from "@mui/icons-material/Logout";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import ListIcon from "@mui/icons-material/List";
 import { NavigationStyles } from "./NavigationStyles";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +13,9 @@ const Navigation = (): JSX.Element => {
   const navigate = useNavigate();
   const navigateToProjects = () => {
     navigate("/projects");
+  };
+  const navigateToCreate = () => {
+    navigate("/create");
   };
 
   return (
@@ -26,7 +30,7 @@ const Navigation = (): JSX.Element => {
             className={
               pathname === "/projects" ? "navBar active" : "navBar inactive"
             }
-            label="All projects"
+            label="All"
             icon={<ListIcon />}
           />
 
@@ -34,8 +38,17 @@ const Navigation = (): JSX.Element => {
             className={
               pathname === "/myprojects" ? "navBar active" : "navBar inactive"
             }
-            label="My projects"
+            label="Mine"
             icon={<QueueMusicIcon />}
+          />
+
+          <BottomNavigationAction
+            onClick={navigateToCreate}
+            className={
+              pathname === "/create" ? "navBar active" : "navBar inactive"
+            }
+            label="Create"
+            icon={<PlaylistAddIcon />}
           />
 
           <BottomNavigationAction

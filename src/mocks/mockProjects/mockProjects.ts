@@ -18,7 +18,7 @@ export const mockProjects: ProjectsState = [
     image:
       "https://offloadmedia.feverup.com/madridsecreto.co/wp-content/uploads/2019/04/08105701/Madrid-Secreto-Legendario-Tempo-4-1024x683.jpg",
     genres: ["blues"],
-    roles: ["drummer", "guitarrist", "bass player", "singer"],
+    roles: ["drummer", "guitarrist", "bassplayer", "singer"],
   },
 ];
 
@@ -29,7 +29,7 @@ export const mockProject: IProject = {
   image:
     "https://offloadmedia.feverup.com/madridsecreto.co/wp-content/uploads/2019/04/08105701/Madrid-Secreto-Legendario-Tempo-4-1024x683.jpg",
   genres: ["rock", "blues", "pop"],
-  roles: ["drummer", "guitarrist", "bass player", "singer", "keyboard"],
+  roles: ["drummer", "guitarrist", "bassplayer", "singer", "keyboard"],
 };
 
 export const mockProject2: IProject = {

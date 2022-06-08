@@ -6,8 +6,8 @@ import Navigation from "./Navigation";
 
 describe("Given the component Navigation", () => {
   describe("When it's invoked", () => {
-    test("The it shoul render a nav bar with 3 buttons", () => {
-      const expectedNumberOfButtoms = 3;
+    test("The it shoul render a nav bar with 4 buttons", () => {
+      const expectedNumberOfButtoms = 4;
 
       render(
         <Provider store={store}>

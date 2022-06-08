@@ -12,10 +12,12 @@ const ProjectsPage = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <PageStyles>
-      <h2>ALL PROJECTS</h2>
-      <ProjectsList projects={projects} />
-    </PageStyles>
+    <>
+      <PageStyles>
+        <h2>ALL PROJECTS</h2>
+        <ProjectsList projects={projects} />
+      </PageStyles>
+    </>
   );
 };
 

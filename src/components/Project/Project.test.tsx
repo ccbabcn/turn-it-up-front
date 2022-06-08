@@ -39,7 +39,7 @@ describe("Given Project component", () => {
       );
 
       const expectedRolesText = screen.getByText(
-        /drummer, guitarrist, bass player, singer & keyboard/i
+        /drummer, guitarrist, bassplayer, singer & keyboard/i
       );
       const expectedGenresText = screen.getByText(
         /this rock, blues & pop project needs:/i

@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Spinner from "./components/Spinner/Spinner";
+import CreateProjectPage from "./pages/CreateProjectPage/CreateProjectPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -18,6 +19,7 @@ function App(): JSX.Element {
       <Spinner visible={spinnerIsVisible} />
       <Header />
       {pathname.includes("projects") && <Navigation />}
+      {pathname.includes("create") && <Navigation />}
 
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -29,6 +31,14 @@ function App(): JSX.Element {
           element={
             <PrivateRoute>
               <ProjectsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <PrivateRoute>
+              <CreateProjectPage />
             </PrivateRoute>
           }
         />
