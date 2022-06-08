@@ -7,6 +7,7 @@ import CreateProjectPage from "./pages/CreateProjectPage/CreateProjectPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import UserProjectsPage from "./pages/UserProjectsPage/UserProjectsPage";
 import { spinnerState } from "./redux/features/uiSlice/uiSlice";
 import { useAppSelector } from "./redux/hooks";
 
@@ -31,6 +32,14 @@ function App(): JSX.Element {
           element={
             <PrivateRoute>
               <ProjectsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/myprojects"
+          element={
+            <PrivateRoute>
+              <UserProjectsPage />
             </PrivateRoute>
           }
         />

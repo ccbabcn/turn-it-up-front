@@ -17,6 +17,9 @@ const Navigation = (): JSX.Element => {
   const navigateToCreate = () => {
     navigate("/create");
   };
+  const navigateToMyProjects = () => {
+    navigate("/myprojects");
+  };
 
   return (
     <NavigationStyles>
@@ -35,6 +38,7 @@ const Navigation = (): JSX.Element => {
           />
 
           <BottomNavigationAction
+            onClick={navigateToMyProjects}
             className={
               pathname === "/myprojects" ? "navBar active" : "navBar inactive"
             }
