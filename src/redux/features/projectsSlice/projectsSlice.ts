@@ -7,7 +7,7 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState: initialState,
   reducers: {
-    loadAllProjects: (
+    loadProjects: (
       projects,
       action: PayloadAction<ProjectsState>
     ): ProjectsState => [...action.payload],
@@ -21,7 +21,7 @@ const projectsSlice = createSlice({
 });
 
 export const {
-  loadAllProjects: loadAllProjectsActionCreator,
+  loadProjects: loadProjectsActionCreator,
   deleteProject: deleteProjectActionCreator,
   createProject: createProjectActionCreator,
 } = projectsSlice.actions;

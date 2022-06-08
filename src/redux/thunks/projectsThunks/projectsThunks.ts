@@ -4,7 +4,7 @@ import { IProject } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
-  loadAllProjectsActionCreator,
+  loadProjectsActionCreator,
 } from "../../features/projectsSlice/projectsSlice";
 import {
   loadingOffActionCreator,
@@ -27,7 +27,30 @@ export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
     });
 
     if (status === 200) {
-      dispatch(loadAllProjectsActionCreator(projects));
+      dispatch(loadProjectsActionCreator(projects));
+    }
+  } catch {
+    wrongAction("Something went wrong connecting with the server");
+  }
+  dispatch(loadingOffActionCreator({ loading: false }));
+};
+
+export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    const url = process.env.REACT_APP_API_URL as string;
+    dispatch(loadingOnActionCreator({ loading: true }));
+    const endPoint: string = "projects/user";
+
+    const {
+      data: { projects },
+      status,
+    }: AxiosResponse = await axios.get(`${url}${endPoint}`, {
+      headers: { authorization: `Bearer ${token}` },
+    });
+
+    if (status === 200) {
+      dispatch(loadProjectsActionCreator(projects));
     }
   } catch {
     wrongAction("Something went wrong connecting with the server");

@@ -6,7 +6,7 @@ import { ProjectsState } from "../../../types/ProjectsTypes";
 import projectsReducer, {
   createProjectActionCreator,
   deleteProjectActionCreator,
-  loadAllProjectsActionCreator,
+  loadProjectsActionCreator,
 } from "./projectsSlice";
 
 describe("Given a projectsReducer", () => {
@@ -15,7 +15,7 @@ describe("Given a projectsReducer", () => {
       const initialState: ProjectsState = [];
       const expectedState = mockProjects;
 
-      const loadProjectsAction = loadAllProjectsActionCreator(mockProjects);
+      const loadProjectsAction = loadProjectsActionCreator(mockProjects);
       const actualState = projectsReducer(initialState, loadProjectsAction);
 
       expect(actualState).toEqual(expectedState);
