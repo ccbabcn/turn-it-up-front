@@ -27,7 +27,7 @@ describe("Given a projectsReducer", () => {
       const initialState = mockProjects;
 
       const deleteProjectsAction = deleteProjectActionCreator(
-        initialState[0].id
+        initialState[0].id as string
       );
       const actualState = projectsReducer(initialState, deleteProjectsAction);
 

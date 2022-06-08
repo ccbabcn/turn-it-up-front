@@ -73,7 +73,10 @@ export const createProjectThunk =
         data: { project },
         status,
       }: AxiosResponse = await axios.post(`${url}${endPoint}`, newProject, {
-        headers: { authorization: `Bearer ${token}` },
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (status === 201) {
         dispatch(createProjectActionCreator(project));
