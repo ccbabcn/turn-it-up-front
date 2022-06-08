@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import FormProject from "../../components/forms/FormProject/FormProject";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadAllProjectsThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
@@ -14,7 +13,6 @@ const ProjectsPage = (): JSX.Element => {
 
   return (
     <>
-      <FormProject />
       <PageStyles>
         <h2>ALL PROJECTS</h2>
         <ProjectsList projects={projects} />
