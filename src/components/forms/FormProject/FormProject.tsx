@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { createProjectThunk } from "../../../redux/thunks/projectsThunks/projectsThunks";
 import { IProject } from "../../../types/ProjectsTypes";
 import { FormStyles } from "../FormStyles";
 
 const FormProject = (): JSX.Element => {
   const dispatch = useAppDispatch();
+
+  const userId = useAppSelector((state) => state.user.id);
 
   const blankFields: IProject = {
     name: "",
@@ -14,6 +16,7 @@ const FormProject = (): JSX.Element => {
     genres: [],
     roles: [],
     id: "",
+    owner: userId,
   };
 
   const [formData, setFormData] = useState<IProject>(blankFields);

@@ -60,7 +60,7 @@ describe("Given Project component", () => {
 
       const createdNumberofButton = screen.getAllByRole("button");
 
-      expect(createdNumberofButton).toHaveLength(3);
+      expect(createdNumberofButton).toHaveLength(2);
     });
 
     test("Then it should render three icons matching the project roles drummer, bassplayer and guitarrist", () => {

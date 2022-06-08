@@ -5,6 +5,7 @@ export interface IProject {
   genres: string[];
   roles: string[];
   id: string;
+  owner: string;
 }
 
 export type ProjectsState = IProject[];

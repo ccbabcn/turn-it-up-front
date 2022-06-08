@@ -68,7 +68,6 @@ export const createProjectThunk =
       const url = process.env.REACT_APP_API_URL as string;
       const endPoint: string = `projects/create`;
       dispatch(loadingOnActionCreator({ loading: true }));
-
       const {
         data: { project },
         status,
