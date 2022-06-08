@@ -35,6 +35,7 @@ const Project = ({
   const rolesFirstLetterUpperCase = roles?.map(
     (role) => role.charAt(0).toUpperCase() + role.slice(1)
   );
+  const url = process.env.REACT_APP_API_URL as string;
 
   return (
     <ProjectStyles>
@@ -44,7 +45,7 @@ const Project = ({
           component="img"
           alt={`Project ${name}`}
           height="330"
-          image={image}
+          image={`${url}uploads/images/${image}`}
         />
         <CardContent className="project__details">
           <div className="project__name">
@@ -103,7 +104,7 @@ const Project = ({
                     </div>
                   );
                   break;
-                case "bass player":
+                case "bassplayer":
                   currentIcon = (
                     <div
                       key={index + id}
