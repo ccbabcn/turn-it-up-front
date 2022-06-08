@@ -5,20 +5,24 @@ import {
 } from "../../../mocks/mockProjects/mockProjects";
 import {
   deleteProjectActionCreator,
-  loadAllProjectsActionCreator,
+  loadProjectsActionCreator,
 } from "../../features/projectsSlice/projectsSlice";
 import {
   loadingOffActionCreator,
   loadingOnActionCreator,
   UiState,
 } from "../../features/uiSlice/uiSlice";
-import { deleteProjectThunk, loadAllProjectsThunk } from "./projectsThunks";
+import {
+  deleteProjectThunk,
+  loadAllProjectsThunk,
+  loadUserProjectsThunk,
+} from "./projectsThunks";
 
 describe("Given a projectsThunks", () => {
   describe("When loadAllProjectsThunk it's invoked and receives a list of projects", () => {
     test("Then it should call dispatch with loadAllProjectsActionCreator whit that list", async () => {
       const dispatch = jest.fn();
-      const expectedAction = loadAllProjectsActionCreator(mockProjects);
+      const expectedAction = loadProjectsActionCreator(mockProjects);
       axios.get = jest.fn().mockResolvedValueOnce({
         data: { projects: mockProjects },
         status: 200,
@@ -32,7 +36,7 @@ describe("Given a projectsThunks", () => {
   });
 
   describe("When loadAllProjectsThunk it's invoked but there's no response", () => {
-    test("Then it should call dispatch with loadAllProjectsActionCreator whit that list", async () => {
+    test("Then it should call dispatch with loadingOffActionCreator", async () => {
       const dispatch = jest.fn();
       const mockUiState: UiState = { loading: false };
 
@@ -42,6 +46,39 @@ describe("Given a projectsThunks", () => {
       });
 
       const thunk = await loadAllProjectsThunk();
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When loadUserProjectsThunk it's invoked and receives a list of projects", () => {
+    test("Then it should call dispatch with loadProjectsActionCreator whit that list", async () => {
+      axios.get = jest.fn().mockResolvedValueOnce({
+        data: { projects: mockProjects },
+        status: 200,
+      });
+      const dispatch = jest.fn();
+      const expectedAction = loadProjectsActionCreator(mockProjects);
+
+      const thunk = await loadUserProjectsThunk();
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When loadUserProjectsThunk it's invoked but an error occurs", () => {
+    test("Then it should call dispatch with loadingOffActionCreator", async () => {
+      axios.get = jest.fn().mockResolvedValueOnce({
+        data: { projects: mockProjects },
+        status: 404,
+      });
+      const mockUiState: UiState = { loading: false };
+      const dispatch = jest.fn();
+      const expectedAction = loadingOffActionCreator(mockUiState);
+
+      const thunk = await loadUserProjectsThunk();
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
