@@ -7,18 +7,26 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import ListIcon from "@mui/icons-material/List";
 import { NavigationStyles } from "./NavigationStyles";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { userLogOutActionCreator } from "../../redux/features/userSlice/userSlice";
 
 const Navigation = (): JSX.Element => {
+  const actualUser = useAppSelector((state) => state.user);
+  const dispact = useAppDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const navigateToProjects = () => {
     navigate("/projects");
   };
   const navigateToCreate = () => {
-    navigate("/create");
+    navigate("/create-project");
   };
   const navigateToMyProjects = () => {
     navigate("/myprojects");
+  };
+  const logOutOnClick = () => {
+    localStorage.removeItem("token");
+    dispact(userLogOutActionCreator(actualUser));
   };
 
   return (
@@ -56,6 +64,7 @@ const Navigation = (): JSX.Element => {
           />
 
           <BottomNavigationAction
+            onClick={logOutOnClick}
             className="navBar"
             label="Logout"
             icon={<LogoutIcon />}
