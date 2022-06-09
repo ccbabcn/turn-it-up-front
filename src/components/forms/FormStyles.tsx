@@ -15,20 +15,92 @@ export const FormStyles = styled.div`
       0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     border: solid 1px #aea9ac;
-    padding: 80px 30px;
+    padding: 30px 30px;
     width: 70%;
     min-width: 300px;
     display: flex;
     flex-direction: column;
-
     .formField {
+      width: 80%;
       display: flex;
       flex-direction: column;
     }
 
+    .fieldCheckbox {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+
+      &__fieldSet {
+        border: solid 1px #aea9ac;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0;
+        border-radius: 20px;
+        padding: 20px;
+      }
+      &__checker {
+        .form-control {
+          font-size: 1.25rem;
+          line-height: 1.1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 10px;
+        }
+
+        input[type="checkbox"] {
+          -webkit-appearance: none;
+          appearance: none;
+          background-color: var(--form-background);
+          margin: 0;
+
+          font: inherit;
+          color: currentColor;
+          width: 1.75em;
+          height: 1.75em;
+          border: 0.15em solid currentColor;
+          border-radius: 0.35em;
+
+          display: grid;
+          place-content: center;
+        }
+
+        input[type="checkbox"]::before {
+          content: "";
+          width: 0.65em;
+          height: 0.65em;
+          clip-path: polygon(
+            14% 44%,
+            0 65%,
+            50% 100%,
+            100% 16%,
+            80% 0%,
+            43% 62%
+          );
+          transform: scale(0);
+          transform-origin: bottom left;
+          transition: 120ms transform ease-in-out;
+          box-shadow: inset 1em 1em var(--form-control-color);
+          /* Windows High Contrast Mode */
+          background-color: CanvasText;
+        }
+
+        input[type="checkbox"]:checked::before {
+          transform: scale(1);
+          --form-control-color: #51246a;
+        }
+      }
+    }
+
     label {
       align-items: left;
-      font-size: 26px;
+      font-size: 1.5em;
     }
 
     input {
