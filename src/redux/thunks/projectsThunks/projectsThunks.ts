@@ -14,10 +14,10 @@ import { AppDispatch } from "../../store";
 
 export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
   try {
-    const token = localStorage.getItem("token");
-    const url = process.env.REACT_APP_API_URL as string;
     dispatch(loadingOnActionCreator({ loading: true }));
+    const url = process.env.REACT_APP_API_URL as string;
     const endPoint: string = "projects";
+    const token = localStorage.getItem("token");
 
     const {
       data: { projects },
@@ -30,18 +30,17 @@ export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
       dispatch(loadProjectsActionCreator(projects));
     }
   } catch {
-    wrongAction("Something went wrong connecting with the server");
+    wrongAction("Something went wrong trying to load the list of projects");
   }
   dispatch(loadingOffActionCreator({ loading: false }));
 };
 
 export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
   try {
-    const token = localStorage.getItem("token");
-    const url = process.env.REACT_APP_API_URL as string;
     dispatch(loadingOnActionCreator({ loading: true }));
+    const url = process.env.REACT_APP_API_URL as string;
     const endPoint: string = "projects/user";
-
+    const token = localStorage.getItem("token");
     const {
       data: { projects },
       status,
@@ -52,8 +51,8 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
     if (status === 200) {
       dispatch(loadProjectsActionCreator(projects));
     }
-  } catch {
-    wrongAction("Something went wrong connecting with the server");
+  } catch (error) {
+    wrongAction(`Something went wrong trying to load your projects`);
   }
   dispatch(loadingOffActionCreator({ loading: false }));
 };
@@ -61,11 +60,10 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
 export const deleteProjectThunk =
   (id: string) => async (dispatch: AppDispatch) => {
     try {
-      const token = localStorage.getItem("token");
-      const url = process.env.REACT_APP_API_URL as string;
       dispatch(loadingOnActionCreator({ loading: true }));
-
+      const url = process.env.REACT_APP_API_URL as string;
       const endPoint: string = `projects/${id}`;
+      const token = localStorage.getItem("token");
 
       const { status }: AxiosResponse = await axios.delete(
         `${url}${endPoint}`,

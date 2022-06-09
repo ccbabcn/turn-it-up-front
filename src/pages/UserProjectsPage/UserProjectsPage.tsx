@@ -7,7 +7,8 @@ import { PageStyles } from "../PageStyles";
 const UserProjectsPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const projects = useAppSelector((state) => state.projects);
-  const username = useAppSelector((state) => state.user.username);
+  const { username, id } = useAppSelector((state) => state.user);
+  const userProjects = projects.filter((project) => project.owner === id);
   useEffect(() => {
     dispatch(loadUserProjectsThunk());
   }, [dispatch]);
@@ -16,9 +17,9 @@ const UserProjectsPage = (): JSX.Element => {
     <>
       <PageStyles>
         <h2>
-          {username?.toUpperCase()} YOU HAVE {projects.length} PROJECTS
+          {username?.toUpperCase()} YOU HAVE {userProjects.length} PROJECTS
         </h2>
-        <ProjectsList projects={projects} />
+        <ProjectsList projects={userProjects} />
       </PageStyles>
     </>
   );

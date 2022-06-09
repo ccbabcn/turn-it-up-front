@@ -109,116 +109,143 @@ const FormProject = (): JSX.Element => {
             />
           </div>
           <div className="formField imagefield">
-            <label htmlFor="image">Choose image</label>
-            <input id="image" type="file" onChange={uploadImage} />
+            <label htmlFor="image" className="imagefield__label">
+              Choose image
+            </label>
+            <input
+              id="image"
+              type="file"
+              className="imagefield__input"
+              onChange={uploadImage}
+            />
           </div>
-          <div className="formField checkbox">
-            <fieldset>
+          <div className="fieldCheckbox">
+            <fieldset className="fieldCheckbox__fieldSet">
               <legend>Select genre</legend>
-              <div>
-                <input
-                  type="checkbox"
-                  id="rock"
-                  name="genres"
-                  value="rock"
-                  onChange={changeData}
-                />
-                <label htmlFor="rock">Rock</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="rock" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="rock"
+                    name="genres"
+                    value="rock"
+                    onChange={changeData}
+                  />
+                  Rock
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="blues"
-                  name="genres"
-                  value="blues"
-                  onChange={changeData}
-                />
-                <label htmlFor="blues">Blues</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="blues" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="blues"
+                    name="genres"
+                    value="blues"
+                    onChange={changeData}
+                  />
+                  Blues
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="pop"
-                  name="genres"
-                  value="pop"
-                  onChange={changeData}
-                />
-                <label htmlFor="pop">Pop</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="pop" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="pop"
+                    name="genres"
+                    value="pop"
+                    onChange={changeData}
+                  />
+                  Pop
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="folk"
-                  name="genres"
-                  value="folk"
-                  onChange={changeData}
-                />
-                <label htmlFor="folk">Folk</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="folk" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="folk"
+                    name="genres"
+                    value="folk"
+                    onChange={changeData}
+                  />
+                  Folk
+                </label>
               </div>
             </fieldset>
           </div>
-          <div className="formField checkbox">
-            <fieldset>
+          <div className="fieldCheckbox">
+            <fieldset className="fieldCheckbox__fieldSet">
               <legend>Select roles needed</legend>
-              <div>
-                <input
-                  type="checkbox"
-                  id="guitarrist"
-                  name="roles"
-                  value="guitarrist"
-                  onChange={changeData}
-                />
-                <label htmlFor="guitarrist">Guitarrist</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="guitarrist" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="guitarrist"
+                    name="roles"
+                    value="guitarrist"
+                    onChange={changeData}
+                  />
+                  Guitarrist
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="singer"
-                  name="roles"
-                  value="singer"
-                  onChange={changeData}
-                />
-                <label htmlFor="singer">Singer</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="singer" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="singer"
+                    name="roles"
+                    value="singer"
+                    onChange={changeData}
+                  />
+                  Singer
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="bassplayer"
-                  name="roles"
-                  value="bassplayer"
-                  onChange={changeData}
-                />
-                <label htmlFor="bassplayer">Bassplayer</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="bassplayer" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="bassplayer"
+                    name="roles"
+                    value="bassplayer"
+                    onChange={changeData}
+                  />
+                  Bassplayer
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="drummer"
-                  name="roles"
-                  value="drummer"
-                  onChange={changeData}
-                />
-                <label htmlFor="drummer">Drummer</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="drummer" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="drummer"
+                    name="roles"
+                    value="drummer"
+                    onChange={changeData}
+                  />
+                  Drummer
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="keyboard"
-                  name="roles"
-                  value="keyboard"
-                  onChange={changeData}
-                />
-                <label htmlFor="keyboard">Keyboard</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="keyboard" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="keyboard"
+                    name="roles"
+                    value="keyboard"
+                    onChange={changeData}
+                  />
+                  Keyboard
+                </label>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="other"
-                  name="roles"
-                  value="other"
-                  onChange={changeData}
-                />
-                <label htmlFor="other">Other</label>
+              <div className="fieldCheckbox__checker">
+                <label htmlFor="other" className="form-control">
+                  <input
+                    type="checkbox"
+                    id="other"
+                    name="roles"
+                    value="other"
+                    onChange={changeData}
+                  />
+                  Other
+                </label>
               </div>
             </fieldset>
           </div>
