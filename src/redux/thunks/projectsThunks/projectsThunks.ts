@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
-import { IProject } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
@@ -51,9 +50,7 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
     if (status === 200) {
       dispatch(loadProjectsActionCreator(projects));
     }
-  } catch (error) {
-    wrongAction(`Something went wrong trying to load your projects`);
-  }
+  } catch {}
   dispatch(loadingOffActionCreator({ loading: false }));
 };
 
@@ -83,7 +80,7 @@ export const deleteProjectThunk =
   };
 
 export const createProjectThunk =
-  (newProject: IProject) => async (dispatch: AppDispatch) => {
+  (newProject: FormData) => async (dispatch: AppDispatch) => {
     try {
       const token = localStorage.getItem("token");
       const url = process.env.REACT_APP_API_URL as string;
@@ -104,6 +101,56 @@ export const createProjectThunk =
       }
     } catch (error) {
       wrongAction("Something went wrong creating the project");
+    }
+    dispatch(loadingOffActionCreator({ loading: false }));
+  };
+
+export const editProjectThunk =
+  (editProject: FormData, idProject: string) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const url = process.env.REACT_APP_API_URL as string;
+      const endPoint: string = `projects/${idProject}`;
+      dispatch(loadingOnActionCreator({ loading: true }));
+      const { status }: AxiosResponse = await axios.put(
+        `${url}${endPoint}`,
+        editProject,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (status === 200) {
+        correctAction("Project updated correctly");
+        loadUserProjectsThunk();
+      }
+    } catch (error) {
+      wrongAction("Something went wrong updating the project");
+    }
+    dispatch(loadingOffActionCreator({ loading: false }));
+  };
+
+export const getProjectByIdThunk =
+  (idProject: string) => async (dispatch: AppDispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const url = process.env.REACT_APP_API_URL as string;
+      const endPoint: string = `projects/${idProject}`;
+      dispatch(loadingOnActionCreator({ loading: true }));
+      const {
+        data: { project },
+        status,
+      }: AxiosResponse = await axios.get(`${url}${endPoint}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      if (status === 200) {
+        correctAction(`Project ${project.name} loaded correctly`);
+      }
+    } catch (error) {
+      wrongAction("Something went wrong loading the project");
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };
