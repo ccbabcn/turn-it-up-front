@@ -1,10 +1,8 @@
 import jwtDecode from "jwt-decode";
-import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Navigation from "./components/Navigation/Navigation";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import PublicRoute from "./components/PublicRoute/PublicRoute";
+import NotLoggedChecker from "./components/NotLoggedChecker/NotLoggedChecker";
+import LoggedChecker from "./components/LoggedChecker/LoggedChecker";
 import Spinner from "./components/Spinner/Spinner";
 import CreateProjectPage from "./pages/CreateProjectPage/CreateProjectPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -19,73 +17,66 @@ import { UserLoggedIn } from "./types/UserTypes";
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
+
   const spinnerIsVisible = useAppSelector(spinnerState);
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (token as string) {
-      const user: UserLoggedIn = jwtDecode(token as string);
-
-      dispatch(userLoginActionCreator(user));
-    }
-  }, [dispatch, token]);
+  try {
+    const user: UserLoggedIn = jwtDecode(token as string);
+    dispatch(userLoginActionCreator(user));
+  } catch (error) {}
 
   return (
     <>
       <Spinner visible={spinnerIsVisible} />
       <Header />
-      {pathname.includes("project") && <Navigation />}
-
       <Routes>
-        <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/" element={<Navigate to="/login" />} />
-
         <Route
           path="/login"
           element={
-            <PublicRoute>
+            <LoggedChecker>
               <LoginPage />
-            </PublicRoute>
+            </LoggedChecker>
           }
         />
         <Route
           path="/register"
           element={
-            <PublicRoute>
+            <LoggedChecker>
               <RegisterPage />
-            </PublicRoute>
+            </LoggedChecker>
           }
         />
         <Route
           path="/projects"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <ProjectsPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/my-projects"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <UserProjectsPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/create-project"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <CreateProjectPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/edit-project/:id"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <CreateProjectPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
       </Routes>

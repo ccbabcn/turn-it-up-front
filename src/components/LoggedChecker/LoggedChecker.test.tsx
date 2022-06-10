@@ -8,7 +8,7 @@ import {
 import store from "../../redux/store";
 import { UserState } from "../../types/UserTypes";
 
-import PublicRoute from "./PublicRoute";
+import LoggedChecker from "./LoggedChecker";
 
 let mockuserState: UserState;
 
@@ -23,16 +23,16 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-describe("Given a PublicRoute component", () => {
+describe("Given a LoggedChecker component", () => {
   describe("When its invoked and the user is logged in", () => {
     test("Then it should call the navigate function with tue route '/projects'", () => {
       mockuserState = mockUserLogged;
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <PublicRoute>
+            <LoggedChecker>
               <div>Children</div>
-            </PublicRoute>
+            </LoggedChecker>
           </BrowserRouter>
         </Provider>
       );
@@ -47,9 +47,9 @@ describe("Given a PublicRoute component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <PublicRoute>
+            <LoggedChecker>
               <h1>Children</h1>
-            </PublicRoute>
+            </LoggedChecker>
           </BrowserRouter>
         </Provider>
       );
