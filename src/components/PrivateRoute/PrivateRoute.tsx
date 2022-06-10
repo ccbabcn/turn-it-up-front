@@ -10,12 +10,13 @@ const PrivateRoute = ({ children }: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userIsLogged) navigate("/login");
+    if (!userIsLogged) {
+      navigate("/login");
+      return;
+    }
   }, [userIsLogged, navigate]);
-  if (userIsLogged) {
-    return children;
-  }
-  return null;
+
+  return children;
 };
 
 export default PrivateRoute;

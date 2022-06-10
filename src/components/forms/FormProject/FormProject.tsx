@@ -9,37 +9,21 @@ import { IProject } from "../../../types/ProjectsTypes";
 import { FormStyles } from "../FormStyles";
 
 const FormProject = (): JSX.Element => {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const userId = useAppSelector((state) => state.user.id);
-  const allProjects = useAppSelector((state) => state.projects);
-  const { id } = useParams();
+  const { projects } = useAppSelector((state) => state);
+  const currentProject = projects.find((project) => project.id === id);
 
-  let blankFields: IProject = {
-    name: "",
-    description: "",
-    image: "",
-    genres: [],
-    roles: [],
-    id: "",
-    owner: userId,
+  const blankFields: IProject = {
+    name: currentProject?.name || "",
+    description: currentProject?.description || "",
+    image: currentProject?.image || "",
+    genres: currentProject?.genres || [],
+    roles: currentProject?.roles || [],
+    id: currentProject?.id || "",
+    owner: currentProject?.owner || "",
   };
-
-  if (id) {
-    const { name, description, image, genres, roles } = allProjects.find(
-      (project) => project.id === id
-    ) as IProject;
-
-    blankFields = {
-      name: name,
-      description: description,
-      image: image,
-      genres: [...genres],
-      roles: [...roles],
-      id: id,
-      owner: userId,
-    };
-  }
 
   const [formData, setFormData] = useState<IProject>(blankFields);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
@@ -100,18 +84,26 @@ const FormProject = (): JSX.Element => {
     id: string
   ) => {
     event.preventDefault();
-    if (id) {
-      const newProject = new FormData();
-      newProject.append("newProject", JSON.stringify(formData));
-      newProject.append("image", formData.image);
-      dispatch(editProjectThunk(formData, id));
-      setFormData(blankFields);
-      navigate("/my-projects");
-    }
+
     const newProject = new FormData();
-    newProject.append("newProject", JSON.stringify(formData));
+    newProject.append("name", formData.name);
+    newProject.append("description", formData.description);
+    for (const genre of formData.genres) {
+      newProject.append("genres", genre);
+    }
+    for (const role of formData.roles) {
+      newProject.append("roles", role);
+    }
+    newProject.append("owner", formData.owner);
+    newProject.append("id", formData.id);
+
     newProject.append("image", formData.image);
-    dispatch(createProjectThunk(formData));
+
+    if (id) {
+      dispatch(editProjectThunk(newProject, id));
+    } else {
+      dispatch(createProjectThunk(newProject));
+    }
     setFormData(blankFields);
     navigate("/my-projects");
   };
@@ -146,7 +138,7 @@ const FormProject = (): JSX.Element => {
           </div>
           <div className="formField imagefield">
             <label htmlFor="image" className="imagefield__label">
-              {formData.image ? formData.image : "Choose image"}
+              {blankFields.image ? blankFields.image : "Choose image"}
             </label>
             <input
               id="image"
@@ -222,6 +214,7 @@ const FormProject = (): JSX.Element => {
                     id="guitarrist"
                     name="roles"
                     value="guitarrist"
+                    onChange={changeData}
                     checked={formData.roles.includes("guitarrist") && true}
                   />
                   Guitarrist
