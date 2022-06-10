@@ -22,7 +22,7 @@ const Navigation = (): JSX.Element => {
     navigate("/create-project");
   };
   const navigateToMyProjects = () => {
-    navigate("/myprojects");
+    navigate("/my-projects");
   };
   const logOutOnClick = () => {
     localStorage.removeItem("token");
@@ -48,7 +48,7 @@ const Navigation = (): JSX.Element => {
           <BottomNavigationAction
             onClick={navigateToMyProjects}
             className={
-              pathname === "/myprojects" ? "navBar active" : "navBar inactive"
+              pathname === "/my-projects" ? "navBar active" : "navBar inactive"
             }
             label="Mine"
             icon={<QueueMusicIcon />}

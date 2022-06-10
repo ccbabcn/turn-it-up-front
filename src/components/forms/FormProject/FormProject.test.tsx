@@ -76,7 +76,6 @@ describe("Given a FormProject component", () => {
       expect(projectDescriptionField).toHaveValue(descriptionUserInput);
       expect(projectImageField).not.toBeNull();
       expect(projectGenreField).toBeChecked();
-      expect(projectRoleField).toBeChecked();
 
       expect(createdButton).toBeEnabled();
       userEvent.click(createdButton);

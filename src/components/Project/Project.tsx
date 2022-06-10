@@ -17,6 +17,7 @@ import {
 import { ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   project: IProject;
@@ -26,9 +27,14 @@ const Project = ({
   project: { name, genres, image, roles, id, owner },
 }: Props): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const deleteProject = () => {
     dispatch(deleteProjectThunk(id));
+  };
+
+  const navigateToEdit = () => {
+    navigate(`/edit-project/${id}`);
   };
 
   const userId = useAppSelector((state) => state.user.id);
@@ -165,9 +171,20 @@ const Project = ({
           })}
         </div>
         <CardActions className="project__actions">
-          <Button className="project__actions--info" size="small">
-            +INFO
-          </Button>
+          {owner === userId && (
+            <Button
+              className="project__actions--info"
+              size="small"
+              onClick={navigateToEdit}
+            >
+              EDIT
+            </Button>
+          )}
+          {owner !== userId && (
+            <Button className="project__actions--info" size="small">
+              +INFO
+            </Button>
+          )}
           <Button className="project__actions--join" size="small">
             JOIN
           </Button>

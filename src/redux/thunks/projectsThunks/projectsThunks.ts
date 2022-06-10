@@ -51,9 +51,7 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
     if (status === 200) {
       dispatch(loadProjectsActionCreator(projects));
     }
-  } catch (error) {
-    wrongAction(`Something went wrong trying to load your projects`);
-  }
+  } catch {}
   dispatch(loadingOffActionCreator({ loading: false }));
 };
 
@@ -104,6 +102,33 @@ export const createProjectThunk =
       }
     } catch (error) {
       wrongAction("Something went wrong creating the project");
+    }
+    dispatch(loadingOffActionCreator({ loading: false }));
+  };
+
+export const editProjectThunk =
+  (editProject: IProject, idProject: string) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const url = process.env.REACT_APP_API_URL as string;
+      const endPoint: string = `projects/${idProject}`;
+      dispatch(loadingOnActionCreator({ loading: true }));
+      const { status }: AxiosResponse = await axios.put(
+        `${url}${endPoint}`,
+        editProject,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (status === 201) {
+        correctAction("Project updated correctly");
+      }
+    } catch (error) {
+      wrongAction("Something went wrong updating the project");
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };

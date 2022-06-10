@@ -65,7 +65,7 @@ function App(): JSX.Element {
           }
         />
         <Route
-          path="/myprojects"
+          path="/my-projects"
           element={
             <PrivateRoute>
               <UserProjectsPage />
@@ -74,6 +74,14 @@ function App(): JSX.Element {
         />
         <Route
           path="/create-project"
+          element={
+            <PrivateRoute>
+              <CreateProjectPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit-project/:id"
           element={
             <PrivateRoute>
               <CreateProjectPage />

@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { createProjectThunk } from "../../../redux/thunks/projectsThunks/projectsThunks";
+import {
+  createProjectThunk,
+  editProjectThunk,
+} from "../../../redux/thunks/projectsThunks/projectsThunks";
 import { IProject } from "../../../types/ProjectsTypes";
 import { FormStyles } from "../FormStyles";
 
 const FormProject = (): JSX.Element => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const userId = useAppSelector((state) => state.user.id);
+  const allProjects = useAppSelector((state) => state.projects);
+  const { id } = useParams();
 
-  const blankFields: IProject = {
+  let blankFields: IProject = {
     name: "",
     description: "",
     image: "",
@@ -18,6 +24,22 @@ const FormProject = (): JSX.Element => {
     id: "",
     owner: userId,
   };
+
+  if (id) {
+    const { name, description, image, genres, roles } = allProjects.find(
+      (project) => project.id === id
+    ) as IProject;
+
+    blankFields = {
+      name: name,
+      description: description,
+      image: image,
+      genres: [...genres],
+      roles: [...roles],
+      id: id,
+      owner: userId,
+    };
+  }
 
   const [formData, setFormData] = useState<IProject>(blankFields);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
@@ -73,21 +95,35 @@ const FormProject = (): JSX.Element => {
     });
   };
 
-  const submitProjectForm = (event: { preventDefault: () => void }) => {
+  const submitControl = (
+    event: React.FormEvent<HTMLFormElement>,
+    id: string
+  ) => {
     event.preventDefault();
-
+    if (id) {
+      const newProject = new FormData();
+      newProject.append("newProject", JSON.stringify(formData));
+      newProject.append("image", formData.image);
+      dispatch(editProjectThunk(formData, id));
+      setFormData(blankFields);
+      navigate("/my-projects");
+    }
     const newProject = new FormData();
     newProject.append("newProject", JSON.stringify(formData));
     newProject.append("image", formData.image);
-
     dispatch(createProjectThunk(formData));
     setFormData(blankFields);
+    navigate("/my-projects");
   };
 
   return (
     <>
       <FormStyles>
-        <form autoComplete="off" noValidate onSubmit={submitProjectForm}>
+        <form
+          autoComplete="off"
+          noValidate
+          onSubmit={(event) => submitControl(event, id as string)}
+        >
           <div className="formField">
             <label htmlFor="name">Project name</label>
             <input
@@ -110,7 +146,7 @@ const FormProject = (): JSX.Element => {
           </div>
           <div className="formField imagefield">
             <label htmlFor="image" className="imagefield__label">
-              Choose image
+              {formData.image ? formData.image : "Choose image"}
             </label>
             <input
               id="image"
@@ -130,6 +166,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="rock"
                     onChange={changeData}
+                    checked={formData.genres.includes("rock") && true}
                   />
                   Rock
                 </label>
@@ -142,6 +179,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="blues"
                     onChange={changeData}
+                    checked={formData.genres.includes("blues") && true}
                   />
                   Blues
                 </label>
@@ -154,6 +192,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="pop"
                     onChange={changeData}
+                    checked={formData.genres.includes("pop") && true}
                   />
                   Pop
                 </label>
@@ -166,6 +205,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="folk"
                     onChange={changeData}
+                    checked={formData.genres.includes("folk") && true}
                   />
                   Folk
                 </label>
@@ -182,7 +222,7 @@ const FormProject = (): JSX.Element => {
                     id="guitarrist"
                     name="roles"
                     value="guitarrist"
-                    onChange={changeData}
+                    checked={formData.roles.includes("guitarrist") && true}
                   />
                   Guitarrist
                 </label>
@@ -195,6 +235,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="singer"
                     onChange={changeData}
+                    checked={formData.roles.includes("singer") && true}
                   />
                   Singer
                 </label>
@@ -207,6 +248,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="bassplayer"
                     onChange={changeData}
+                    checked={formData.roles.includes("bassplayer") && true}
                   />
                   Bassplayer
                 </label>
@@ -219,6 +261,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="drummer"
                     onChange={changeData}
+                    checked={formData.roles.includes("drummer") && true}
                   />
                   Drummer
                 </label>
@@ -231,6 +274,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="keyboard"
                     onChange={changeData}
+                    checked={formData.roles.includes("keyboard") && true}
                   />
                   Keyboard
                 </label>
@@ -243,19 +287,31 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="other"
                     onChange={changeData}
+                    checked={formData.roles.includes("other") && true}
                   />
                   Other
                 </label>
               </div>
             </fieldset>
           </div>
-          <button
-            disabled={buttonDisabled}
-            type="submit"
-            className="form-button"
-          >
-            CREATE
-          </button>
+          {!id && (
+            <button
+              disabled={buttonDisabled}
+              type="submit"
+              className="form-button"
+            >
+              CREATE
+            </button>
+          )}
+          {id && (
+            <button
+              disabled={buttonDisabled}
+              type="submit"
+              className="form-button"
+            >
+              EDIT
+            </button>
+          )}
         </form>
       </FormStyles>
     </>
