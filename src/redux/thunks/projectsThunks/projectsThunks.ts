@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
-import { IProject } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
@@ -148,7 +147,7 @@ export const getProjectByIdThunk =
         headers: { authorization: `Bearer ${token}` },
       });
       if (status === 200) {
-        correctAction("Project loaded correctly");
+        correctAction(`Project ${project.name} loaded correctly`);
       }
     } catch (error) {
       wrongAction("Something went wrong loading the project");
