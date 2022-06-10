@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import PublicRoute from "./components/PublicRoute/PublicRoute";
+import NotLoggedChecker from "./components/NotLoggedChecker/NotLoggedChecker";
+import LoggedChecker from "./components/LoggedChecker/LoggedChecker";
 import Spinner from "./components/Spinner/Spinner";
 import CreateProjectPage from "./pages/CreateProjectPage/CreateProjectPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -43,49 +43,49 @@ function App(): JSX.Element {
         <Route
           path="/login"
           element={
-            <PublicRoute>
+            <LoggedChecker>
               <LoginPage />
-            </PublicRoute>
+            </LoggedChecker>
           }
         />
         <Route
           path="/register"
           element={
-            <PublicRoute>
+            <LoggedChecker>
               <RegisterPage />
-            </PublicRoute>
+            </LoggedChecker>
           }
         />
         <Route
           path="/projects"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <ProjectsPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/my-projects"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <UserProjectsPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/create-project"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <CreateProjectPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
         <Route
           path="/edit-project/:id"
           element={
-            <PrivateRoute>
+            <NotLoggedChecker>
               <CreateProjectPage />
-            </PrivateRoute>
+            </NotLoggedChecker>
           }
         />
       </Routes>

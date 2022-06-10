@@ -5,9 +5,9 @@ import { useAppSelector } from "../../redux/hooks";
 type Props = {
   children: JSX.Element;
 };
-const PrivateRoute = ({ children }: Props) => {
-  const userIsLogged = useAppSelector((state) => state.user.logged);
+const NotLoggedChecker = ({ children }: Props) => {
   const navigate = useNavigate();
+  const userIsLogged = useAppSelector((state) => state.user.logged);
 
   useEffect(() => {
     if (!userIsLogged) {
@@ -19,4 +19,4 @@ const PrivateRoute = ({ children }: Props) => {
   return children;
 };
 
-export default PrivateRoute;
+export default NotLoggedChecker;
