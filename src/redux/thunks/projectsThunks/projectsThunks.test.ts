@@ -54,17 +54,23 @@ describe("Given a projectsThunks", () => {
 
   describe("When loadUserProjectsThunk it's invoked and receives a list of projects", () => {
     test("Then it should call dispatch with loadProjectsActionCreator whit that list", async () => {
+      const mockloadingOff: UiState = { loading: false };
+      const mockloadingOn: UiState = { loading: true };
       axios.get = jest.fn().mockResolvedValueOnce({
         data: { projects: mockProjects },
         status: 200,
       });
       const dispatch = jest.fn();
       const expectedAction = loadProjectsActionCreator(mockProjects);
+      const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
+      const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
 
       const thunk = await loadUserProjectsThunk();
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
     });
   });
 

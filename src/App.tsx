@@ -1,8 +1,6 @@
 import jwtDecode from "jwt-decode";
-import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Navigation from "./components/Navigation/Navigation";
 import NotLoggedChecker from "./components/NotLoggedChecker/NotLoggedChecker";
 import LoggedChecker from "./components/LoggedChecker/LoggedChecker";
 import Spinner from "./components/Spinner/Spinner";
@@ -19,27 +17,20 @@ import { UserLoggedIn } from "./types/UserTypes";
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
+
   const spinnerIsVisible = useAppSelector(spinnerState);
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (token as string) {
-      const user: UserLoggedIn = jwtDecode(token as string);
-
-      dispatch(userLoginActionCreator(user));
-    }
-  }, [dispatch, token]);
+  try {
+    const user: UserLoggedIn = jwtDecode(token as string);
+    dispatch(userLoginActionCreator(user));
+  } catch (error) {}
 
   return (
     <>
       <Spinner visible={spinnerIsVisible} />
       <Header />
-      {pathname.includes("project") && <Navigation />}
-
       <Routes>
-        <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/" element={<Navigate to="/login" />} />
-
         <Route
           path="/login"
           element={

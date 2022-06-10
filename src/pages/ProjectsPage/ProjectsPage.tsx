@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Navigation from "../../components/Navigation/Navigation";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadAllProjectsThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
@@ -13,6 +14,7 @@ const ProjectsPage = (): JSX.Element => {
 
   return (
     <>
+      <Navigation />
       <PageStyles>
         <h2>ALL PROJECTS</h2>
         <ProjectsList projects={projects} />
