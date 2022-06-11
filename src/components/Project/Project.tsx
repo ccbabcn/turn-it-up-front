@@ -55,8 +55,9 @@ const Project = ({
           height="330"
           src={`${url}uploads/${image}`}
           onError={(error: any) => {
+            let backupSrc = imagebackup ? imagebackup : "";
             (error.target as HTMLImageElement).onerror = null;
-            (error.target as HTMLImageElement).src = imagebackup as string;
+            (error.target as HTMLImageElement).src = backupSrc as string;
           }}
         />
         <CardContent className="project__details">
