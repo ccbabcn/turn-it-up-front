@@ -24,7 +24,7 @@ interface Props {
 }
 
 const Project = ({
-  project: { name, genres, image, roles, id, owner },
+  project: { name, genres, image, imagebackup, roles, id, owner },
 }: Props): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -53,7 +53,11 @@ const Project = ({
           component="img"
           alt={`Project ${name}`}
           height="330"
-          image={`${url}uploads/images/${image}`}
+          src={`${url}uploads/${image}`}
+          onError={(error: any) => {
+            (error.target as HTMLImageElement).onerror = null;
+            (error.target as HTMLImageElement).src = imagebackup as string;
+          }}
         />
         <CardContent className="project__details">
           <div className="project__name">
