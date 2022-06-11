@@ -17,7 +17,6 @@ export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL as string;
     const endPoint: string = "projects";
     const token = localStorage.getItem("token");
-
     const {
       data: { projects },
       status,
