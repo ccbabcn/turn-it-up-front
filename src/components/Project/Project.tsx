@@ -68,7 +68,7 @@ const Project = ({
               ? imagebackup
               : "./images/default-project-image.jpg";
             (error.target as HTMLImageElement).onerror = null;
-            (error.target as HTMLImageElement).src = backupSrc as string;
+            (error.target as HTMLImageElement).src = backupSrc;
           }}
         />
         <CardContent className="project__details">
@@ -118,8 +118,7 @@ const Project = ({
         >
           {roles.map((role: string, index, array) => {
             let currentIcon: ReactElement;
-            let limit: number;
-            projectIdDetails ? (limit = array.length) : (limit = 3);
+            let limit: number = projectIdDetails ? array.length : 3;
             if (index < limit) {
               switch (role) {
                 case "guitarrist":
