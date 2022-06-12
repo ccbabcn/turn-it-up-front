@@ -55,7 +55,7 @@ const Project = ({
   const url = process.env.REACT_APP_API_URL as string;
 
   return (
-    <ProjectStyles className={id}>
+    <ProjectStyles key={id} className={id}>
       <Card className="project">
         <CardMedia
           className="project__image"
@@ -71,7 +71,7 @@ const Project = ({
             (error.target as HTMLImageElement).src = backupSrc as string;
           }}
         />
-        <CardContent className="project__details">
+        <CardContent key={Date.now()} className="project__details">
           <div className="project__name">
             <Typography gutterBottom variant="h3">
               {name?.toUpperCase()}

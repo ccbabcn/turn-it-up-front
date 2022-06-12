@@ -1,27 +1,47 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProject, ProjectsState } from "../../../types/ProjectsTypes";
+import {
+  IProject,
+  PaginatedProjects,
+  ProjectsState,
+} from "../../../types/ProjectsTypes";
 
-const initialState: ProjectsState = [];
+const initialState: PaginatedProjects = {
+  results: [],
+  details: [],
+};
 
 const projectsSlice = createSlice({
   name: "projects",
   initialState: initialState,
   reducers: {
     loadProjects: (
-      projects,
+      state: PaginatedProjects,
+      action: PayloadAction<PaginatedProjects>
+    ): PaginatedProjects => ({ ...action.payload }),
+    projectDetails: (
+      state: PaginatedProjects,
       action: PayloadAction<ProjectsState>
-    ): ProjectsState => [...action.payload],
-    deleteProject: (projects, action: PayloadAction<string>): ProjectsState =>
-      projects.filter((project) => project.id !== action.payload),
+    ): PaginatedProjects => ({ ...state, details: [...action.payload] }),
+    deleteProject: (
+      state: PaginatedProjects,
+      action: PayloadAction<string>
+    ): PaginatedProjects => ({
+      ...state,
+      results: state.results.filter((result) => result.id !== action.payload),
+    }),
     createProject: (
-      projects,
+      state: PaginatedProjects,
       action: PayloadAction<IProject>
-    ): ProjectsState => [...projects, action.payload],
+    ): PaginatedProjects => ({
+      ...state,
+      results: [...state.results, action.payload],
+    }),
   },
 });
 
 export const {
   loadProjects: loadProjectsActionCreator,
+  projectDetails: projectDetailsActionCreator,
   deleteProject: deleteProjectActionCreator,
   createProject: createProjectActionCreator,
 } = projectsSlice.actions;

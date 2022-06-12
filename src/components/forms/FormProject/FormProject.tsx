@@ -12,7 +12,7 @@ const FormProject = (): JSX.Element => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { projects } = useAppSelector((state) => state);
+  const projects = useAppSelector((state) => state.projects.results);
   const currentProject = projects.find((project) => project.id === id);
 
   const blankFields: IProject = {

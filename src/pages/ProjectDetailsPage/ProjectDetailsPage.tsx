@@ -9,7 +9,7 @@ import { PageStyles } from "../PageStyles";
 const DetailProjectPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  let project = useAppSelector((state) => state.projects);
+  let project = useAppSelector((state) => state.projects.details);
 
   useEffect(() => {
     dispatch(getProjectByIdThunk(id as string));

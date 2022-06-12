@@ -7,7 +7,7 @@ import { PageStyles } from "../PageStyles";
 
 const UserProjectsPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  let projects = useAppSelector((state) => state.projects);
+  let projects = useAppSelector((state) => state.projects.results);
   const { username } = useAppSelector((state) => state.user);
   useEffect(() => {
     dispatch(loadUserProjectsThunk());

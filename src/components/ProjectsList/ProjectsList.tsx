@@ -10,7 +10,7 @@ const ProjectsList = ({ projects }: Props): JSX.Element => {
   return (
     <ProjectsListStyles>
       <ul>
-        {projects.map((project) => {
+        {projects?.map((project) => {
           return <Project key={project.id} project={project} />;
         })}
       </ul>

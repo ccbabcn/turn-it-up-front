@@ -18,13 +18,16 @@ import DetailProjectPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
+  const userIsLogged = useAppSelector((state) => state.user.logged);
 
   const spinnerIsVisible = useAppSelector(spinnerState);
 
-  try {
-    const user: UserLoggedIn = jwtDecode(token as string);
-    dispatch(userLoginActionCreator(user));
-  } catch (error) {}
+  if (!userIsLogged) {
+    try {
+      const user: UserLoggedIn = jwtDecode(token as string);
+      dispatch(userLoginActionCreator(user));
+    } catch (error) {}
+  }
 
   return (
     <>
