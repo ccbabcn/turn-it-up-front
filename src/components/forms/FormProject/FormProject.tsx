@@ -12,7 +12,7 @@ const FormProject = (): JSX.Element => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { projects } = useAppSelector((state) => state);
+  const projects = useAppSelector((state) => state.projects.results);
   const currentProject = projects.find((project) => project.id === id);
 
   const blankFields: IProject = {
@@ -47,20 +47,16 @@ const FormProject = (): JSX.Element => {
       const actualField = event.target.name;
 
       if (actualField === "genres") {
-        formData["genres"].includes(event.target.value)
-          ? (formData["genres"] = formData["genres"].filter(
-              (genre) => genre !== event.target.value
-            ))
+        formData["genres"]?.includes(event.target.value)
+          ? formData["genres"].filter((genre) => genre !== event.target.value)
           : setFormData({
               ...formData,
               [event.target.name]: [...formData.genres, event.target.value],
             });
       }
       if (actualField === "roles") {
-        formData["roles"].includes(event.target.value)
-          ? (formData["roles"] = formData["roles"].filter(
-              (genre) => genre !== event.target.value
-            ))
+        formData["roles"]?.includes(event.target.value)
+          ? formData["roles"].filter((genre) => genre !== event.target.value)
           : setFormData({
               ...formData,
               [event.target.name]: [...formData.roles, event.target.value],
@@ -81,7 +77,7 @@ const FormProject = (): JSX.Element => {
 
   const submitControl = (
     event: React.FormEvent<HTMLFormElement>,
-    id: string
+    projectId: string
   ) => {
     event.preventDefault();
 
@@ -99,8 +95,8 @@ const FormProject = (): JSX.Element => {
 
     newProject.append("image", formData.image);
 
-    if (id) {
-      dispatch(editProjectThunk(newProject, id));
+    if (projectId) {
+      dispatch(editProjectThunk(newProject, projectId));
     } else {
       dispatch(createProjectThunk(newProject));
     }
@@ -158,7 +154,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="rock"
                     onChange={changeData}
-                    checked={formData.genres.includes("rock") && true}
+                    checked={formData.genres.includes("rock")}
                   />
                   Rock
                 </label>
@@ -171,7 +167,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="blues"
                     onChange={changeData}
-                    checked={formData.genres.includes("blues") && true}
+                    checked={formData.genres.includes("blues")}
                   />
                   Blues
                 </label>
@@ -184,7 +180,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="pop"
                     onChange={changeData}
-                    checked={formData.genres.includes("pop") && true}
+                    checked={formData.genres.includes("pop")}
                   />
                   Pop
                 </label>
@@ -197,7 +193,7 @@ const FormProject = (): JSX.Element => {
                     name="genres"
                     value="folk"
                     onChange={changeData}
-                    checked={formData.genres.includes("folk") && true}
+                    checked={formData.genres.includes("folk")}
                   />
                   Folk
                 </label>
@@ -215,7 +211,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="guitarrist"
                     onChange={changeData}
-                    checked={formData.roles.includes("guitarrist") && true}
+                    checked={formData.roles.includes("guitarrist")}
                   />
                   Guitarrist
                 </label>
@@ -228,7 +224,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="singer"
                     onChange={changeData}
-                    checked={formData.roles.includes("singer") && true}
+                    checked={formData.roles.includes("singer")}
                   />
                   Singer
                 </label>
@@ -241,7 +237,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="bassplayer"
                     onChange={changeData}
-                    checked={formData.roles.includes("bassplayer") && true}
+                    checked={formData.roles.includes("bassplayer")}
                   />
                   Bassplayer
                 </label>
@@ -254,7 +250,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="drummer"
                     onChange={changeData}
-                    checked={formData.roles.includes("drummer") && true}
+                    checked={formData.roles.includes("drummer")}
                   />
                   Drummer
                 </label>
@@ -267,7 +263,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="keyboard"
                     onChange={changeData}
-                    checked={formData.roles.includes("keyboard") && true}
+                    checked={formData.roles.includes("keyboard")}
                   />
                   Keyboard
                 </label>
@@ -280,7 +276,7 @@ const FormProject = (): JSX.Element => {
                     name="roles"
                     value="other"
                     onChange={changeData}
-                    checked={formData.roles.includes("other") && true}
+                    checked={formData.roles.includes("other")}
                   />
                   Other
                 </label>

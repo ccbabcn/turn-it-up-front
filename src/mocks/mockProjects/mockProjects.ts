@@ -1,4 +1,8 @@
-import { IProject, ProjectsState } from "../../types/ProjectsTypes";
+import {
+  IProject,
+  PaginatedProjects,
+  ProjectsState,
+} from "../../types/ProjectsTypes";
 
 export const mockProjects: ProjectsState = [
   {
@@ -33,6 +37,16 @@ export const mockProject: IProject = {
   genres: ["rock", "blues", "pop"],
   roles: ["drummer", "guitarrist", "bassplayer", "singer", "keyboard"],
   owner: "user1",
+};
+
+export const mockProjectState: PaginatedProjects = {
+  page: 0,
+  nextpage: "nextPage",
+  previous: "prevousPage",
+  total: 9,
+  filter: { role: "rock" },
+  results: mockProjects,
+  details: [mockProjects[0]],
 };
 
 export const mockProject2: IProject = {

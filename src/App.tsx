@@ -13,18 +13,21 @@ import { spinnerState } from "./redux/features/uiSlice/uiSlice";
 import { userLoginActionCreator } from "./redux/features/userSlice/userSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { UserLoggedIn } from "./types/UserTypes";
-import DetailProjectPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
 
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
+  const userIsLogged = useAppSelector((state) => state.user.logged);
 
   const spinnerIsVisible = useAppSelector(spinnerState);
 
-  try {
-    const user: UserLoggedIn = jwtDecode(token as string);
-    dispatch(userLoginActionCreator(user));
-  } catch (error) {}
+  if (!userIsLogged) {
+    try {
+      const user: UserLoggedIn = jwtDecode(token as string);
+      dispatch(userLoginActionCreator(user));
+    } catch (error) {}
+  }
 
   return (
     <>
@@ -84,7 +87,7 @@ function App(): JSX.Element {
           path="/project/:id"
           element={
             <NotLoggedChecker>
-              <DetailProjectPage />
+              <ProjectDetailsPage />
             </NotLoggedChecker>
           }
         />

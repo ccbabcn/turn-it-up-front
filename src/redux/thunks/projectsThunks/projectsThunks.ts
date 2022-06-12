@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
-import { ProjectsState } from "../../../types/ProjectsTypes";
+import { IProject } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
   loadProjectsActionCreator,
+  projectDetailsActionCreator,
 } from "../../features/projectsSlice/projectsSlice";
 import {
   loadingOffActionCreator,
@@ -18,15 +19,15 @@ export const loadAllProjectsThunk = () => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL as string;
     const endPoint: string = "projects";
     const token = localStorage.getItem("token");
-    const {
-      data: { projects },
-      status,
-    }: AxiosResponse = await axios.get(`${url}${endPoint}`, {
-      headers: { authorization: `Bearer ${token}` },
-    });
+    const { data, status }: AxiosResponse = await axios.get(
+      `${url}${endPoint}`,
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
 
     if (status === 200) {
-      dispatch(loadProjectsActionCreator(projects));
+      dispatch(loadProjectsActionCreator(data));
     }
   } catch {
     wrongAction("Something went wrong trying to load the list of projects");
@@ -38,17 +39,17 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(loadingOnActionCreator({ loading: true }));
     const url = process.env.REACT_APP_API_URL as string;
-    const endPoint: string = "projects/user";
+    const endPoint: string = "projects/?user=userId";
     const token = localStorage.getItem("token");
-    const {
-      data: { userProjects },
-      status,
-    }: AxiosResponse = await axios.get(`${url}${endPoint}`, {
-      headers: { authorization: `Bearer ${token}` },
-    });
+    const { data, status }: AxiosResponse = await axios.get(
+      `${url}${endPoint}`,
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
 
     if (status === 200) {
-      dispatch(loadProjectsActionCreator(userProjects));
+      dispatch(loadProjectsActionCreator(data));
     }
   } catch (error) {
     wrongAction("Something went wrong trying to load your projects");
@@ -149,20 +150,17 @@ export const getProjectByIdThunk =
         headers: { authorization: `Bearer ${token}` },
       });
       if (status === 200) {
-        const projectDetails: ProjectsState = [
-          {
-            name: project.name,
-            description: project.description,
-            image: project.image,
-            imagebackup: project.imagebackup,
-            genres: project.genres,
-            roles: project.roles,
-            id: project.id,
-            owner: project.owner.username,
-          },
-        ];
-
-        dispatch(loadProjectsActionCreator(projectDetails));
+        const projectDetails: IProject = {
+          name: project.name,
+          description: project.description,
+          image: project.image,
+          imagebackup: project.imagebackup,
+          genres: project.genres,
+          roles: project.roles,
+          id: project.id,
+          owner: project.owner.username,
+        };
+        dispatch(projectDetailsActionCreator(projectDetails));
       }
     } catch (error) {
       wrongAction("Something went wrong loading the project");

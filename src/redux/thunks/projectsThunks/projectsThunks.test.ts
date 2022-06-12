@@ -3,6 +3,7 @@ import {
   mockProject,
   mockProjectFormData,
   mockProjects,
+  mockProjectState,
   mocKProjectToCreate,
 } from "../../../mocks/mockProjects/mockProjects";
 import {
@@ -28,16 +29,13 @@ describe("Given a projectsThunks", () => {
   describe("When loadAllProjectsThunk it's invoked and receives a list of projects", () => {
     test("Then it should call dispatch with loadAllProjectsActionCreator whit that list", async () => {
       const dispatch = jest.fn();
-
-      const expectedAction = loadProjectsActionCreator(mockProjects);
+      const expectedAction = loadProjectsActionCreator(mockProjectState);
       axios.get = jest.fn().mockResolvedValueOnce({
-        data: { projects: mockProjects },
+        data: mockProjectState,
         status: 200,
       });
-
       const thunk = await loadAllProjectsThunk();
       await thunk(dispatch);
-
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
   });
@@ -64,11 +62,11 @@ describe("Given a projectsThunks", () => {
       const mockloadingOff: UiState = { loading: false };
       const mockloadingOn: UiState = { loading: true };
       axios.get = jest.fn().mockResolvedValueOnce({
-        data: { userProjects: mockProjects },
+        data: mockProjectState,
         status: 200,
       });
       const dispatch = jest.fn();
-      const expectedAction = loadProjectsActionCreator(mockProjects);
+      const expectedAction = loadProjectsActionCreator(mockProjectState);
       const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
       const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
 

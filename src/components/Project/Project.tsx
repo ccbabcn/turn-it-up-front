@@ -55,7 +55,7 @@ const Project = ({
   const url = process.env.REACT_APP_API_URL as string;
 
   return (
-    <ProjectStyles className={id}>
+    <ProjectStyles key={id}>
       <Card className="project">
         <CardMedia
           className="project__image"
@@ -109,6 +109,7 @@ const Project = ({
         </CardContent>
 
         <div
+          key={id + "details"}
           className={
             projectIdDetails
               ? `project__genre-icons--details-version`

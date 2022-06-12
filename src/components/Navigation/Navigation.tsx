@@ -57,7 +57,9 @@ const Navigation = (): JSX.Element => {
           <BottomNavigationAction
             onClick={navigateToCreate}
             className={
-              pathname === "/create" ? "navBar active" : "navBar inactive"
+              pathname === "/create-project"
+                ? "navBar active"
+                : "navBar inactive"
             }
             label="Create"
             icon={<PlaylistAddIcon />}
