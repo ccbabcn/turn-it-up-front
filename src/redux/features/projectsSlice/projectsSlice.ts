@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  IProject,
-  PaginatedProjects,
-  ProjectsState,
-} from "../../../types/ProjectsTypes";
+import { IProject, PaginatedProjects } from "../../../types/ProjectsTypes";
 
 const initialState: PaginatedProjects = {
   results: [],

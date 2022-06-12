@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
-import { IProject, ProjectsState } from "../../../types/ProjectsTypes";
+import { IProject } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,

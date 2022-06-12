@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getProjectByIdThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 import { PageStyles } from "../PageStyles";
 
-const DetailProjectPage = (): JSX.Element => {
+const ProjectDetailsPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   let project = useAppSelector((state) => state.projects.details);
@@ -26,4 +26,4 @@ const DetailProjectPage = (): JSX.Element => {
   );
 };
 
-export default DetailProjectPage;
+export default ProjectDetailsPage;
