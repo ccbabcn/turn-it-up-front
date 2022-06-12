@@ -15,7 +15,7 @@ export const PaginatorStyles = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     &__button {
       cursor: pointer;
       display: flex;
@@ -41,6 +41,13 @@ export const PaginatorStyles = styled.div`
       :active {
         background: #8a89c0;
       }
+    }
+
+    button:disabled,
+    button[disabled] {
+      background-color: #8a89c0;
+      color: #fff;
+      cursor: not-allowed;
     }
 
     span {

@@ -167,3 +167,24 @@ export const getProjectByIdThunk =
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };
+
+export const loadProjectsThunkbyQuery =
+  (query: string) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(loadingOnActionCreator({ loading: true }));
+      const endPoint: string = "projects";
+      const url = (process.env.REACT_APP_API_URL as string) + endPoint;
+      const token = localStorage.getItem("token");
+      const queryUrl = query ? query : url;
+      const { data, status }: AxiosResponse = await axios.get(queryUrl, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      if (status === 200) {
+        dispatch(loadProjectsActionCreator(data));
+      }
+    } catch {
+      wrongAction("Something went wrong trying to load the list of projects");
+    }
+    dispatch(loadingOffActionCreator({ loading: false }));
+  };
