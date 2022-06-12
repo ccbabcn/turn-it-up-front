@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
+import { ProjectsState } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
@@ -40,16 +41,18 @@ export const loadUserProjectsThunk = () => async (dispatch: AppDispatch) => {
     const endPoint: string = "projects/user";
     const token = localStorage.getItem("token");
     const {
-      data: { projects },
+      data: { userProjects },
       status,
     }: AxiosResponse = await axios.get(`${url}${endPoint}`, {
       headers: { authorization: `Bearer ${token}` },
     });
 
     if (status === 200) {
-      dispatch(loadProjectsActionCreator(projects));
+      dispatch(loadProjectsActionCreator(userProjects));
     }
-  } catch {}
+  } catch (error) {
+    wrongAction("Something went wrong trying to load your projects");
+  }
   dispatch(loadingOffActionCreator({ loading: false }));
 };
 
@@ -146,7 +149,20 @@ export const getProjectByIdThunk =
         headers: { authorization: `Bearer ${token}` },
       });
       if (status === 200) {
-        correctAction(`Project ${project.name} loaded correctly`);
+        const projectDetails: ProjectsState = [
+          {
+            name: project.name,
+            description: project.description,
+            image: project.image,
+            imagebackup: project.imagebackup,
+            genres: project.genres,
+            roles: project.roles,
+            id: project.id,
+            owner: project.owner.username,
+          },
+        ];
+
+        dispatch(loadProjectsActionCreator(projectDetails));
       }
     } catch (error) {
       wrongAction("Something went wrong loading the project");

@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ProjectStyles = styled.li`
   .project {
+    max-width: 450px;
+    min-width: 300px;
     background: #fdfffc;
     box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
       0.25em 0.25em 1em rgb(0 0 0 / 30%);
@@ -26,10 +28,20 @@ export const ProjectStyles = styled.li`
         color: #082133;
       }
     }
-
+    &__author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      color: #51246a;
+      font-weight: 500;
+    }
     &__description {
       display: flex;
       flex-direction: column;
+      font-size: 1.25em;
+      text-align: center;
+      text-justify: distribute;
     }
 
     &__genres {
@@ -45,6 +57,37 @@ export const ProjectStyles = styled.li`
       gap: 10px;
       color: #fdfffc;
       padding-bottom: 16px;
+
+      &--details-version {
+        width: 100%;
+        padding: 0 40px;
+        font-size: 1.1em;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+        color: #082133;
+
+        .icon-container {
+          color: #fdfffc;
+          font-size: 25px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 60px;
+          width: 60px;
+          background-color: #1b435f;
+          border-radius: 50%;
+
+          .icon {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+          }
+        }
+      }
 
       .icon-container {
         font-size: 25px;

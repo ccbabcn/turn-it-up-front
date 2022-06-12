@@ -92,11 +92,9 @@ describe("Given Project component", () => {
 
       const keyboardIcon = screen.getByTitle(/keyboard/i);
       const singertIcon = screen.getByTitle(/singer/i);
-      const otherroleIcon = screen.getByTitle(/otherrole/i);
 
       expect(keyboardIcon).toBeInTheDocument();
       expect(singertIcon).toBeInTheDocument();
-      expect(otherroleIcon).toBeInTheDocument();
     });
   });
 });
