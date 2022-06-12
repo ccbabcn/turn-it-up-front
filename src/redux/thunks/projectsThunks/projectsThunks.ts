@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { correctAction, wrongAction } from "../../../modals/modals";
-import { ProjectsState } from "../../../types/ProjectsTypes";
+import { IProject, ProjectsState } from "../../../types/ProjectsTypes";
 import {
   createProjectActionCreator,
   deleteProjectActionCreator,
@@ -150,18 +150,16 @@ export const getProjectByIdThunk =
         headers: { authorization: `Bearer ${token}` },
       });
       if (status === 200) {
-        const projectDetails: ProjectsState = [
-          {
-            name: project.name,
-            description: project.description,
-            image: project.image,
-            imagebackup: project.imagebackup,
-            genres: project.genres,
-            roles: project.roles,
-            id: project.id,
-            owner: project.owner.username,
-          },
-        ];
+        const projectDetails: IProject = {
+          name: project.name,
+          description: project.description,
+          image: project.image,
+          imagebackup: project.imagebackup,
+          genres: project.genres,
+          roles: project.roles,
+          id: project.id,
+          owner: project.owner.username,
+        };
         dispatch(projectDetailsActionCreator(projectDetails));
       }
     } catch (error) {

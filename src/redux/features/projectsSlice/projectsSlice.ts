@@ -20,8 +20,8 @@ const projectsSlice = createSlice({
     ): PaginatedProjects => ({ ...action.payload }),
     projectDetails: (
       state: PaginatedProjects,
-      action: PayloadAction<ProjectsState>
-    ): PaginatedProjects => ({ ...state, details: [...action.payload] }),
+      action: PayloadAction<IProject>
+    ): PaginatedProjects => ({ ...state, details: [action.payload] }),
     deleteProject: (
       state: PaginatedProjects,
       action: PayloadAction<string>

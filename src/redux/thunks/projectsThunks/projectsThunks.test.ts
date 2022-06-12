@@ -3,6 +3,7 @@ import {
   mockProject,
   mockProjectFormData,
   mockProjects,
+  mockProjectState,
   mocKProjectToCreate,
 } from "../../../mocks/mockProjects/mockProjects";
 import {
@@ -26,16 +27,16 @@ import {
 
 describe("Given a projectsThunks", () => {
   describe("When loadAllProjectsThunk it's invoked and receives a list of projects", () => {
-    test.only("Then it should call dispatch with loadAllProjectsActionCreator whit that list", async () => {
-      // const dispatch = jest.fn();
-      // const expectedAction = loadProjectsActionCreator(mockPa);
-      // axios.get = jest.fn().mockResolvedValueOnce({
-      //   data: { projects: mockProjects },
-      //   status: 200,
-      // });
-      // const thunk = await loadAllProjectsThunk();
-      // await thunk(dispatch);
-      // expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    test("Then it should call dispatch with loadAllProjectsActionCreator whit that list", async () => {
+      const dispatch = jest.fn();
+      const expectedAction = loadProjectsActionCreator(mockProjectState);
+      axios.get = jest.fn().mockResolvedValueOnce({
+        data: mockProjectState,
+        status: 200,
+      });
+      const thunk = await loadAllProjectsThunk();
+      await thunk(dispatch);
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
   });
 
@@ -61,18 +62,18 @@ describe("Given a projectsThunks", () => {
       const mockloadingOff: UiState = { loading: false };
       const mockloadingOn: UiState = { loading: true };
       axios.get = jest.fn().mockResolvedValueOnce({
-        data: { userProjects: mockProjects },
+        data: mockProjectState,
         status: 200,
       });
       const dispatch = jest.fn();
-      // const expectedAction = loadProjectsActionCreator(mockProjects);
+      const expectedAction = loadProjectsActionCreator(mockProjectState);
       const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
       const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
 
       const thunk = await loadUserProjectsThunk();
       await thunk(dispatch);
 
-      // expect(dispatch).toHaveBeenCalledWith(expectedAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
     });
