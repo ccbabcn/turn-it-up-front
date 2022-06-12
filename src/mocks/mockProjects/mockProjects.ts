@@ -55,3 +55,19 @@ export const mocKProjectToCreate: IProject = {
   roles: ["singer", "keyboard", "guitarrist"],
   owner: "user2",
 };
+
+const mockFormProject = new FormData();
+mockFormProject.append("name", mocKProjectToCreate.name);
+mockFormProject.append("description", mocKProjectToCreate.description);
+for (const genre of mocKProjectToCreate.genres) {
+  mockFormProject.append("genres", genre);
+}
+for (const role of mocKProjectToCreate.roles) {
+  mockFormProject.append("roles", role);
+}
+mockFormProject.append("owner", mocKProjectToCreate.owner);
+mockFormProject.append("id", mocKProjectToCreate.id);
+
+mockFormProject.append("image", mocKProjectToCreate.image);
+
+export const mockProjectFormData = mockFormProject;

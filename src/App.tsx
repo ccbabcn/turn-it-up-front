@@ -13,6 +13,7 @@ import { spinnerState } from "./redux/features/uiSlice/uiSlice";
 import { userLoginActionCreator } from "./redux/features/userSlice/userSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { UserLoggedIn } from "./types/UserTypes";
+import DetailProjectPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
 
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
@@ -76,6 +77,14 @@ function App(): JSX.Element {
           element={
             <NotLoggedChecker>
               <CreateProjectPage />
+            </NotLoggedChecker>
+          }
+        />
+        <Route
+          path="/project/:id"
+          element={
+            <NotLoggedChecker>
+              <DetailProjectPage />
             </NotLoggedChecker>
           }
         />

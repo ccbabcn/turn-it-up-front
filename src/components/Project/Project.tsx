@@ -17,15 +17,16 @@ import {
 import { ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface Props {
   project: IProject;
 }
 
 const Project = ({
-  project: { name, genres, image, imagebackup, roles, id, owner },
+  project: { name, genres, image, imagebackup, roles, id, owner, description },
 }: Props): JSX.Element => {
+  const { id: projectIdDetails } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -37,6 +38,14 @@ const Project = ({
     navigate(`/edit-project/${id}`);
   };
 
+  const navigateToProjects = () => {
+    navigate(`/projects/`);
+  };
+
+  const navigateToDetails = () => {
+    navigate(`/project/${id}`);
+  };
+
   const userId = useAppSelector((state) => state.user.id);
 
   const genresUppercase = genres?.map((genre) => genre.toUpperCase());
@@ -46,8 +55,8 @@ const Project = ({
   const url = process.env.REACT_APP_API_URL as string;
 
   return (
-    <ProjectStyles>
-      <Card className="project" sx={{ maxWidth: 450 }}>
+    <ProjectStyles className={id}>
+      <Card className="project">
         <CardMedia
           className="project__image"
           component="img"
@@ -55,7 +64,9 @@ const Project = ({
           height="330"
           src={`${url}uploads/${image}`}
           onError={(error: any) => {
-            let backupSrc = imagebackup ? imagebackup : "";
+            let backupSrc = imagebackup
+              ? imagebackup
+              : "./images/default-project-image.jpg";
             (error.target as HTMLImageElement).onerror = null;
             (error.target as HTMLImageElement).src = backupSrc as string;
           }}
@@ -66,115 +77,192 @@ const Project = ({
               {name?.toUpperCase()}
             </Typography>
           </div>
-          <Typography
-            className="project__description"
-            variant="body2"
-            color="text.secondary"
-          >
-            <span className="project__genres">
-              THIS{" "}
-              {`${
-                genresUppercase.slice(0, -1).join(", ") +
-                " & " +
-                genresUppercase.slice(-1)
-              }`}{" "}
-              PROJECT NEEDS:
-            </span>
-            <span className="project__roles">
-              {`${
-                rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
-                " & " +
-                rolesFirstLetterUpperCase.slice(-1)
-              }`}{" "}
-            </span>
-          </Typography>
+          {!projectIdDetails && (
+            <Typography
+              className="project__description"
+              variant="body2"
+              color="text.secondary"
+            >
+              <span className="project__genres">
+                THIS{" "}
+                {`${
+                  genresUppercase.slice(0, -1).join(", ") +
+                  " & " +
+                  genresUppercase.slice(-1)
+                }`}{" "}
+                PROJECT NEEDS:
+              </span>
+              <span className="project__roles">
+                {`${
+                  rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
+                  " & " +
+                  rolesFirstLetterUpperCase.slice(-1)
+                }`}{" "}
+              </span>
+            </Typography>
+          )}
+          {projectIdDetails && (
+            <Typography className="project__description">
+              {description}
+            </Typography>
+          )}
         </CardContent>
 
-        <div className="project__genre-icons">
+        <div
+          className={
+            projectIdDetails
+              ? `project__genre-icons--details-version`
+              : `project__genre-icons`
+          }
+        >
           {roles.map((role: string, index, array) => {
             let currentIcon: ReactElement;
-            if (index < 3) {
+            let limit: number;
+            projectIdDetails ? (limit = array.length) : (limit = 3);
+            if (index < limit) {
               switch (role) {
                 case "guitarrist":
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="guitarrist"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiGuitarHead className="icon" />
+                      <div
+                        key={index + id}
+                        title="guitarrist"
+                        className="icon-container"
+                      >
+                        <GiGuitarHead className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails && `This projects needs a ${role}`}
+                      </span>
                     </div>
                   );
                   break;
                 case "drummer":
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="drummer"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiDrumKit className="icon" />
+                      <div
+                        key={index + id}
+                        title="drummer"
+                        className="icon-container"
+                      >
+                        <GiDrumKit className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails && `This projects needs a ${role}`}
+                      </span>
                     </div>
                   );
                   break;
                 case "bassplayer":
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="bassplayer"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiGuitarBassHead className="icon" />
+                      <div
+                        key={index + id}
+                        title="bassplayer"
+                        className="icon-container"
+                      >
+                        <GiGuitarBassHead className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails && `This projects needs a ${role}`}
+                      </span>
                     </div>
                   );
                   break;
                 case "singer":
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="singer"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiMicrophone className="icon" />
+                      <div
+                        key={index + id}
+                        title="singer"
+                        className="icon-container"
+                      >
+                        <GiMicrophone className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails && `This projects needs a ${role}`}
+                      </span>
                     </div>
                   );
                   break;
                 case "keyboard":
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="keyboard"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiMusicalKeyboard className="icon" />
+                      <div
+                        key={index + id}
+                        title="keyboard"
+                        className="icon-container"
+                      >
+                        <GiMusicalKeyboard className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails && `This projects needs a ${role}`}
+                      </span>
                     </div>
                   );
                   break;
                 default:
                   currentIcon = (
                     <div
-                      key={index + id}
-                      title="otherrole"
-                      className="icon-container"
+                      className={
+                        projectIdDetails && "details-icon-main-container"
+                      }
                     >
-                      <GiMusicSpell className="icon" />
+                      <div
+                        key={index + id}
+                        title="other"
+                        className="icon-container"
+                      >
+                        <GiMusicSpell className={"icon"} />
+                      </div>
+                      <span>
+                        {projectIdDetails &&
+                          `This projects is also looking for other types of musicians`}
+                      </span>
                     </div>
                   );
                   break;
               }
               return currentIcon;
             }
-            if (index === 3) {
-              currentIcon = (
-                <div key={index + id} className="icon-container">
-                  +{array.length - 3}
-                </div>
-              );
-              return currentIcon;
+            if (!projectIdDetails) {
+              if (index === 3) {
+                currentIcon = (
+                  <div key={index + id} className="icon-container">
+                    +{array.length - 3}
+                  </div>
+                );
+                return currentIcon;
+              }
             }
             return null;
           })}
         </div>
+        {projectIdDetails && (
+          <Typography className="project__author">
+            {`This project was created by ${owner}`}
+          </Typography>
+        )}
         <CardActions className="project__actions">
           {owner === userId && (
             <Button
@@ -186,8 +274,14 @@ const Project = ({
             </Button>
           )}
           {owner !== userId && (
-            <Button className="project__actions--info" size="small">
-              +INFO
+            <Button
+              className="project__actions--info"
+              size="small"
+              onClick={
+                projectIdDetails ? navigateToProjects : navigateToDetails
+              }
+            >
+              {projectIdDetails ? "RETURN" : "+ INFO"}
             </Button>
           )}
           <Button className="project__actions--join" size="small">
