@@ -36,6 +36,7 @@ export default function Paginator() {
     >
       <div className="pager">
         <button
+          title="previous"
           disabled={previous ? false : true}
           className="pager__button"
           onClick={loadPreviousPage}
@@ -49,6 +50,7 @@ export default function Paginator() {
         </span>
 
         <button
+          title="next"
           disabled={nextpage ? false : true}
           className="pager__button"
           onClick={loadNextPage}
