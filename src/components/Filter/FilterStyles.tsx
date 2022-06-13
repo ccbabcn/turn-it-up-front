@@ -55,10 +55,10 @@ export const FilterStyles = styled.div`
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        background: #261132;
+        background: #51246a;
       }
       :hover {
-        background: #51246a;
+        background: #261132;
       }
       .title {
         text-align: center;
@@ -77,6 +77,9 @@ export const FilterStyles = styled.div`
       flex-direction: column;
       align-items: center;
       background: #261132;
+      .option-selected {
+        background: #51246a;
+      }
     }
     &__options-item {
       height: 56px;
@@ -86,6 +89,22 @@ export const FilterStyles = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      :hover {
+        background: #51246a;
+      }
+    }
+    &__options-item-default {
+      background: #8a89c0;
+      height: 56px;
+      width: 100%;
+      border-bottom: 1px solid #fdfffc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      :hover {
+        background: #51246a;
+      }
     }
   }
 `;

@@ -7,17 +7,44 @@ interface Props {
   queryPrefix: string;
 }
 const Filter = ({ queryPrefix }: Props): JSX.Element => {
-  console.log(queryPrefix);
   const [isGenrerExpanded, setIsGenrerExpanded] = useState<boolean>(false);
+  const [isRoleExpanded, setIsRoleExpanded] = useState<boolean>(false);
+  const url = (process.env.REACT_APP_API_URL as string) + queryPrefix;
+
   const genrerToggle = () => {
+    if (isRoleExpanded) {
+      roleToggle();
+    }
     setIsGenrerExpanded(!isGenrerExpanded);
   };
-  const url = (process.env.REACT_APP_API_URL as string) + queryPrefix;
+
+  const roleToggle = () => {
+    if (isGenrerExpanded) {
+      genrerToggle();
+    }
+    setIsRoleExpanded(!isRoleExpanded);
+  };
   const dispatch = useAppDispatch();
 
-  const filterbyGenre = (query: string) => {
+  const filterHandler = (type: string, query: string) => {
+    let genreFilterQuery: string = "";
+    if (type === "genre") {
+      genreFilterQuery = `genre=${query}`;
+    }
+    if (type === "role") {
+      genreFilterQuery = `role=${query}`;
+    }
     genrerToggle();
-    dispatch(loadProjectsThunkbyQuery(query));
+    dispatch(loadProjectsThunkbyQuery(url + genreFilterQuery));
+  };
+  const resetFilter = () => {
+    if (isGenrerExpanded) {
+      genrerToggle();
+    }
+    if (isRoleExpanded) {
+      roleToggle();
+    }
+    dispatch(loadProjectsThunkbyQuery(url));
   };
 
   return (
@@ -35,7 +62,14 @@ const Filter = ({ queryPrefix }: Props): JSX.Element => {
             >
               <span className="title">GENRES</span>
             </div>
-            <div className="filter-category__heading" onClick={genrerToggle}>
+            <div
+              className={
+                isRoleExpanded
+                  ? `filter-category__heading--selected`
+                  : `filter-category__heading`
+              }
+              onClick={roleToggle}
+            >
               <span className="title">ROLES</span>
             </div>
           </div>
@@ -47,27 +81,83 @@ const Filter = ({ queryPrefix }: Props): JSX.Element => {
             <ul className="filter-category__options">
               <li
                 className="filter-category__options-item"
-                onClick={() => filterbyGenre(url + "genre=rock")}
+                onClick={() => filterHandler("genre", "rock")}
               >
                 Rock
               </li>
               <li
                 className="filter-category__options-item"
-                onClick={() => filterbyGenre(url + "genre=blues")}
+                onClick={() => filterHandler("genre", "blues")}
               >
                 Blues
               </li>
               <li
                 className="filter-category__options-item"
-                onClick={() => filterbyGenre(url + "genre=pop")}
+                onClick={() => filterHandler("genre", "pop")}
               >
                 Pop
               </li>
               <li
                 className="filter-category__options-item"
-                onClick={() => filterbyGenre(url + "genre=folk")}
+                onClick={() => filterHandler("genre", "folk")}
               >
                 Folk
+              </li>
+              <li
+                className="filter-category__options-item-default"
+                onClick={resetFilter}
+              >
+                All
+              </li>
+            </ul>
+          </div>
+          <div
+            className={
+              isRoleExpanded ? `panel-collapse` : `panel-collapse panel-close`
+            }
+          >
+            <ul className="filter-category__options">
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "guitarrist")}
+              >
+                Guitarrist
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "singer")}
+              >
+                Singer
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "bassplayer")}
+              >
+                Bassplayer
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "drummer")}
+              >
+                Drummer
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "keyboard")}
+              >
+                Keyboard
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterHandler("role", "other")}
+              >
+                Other
+              </li>
+              <li
+                className="filter-category__options-item-default"
+                onClick={resetFilter}
+              >
+                All
               </li>
             </ul>
           </div>

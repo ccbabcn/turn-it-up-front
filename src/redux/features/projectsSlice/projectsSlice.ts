@@ -32,6 +32,14 @@ const projectsSlice = createSlice({
       ...state,
       results: [...state.results, action.payload],
     }),
+    setRoleFilter: (
+      state: PaginatedProjects,
+      action: PayloadAction<string>
+    ): PaginatedProjects => ({ ...state, filter: { role: action.payload } }),
+    setGenreFilter: (
+      state: PaginatedProjects,
+      action: PayloadAction<string>
+    ): PaginatedProjects => ({ ...state, filter: { genre: action.payload } }),
   },
 });
 
@@ -40,6 +48,8 @@ export const {
   projectDetails: projectDetailsActionCreator,
   deleteProject: deleteProjectActionCreator,
   createProject: createProjectActionCreator,
+  setRoleFilter: setRoleFilterActionCreator,
+  setGenreFilter: setGenreFilterActionCreator,
 } = projectsSlice.actions;
 
 export default projectsSlice.reducer;
