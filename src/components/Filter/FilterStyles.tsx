@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const FilterStyles = styled.div`
+  min-width: 300px;
+  width: 100%;
   position: sticky;
   top: 0px;
   z-index: 123;
-
-  width: 100%;
   height: 56px;
   background: #8a89c0;
   font-size: 22px;
