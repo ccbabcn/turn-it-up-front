@@ -30,11 +30,12 @@ const Filter = ({ queryPrefix }: Props): JSX.Element => {
     let genreFilterQuery: string = "";
     if (type === "genre") {
       genreFilterQuery = `genre=${query}`;
+      genrerToggle();
     }
     if (type === "role") {
       genreFilterQuery = `role=${query}`;
+      roleToggle();
     }
-    genrerToggle();
     dispatch(loadProjectsThunkbyQuery(url + genreFilterQuery));
   };
   const resetFilter = () => {
