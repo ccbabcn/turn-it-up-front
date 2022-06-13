@@ -5,5 +5,6 @@ export const HeaderStyles = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 300px;
   background: #fdfffc;
 `;

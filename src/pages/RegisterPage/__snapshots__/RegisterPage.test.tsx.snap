@@ -2,7 +2,7 @@
 
 exports[`Given a RegisterPage component When the component is rendered Then it should match it's snapshot 1`] = `
 <div
-  className="sc-gsnTZi kscNpA"
+  className="sc-gsnTZi kdEGWh"
 >
   <h2>
     REGISTER

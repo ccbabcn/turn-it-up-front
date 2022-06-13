@@ -8,10 +8,11 @@ import { loadUserProjectsThunk } from "../../redux/thunks/projectsThunks/project
 import { PageStyles } from "../PageStyles";
 
 const UserProjectsPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const queryPrefix = "projects?user=userId&";
   const projects = useAppSelector((state) => state.projects.results);
   const total = useAppSelector((state) => state.projects.total);
   const { username } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadUserProjectsThunk());
   }, [dispatch]);
@@ -20,7 +21,7 @@ const UserProjectsPage = (): JSX.Element => {
     <>
       <Navigation />
       <PageStyles>
-        <Filter />
+        <Filter queryPrefix={queryPrefix} />
         <h2>
           {username?.toUpperCase()} YOU HAVE {total} PROJECTS
         </h2>

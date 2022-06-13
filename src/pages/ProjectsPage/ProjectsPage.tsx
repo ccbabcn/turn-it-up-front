@@ -8,17 +8,17 @@ import { loadAllProjectsThunk } from "../../redux/thunks/projectsThunks/projects
 import { PageStyles } from "../PageStyles";
 
 const ProjectsPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const queryPrefix = "projects?&";
   const projects = useAppSelector((state) => state.projects.results);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadAllProjectsThunk());
   }, [dispatch]);
-
   return (
     <>
       <Navigation />
       <PageStyles>
-        <Filter />
+        <Filter queryPrefix={queryPrefix} />
         <h2>ALL PROJECTS</h2>
         <ProjectsList projects={projects} />
         <Paginator />
