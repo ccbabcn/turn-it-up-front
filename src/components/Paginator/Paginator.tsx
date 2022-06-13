@@ -36,6 +36,7 @@ export default function Paginator() {
     >
       <div className="pager">
         <button
+          data-testid="TEST"
           title="previous"
           disabled={previous ? false : true}
           className="pager__button"

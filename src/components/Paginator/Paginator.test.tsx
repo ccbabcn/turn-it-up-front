@@ -1,10 +1,11 @@
 import Paginator from "./Paginator";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store";
 import { loadProjectsThunkbyQuery } from "../../redux/thunks/projectsThunks/projectsThunks";
 import userEvent from "@testing-library/user-event";
+import * as hooks from "../../redux/hooks";
 
 describe("Given Paginator component", () => {
   describe("When it's invoked", () => {
@@ -32,7 +33,9 @@ describe("Given Paginator component", () => {
   describe("When it's invoked and user click on next button", () => {
     test("Then it should render two buttons name 'previous' and 'next'", () => {
       const dispatch = jest.fn();
-
+      jest
+        .spyOn(hooks, "useAppSelector")
+        .mockImplementation(() => ({ next: "mockUrl", results: [] }));
       render(
         <Provider store={store}>
           <BrowserRouter>
@@ -53,8 +56,12 @@ describe("Given Paginator component", () => {
   });
 
   describe("When it's invoked and user click on previous button", () => {
-    test("Then it should render two buttons name 'previous' and 'next'", () => {
+    test("Then it should render two buttons name 'previous' and 'next'", async () => {
       const dispatch = jest.fn();
+
+      jest
+        .spyOn(hooks, "useAppSelector")
+        .mockImplementation(() => ({ previous: "mockUrl", results: [] }));
 
       render(
         <Provider store={store}>
@@ -64,12 +71,10 @@ describe("Given Paginator component", () => {
         </Provider>
       );
 
-      const expectedPreviousButton = screen.getByRole("button", {
-        name: /previous/i,
-      });
-      userEvent.click(expectedPreviousButton);
+      const expectedPreviousButton = screen.getByTestId("TEST");
 
-      dispatch(loadProjectsThunkbyQuery(""));
+      await fireEvent.click(expectedPreviousButton);
+      await dispatch(loadProjectsThunkbyQuery(""));
 
       expect(dispatch).toHaveBeenCalled();
     });
