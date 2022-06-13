@@ -35,7 +35,7 @@ describe("Given Paginator component", () => {
       const dispatch = jest.fn();
       jest
         .spyOn(hooks, "useAppSelector")
-        .mockImplementation(() => ({ next: "mockUrl", results: [] }));
+        .mockImplementation(() => ({ nextpage: "mockUrl", results: [] }));
       render(
         <Provider store={store}>
           <BrowserRouter>
