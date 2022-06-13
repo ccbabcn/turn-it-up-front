@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Filter from "../../components/Filter/Filter";
 import Navigation from "../../components/Navigation/Navigation";
 import Paginator from "../../components/Paginator/Paginator";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
@@ -19,6 +20,7 @@ const UserProjectsPage = (): JSX.Element => {
     <>
       <Navigation />
       <PageStyles>
+        <Filter />
         <h2>
           {username?.toUpperCase()} YOU HAVE {total} PROJECTS
         </h2>

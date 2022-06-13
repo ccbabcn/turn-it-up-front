@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { loadProjectsThunkbyQuery } from "../../redux/thunks/projectsThunks/projectsThunks";
 import { FilterStyles } from "./FilterStyles";
 
 const Filter = (): JSX.Element => {
@@ -6,6 +8,13 @@ const Filter = (): JSX.Element => {
   const genrerToggle = () => {
     setIsGenrerExpanded(!isGenrerExpanded);
   };
+  const url = process.env.REACT_APP_API_URL as string;
+  const dispatch = useAppDispatch();
+
+  const filterbyGenre = (query: string) => {
+    dispatch(loadProjectsThunkbyQuery(query));
+  };
+
   return (
     <FilterStyles>
       <div className="filter">
@@ -19,10 +28,30 @@ const Filter = (): JSX.Element => {
             }
           >
             <ul className="filter-category__options">
-              <li className="filter-category__options-item">Rock</li>
-              <li className="filter-category__options-item">Blues</li>
-              <li className="filter-category__options-item">Pop</li>
-              <li className="filter-category__options-item">Folk</li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterbyGenre(url + "projects?&genre=rock")}
+              >
+                Rock
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterbyGenre(url + "projects?&genre=blues")}
+              >
+                Blues
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterbyGenre(url + "projects?&genre=pop")}
+              >
+                Pop
+              </li>
+              <li
+                className="filter-category__options-item"
+                onClick={() => filterbyGenre(url + "projects?&genre=folk")}
+              >
+                Folk
+              </li>
             </ul>
           </div>
         </div>
