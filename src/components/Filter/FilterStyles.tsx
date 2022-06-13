@@ -22,7 +22,7 @@ export const FilterStyles = styled.div`
   }
   .panel-collapse {
     position: absolute;
-    transform: translateY(-20px);
+    transform: translateY(-22px);
     overflow: hidden;
     transition: max-height 0.5s ease;
     width: 100%;
@@ -33,13 +33,36 @@ export const FilterStyles = styled.div`
 
   .filter-category {
     width: 100%;
+    &__heading-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #fdfffc;
+      border-bottom: 1px solid #fdfffc;
+    }
     &__heading {
-      height: 50px;
+      width: 50%;
+      height: 56px;
       display: flex;
       align-items: center;
       flex-direction: column;
       justify-content: center;
+      &--selected {
+        width: 50%;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background: #261132;
+      }
+      :hover {
+        background: #51246a;
+      }
       .title {
+        text-align: center;
+        padding: 0 20px;
         display: block;
         width: 100%;
       }
