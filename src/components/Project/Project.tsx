@@ -6,18 +6,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { IProject } from "../../types/ProjectsTypes";
 import { ProjectStyles } from "./ProjectStyles";
-import {
-  GiGuitarBassHead,
-  GiGuitarHead,
-  GiMicrophone,
-  GiDrumKit,
-  GiMusicalKeyboard,
-  GiMusicSpell,
-} from "react-icons/gi";
-import { ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 import { useNavigate, useParams } from "react-router-dom";
+import { RolesIcons } from "./RolesIcons/RolesIcons";
 
 interface Props {
   project: IProject;
@@ -116,129 +108,7 @@ const Project = ({
               : `project__genre-icons`
           }
         >
-          {roles.map((role: string, index, array) => {
-            let currentIcon: ReactElement;
-            let limit: number = projectIdDetails ? array.length : 3;
-            if (index < limit) {
-              switch (role) {
-                case "guitarrist":
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="guitarrist" className="icon-container">
-                        <GiGuitarHead className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails && `This projects needs a ${role}`}
-                      </span>
-                    </div>
-                  );
-                  break;
-                case "drummer":
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="drummer" className="icon-container">
-                        <GiDrumKit className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails && `This projects needs a ${role}`}
-                      </span>
-                    </div>
-                  );
-                  break;
-                case "bassplayer":
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="bassplayer" className="icon-container">
-                        <GiGuitarBassHead className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails && `This projects needs a ${role}`}
-                      </span>
-                    </div>
-                  );
-                  break;
-                case "singer":
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="singer" className="icon-container">
-                        <GiMicrophone className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails && `This projects needs a ${role}`}
-                      </span>
-                    </div>
-                  );
-                  break;
-                case "keyboard":
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="keyboard" className="icon-container">
-                        <GiMusicalKeyboard className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails && `This projects needs a ${role}`}
-                      </span>
-                    </div>
-                  );
-                  break;
-                default:
-                  currentIcon = (
-                    <div
-                      key={index + id}
-                      className={
-                        projectIdDetails && "details-icon-main-container"
-                      }
-                    >
-                      <div title="other" className="icon-container">
-                        <GiMusicSpell className={"icon"} />
-                      </div>
-                      <span>
-                        {projectIdDetails &&
-                          `This projects is also looking for other types of musicians`}
-                      </span>
-                    </div>
-                  );
-                  break;
-              }
-              return currentIcon;
-            }
-            if (!projectIdDetails) {
-              if (index === 3) {
-                currentIcon = (
-                  <div key={index + id} className="icon-container">
-                    +{array.length - 3}
-                  </div>
-                );
-                return currentIcon;
-              }
-            }
-            return null;
-          })}
+          <RolesIcons roles={roles} />
         </div>
         {projectIdDetails && (
           <Typography className="project__author">
