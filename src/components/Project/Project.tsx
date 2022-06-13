@@ -55,7 +55,7 @@ const Project = ({
   const url = process.env.REACT_APP_API_URL as string;
 
   return (
-    <ProjectStyles key={id}>
+    <ProjectStyles>
       <Card className="project">
         <CardMedia
           className="project__image"
@@ -124,15 +124,12 @@ const Project = ({
                 case "guitarrist":
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="guitarrist"
-                        className="icon-container"
-                      >
+                      <div title="guitarrist" className="icon-container">
                         <GiGuitarHead className={"icon"} />
                       </div>
                       <span>
@@ -144,15 +141,12 @@ const Project = ({
                 case "drummer":
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="drummer"
-                        className="icon-container"
-                      >
+                      <div title="drummer" className="icon-container">
                         <GiDrumKit className={"icon"} />
                       </div>
                       <span>
@@ -164,15 +158,12 @@ const Project = ({
                 case "bassplayer":
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="bassplayer"
-                        className="icon-container"
-                      >
+                      <div title="bassplayer" className="icon-container">
                         <GiGuitarBassHead className={"icon"} />
                       </div>
                       <span>
@@ -184,15 +175,12 @@ const Project = ({
                 case "singer":
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="singer"
-                        className="icon-container"
-                      >
+                      <div title="singer" className="icon-container">
                         <GiMicrophone className={"icon"} />
                       </div>
                       <span>
@@ -204,15 +192,12 @@ const Project = ({
                 case "keyboard":
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="keyboard"
-                        className="icon-container"
-                      >
+                      <div title="keyboard" className="icon-container">
                         <GiMusicalKeyboard className={"icon"} />
                       </div>
                       <span>
@@ -224,15 +209,12 @@ const Project = ({
                 default:
                   currentIcon = (
                     <div
+                      key={index + id}
                       className={
                         projectIdDetails && "details-icon-main-container"
                       }
                     >
-                      <div
-                        key={index + id}
-                        title="other"
-                        className="icon-container"
-                      >
+                      <div title="other" className="icon-container">
                         <GiMusicSpell className={"icon"} />
                       </div>
                       <span>

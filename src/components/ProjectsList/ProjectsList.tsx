@@ -7,6 +7,9 @@ interface Props {
 }
 
 const ProjectsList = ({ projects }: Props): JSX.Element => {
+  if (!projects || !projects.length) {
+    return <></>;
+  }
   return (
     <ProjectsListStyles>
       <ul>
