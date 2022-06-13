@@ -80,30 +80,35 @@ const Filter = ({ queryPrefix }: Props): JSX.Element => {
           >
             <ul className="filter-category__options">
               <li
+                title="rock"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("genre", "rock")}
               >
                 Rock
               </li>
               <li
+                title="blues"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("genre", "blues")}
               >
                 Blues
               </li>
               <li
+                title="pop"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("genre", "pop")}
               >
                 Pop
               </li>
               <li
+                title="folk"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("genre", "folk")}
               >
                 Folk
               </li>
               <li
+                title="allgenres"
                 className="filter-category__options-item-default"
                 onClick={resetFilter}
               >
@@ -118,42 +123,49 @@ const Filter = ({ queryPrefix }: Props): JSX.Element => {
           >
             <ul className="filter-category__options">
               <li
+                title="guitarrist"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "guitarrist")}
               >
                 Guitarrist
               </li>
               <li
+                title="singer"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "singer")}
               >
                 Singer
               </li>
               <li
+                title="bassplayer"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "bassplayer")}
               >
                 Bassplayer
               </li>
               <li
+                title="drummer"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "drummer")}
               >
                 Drummer
               </li>
               <li
+                title="keyboard"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "keyboard")}
               >
                 Keyboard
               </li>
               <li
+                title="other"
                 className="filter-category__options-item"
                 onClick={() => filterHandler("role", "other")}
               >
                 Other
               </li>
               <li
+                title="allroles"
                 className="filter-category__options-item-default"
                 onClick={resetFilter}
               >
