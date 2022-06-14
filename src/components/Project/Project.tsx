@@ -57,17 +57,6 @@ const Project = ({
   return (
     <ProjectStyles>
       <Card className="project">
-        {/* {!projectIdDetails && (
-          <CardMedia
-            className="project__image"
-            component="img"
-            alt={`Project ${name}`}
-            height="330"
-            src={`${url}uploads/${image}`}
-            onError={srcErrorHandler}
-          />
-        )} */}
-        {/* {projectIdDetails && ( */}
         <div className="project__cover">
           <Typography
             className="project__cover__name"
@@ -98,17 +87,13 @@ const Project = ({
         {/* )} */}
 
         <CardContent className="project__details">
-          {/* <div
-              className={
-                projectIdDetails ? "project__name-details" : "project__name"
-              }
-            >
-              <Typography gutterBottom variant="h3">
-                {name?.toUpperCase()}
-              </Typography>
-            </div> */}
-          {/* {!projectIdDetails && ( */}
-          <div className="project__details__needs">
+          <div
+            className={
+              projectIdDetails
+                ? "project__details__needs--hiden"
+                : "project__details__needs"
+            }
+          >
             <span className="project__details__needs genres">
               THIS{" "}
               {`${
@@ -126,15 +111,12 @@ const Project = ({
               }`}{" "}
             </span>
           </div>
-          {/* )} */}
-
           <div
             key={id + "details"}
             className={
               projectIdDetails ? "project__roles--details" : "project__roles"
             }
           >
-            {/* icon-container > icon */}
             <RolesIcons roles={roles} />
           </div>
           {projectIdDetails && (
