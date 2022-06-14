@@ -10,8 +10,6 @@ import Project from "./Project";
 import { UserState } from "../../types/UserTypes";
 import { mockUserLogged } from "../../mocks/mockUsers/mockUsers";
 import userEvent from "@testing-library/user-event";
-import { deleteProjectActionCreator } from "../../redux/features/projectsSlice/projectsSlice";
-import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsThunks";
 
 let mockuserState: UserState;
 
