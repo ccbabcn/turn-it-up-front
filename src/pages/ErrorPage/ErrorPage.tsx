@@ -1,7 +1,7 @@
 import { ErrorPageStyles } from "../ErrorPage/ErrorPageStyles";
 import { NavLink } from "react-router-dom";
 
-const RegisterPage = (): JSX.Element => {
+const ErrorPage = (): JSX.Element => {
   return (
     <ErrorPageStyles>
       <div className="message-container">
@@ -22,4 +22,4 @@ const RegisterPage = (): JSX.Element => {
   );
 };
 
-export default RegisterPage;
+export default ErrorPage;
