@@ -8,7 +8,7 @@ exports[`Given a RegisterPage component When the component is rendered Then it s
     REGISTER
   </h2>
   <div
-    className="sc-bczRLJ iFtvyo"
+    className="sc-bczRLJ iMczJF"
   >
     <form
       autoComplete="off"

@@ -5,7 +5,7 @@ const Header = (): JSX.Element => {
   return (
     <HeaderStyles>
       <h1>
-        <NavLink to="/">
+        <NavLink to="/projects">
           <img
             width={178}
             height={100}

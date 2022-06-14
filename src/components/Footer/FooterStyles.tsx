@@ -10,6 +10,7 @@ export const FooterStyles = styled.footer`
   background: #261132;
   padding: 50px;
   font-size: 18px;
+  text-align: center;
   .title {
     text-transform: uppercase;
     font-size: 20px;
