@@ -223,17 +223,51 @@ export const ProjectStyles = styled.li`
         flex-direction: column;
         align-items: center;
       }
+      &__name-details {
+        padding: 0 50px;
+        h3 {
+          width: 100%;
+          transform: translatey(0px);
+
+          position: inherit;
+          font-size: 30px;
+          font-weight: 500;
+          color: #082133;
+          text-shadow: none;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
       .project__details-container {
-        width: 60%;
-        height: 360px;
+        width: auto;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding-left: 2%;
       }
     }
     .project__genres {
       font-size: 15px;
       font-weight: 600;
+    }
+
+    .details-cover {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: #fdfffc;
+      background: #082133;
+    }
+    .project__image {
+      max-width: 100%;
+      min-width: 250px;
+
+      width: 100%;
+    }
+    .project__description-details {
+      padding: 40px 20px;
     }
   }
 `;

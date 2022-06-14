@@ -66,7 +66,7 @@ const Project = ({
           />
         )}
         {projectIdDetails && (
-          <div>
+          <div className="details-cover">
             <CardMedia
               className="project__image"
               component="img"
