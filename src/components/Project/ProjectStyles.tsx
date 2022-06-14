@@ -43,32 +43,85 @@ export const ProjectStyles = styled.li`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-      }
-
-      &__icons {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
         gap: 10px;
 
-        .icon-container {
-          color: #fdfffc;
-          font-size: 25px;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 60px;
-          width: 60px;
-          background-color: #1b435f;
-          border-radius: 50%;
+        .genres {
+          font-size: 20px;
+          font-weight: 500;
+        }
+      }
+    }
 
-          .icon {
-            width: 50px;
-            height: 50px;
-            margin: 10px;
-          }
+    &__roles {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+
+      .icon-container {
+        color: #fdfffc;
+        font-size: 25px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+        background-color: #1b435f;
+        border-radius: 50%;
+
+        .icon {
+          width: 50px;
+          height: 50px;
+          margin: 10px;
+        }
+      }
+    }
+
+    &__actions {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      button {
+        font-size: 1.1rem;
+        color: #fdfffc;
+        width: 30%;
+        min-width: 80px;
+
+        height: 60px;
+        border-radius: 30px;
+        padding: 0;
+      }
+
+      &--info {
+        background: #1b435f;
+        :hover {
+          background: #296186;
+        }
+        :active {
+          background: #082133;
+        }
+      }
+      &--join {
+        background: #2a7f62;
+        :hover {
+          background: #37a983;
+        }
+        :active {
+          background: #194d3c;
+        }
+      }
+      &--delete {
+        background: #840b23;
+        :hover {
+          background: #f56381;
+        }
+        :active {
+          background: #4b0614;
         }
       }
     }

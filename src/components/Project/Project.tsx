@@ -127,58 +127,56 @@ const Project = ({
             </span>
           </div>
           {/* )} */}
-        </CardContent>
 
-        <div
-          key={id + "details"}
-          className={
-            projectIdDetails
-              ? "project__details__icons--details"
-              : "project__details__icons"
-          }
-        >
-          {/* icon-container > icon */}
-          <RolesIcons roles={roles} />
-        </div>
-        {projectIdDetails && (
-          <Typography className="project__author">
-            {`This project was created by ${owner}`}
-          </Typography>
-        )}
-        <CardActions className="project__actions">
-          {owner === userId && (
-            <Button
-              className="project__actions--info"
-              size="small"
-              onClick={navigateToEdit}
-            >
-              EDIT
-            </Button>
+          <div
+            key={id + "details"}
+            className={
+              projectIdDetails ? "project__roles--details" : "project__roles"
+            }
+          >
+            {/* icon-container > icon */}
+            <RolesIcons roles={roles} />
+          </div>
+          {projectIdDetails && (
+            <Typography className="project__author">
+              {`This project was created by ${owner}`}
+            </Typography>
           )}
-          {owner !== userId && (
-            <Button
-              className="project__actions--info"
-              size="small"
-              onClick={
-                projectIdDetails ? navigateToProjects : navigateToDetails
-              }
-            >
-              {projectIdDetails ? "RETURN" : "+ INFO"}
+          <CardActions className="project__actions">
+            {owner === userId && (
+              <Button
+                className="project__actions--info"
+                size="small"
+                onClick={navigateToEdit}
+              >
+                EDIT
+              </Button>
+            )}
+            {owner !== userId && (
+              <Button
+                className="project__actions--info"
+                size="small"
+                onClick={
+                  projectIdDetails ? navigateToProjects : navigateToDetails
+                }
+              >
+                {projectIdDetails ? "RETURN" : "+ INFO"}
+              </Button>
+            )}
+            <Button className="project__actions--join" size="small">
+              JOIN
             </Button>
-          )}
-          <Button className="project__actions--join" size="small">
-            JOIN
-          </Button>
-          {owner === userId && (
-            <Button
-              className="project__actions--delete"
-              size="small"
-              onClick={deleteProject}
-            >
-              DELETE
-            </Button>
-          )}
-        </CardActions>
+            {owner === userId && (
+              <Button
+                className="project__actions--delete"
+                size="small"
+                onClick={deleteProject}
+              >
+                DELETE
+              </Button>
+            )}
+          </CardActions>
+        </CardContent>
       </Card>
     </ProjectStyles>
   );
