@@ -59,7 +59,8 @@
   "devDependencies": {
     "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.25",
-    "husky": "^7.0.0"
+    "husky": "^7.0.0",
+    "cypress": "^10.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
