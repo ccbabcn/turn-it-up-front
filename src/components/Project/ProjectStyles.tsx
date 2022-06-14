@@ -208,7 +208,7 @@ export const ProjectStyles = styled.li`
       }
       &__details {
         height: 360px;
-        width: 50%;
+        width: 600px;
         align-items: center;
         justify-content: center;
       }

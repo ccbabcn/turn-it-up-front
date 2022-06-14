@@ -8,6 +8,64 @@ export const FormStyles = styled.div`
   justify-content: center;
   padding-top: 30px;
   padding-bottom: 50px;
+
+  .imagefield {
+    /* button {
+      visibility: hidden;
+    } */
+    width: 100%;
+    &__name {
+      position: relative;
+      overflow: hidden;
+      line-height: 30px;
+      padding: 5px;
+      box-sizing: border-box;
+      font-size: 15px;
+      vertical-align: middle;
+      width: 300px;
+      border: 2px solid #dbdbdb;
+      border-radius: 0;
+      height: calc(2em + 0.75rem + 2px);
+    }
+
+    &__input {
+      #file-upload-button {
+        background: none;
+      }
+      background: #3479ce;
+
+      width: 100%;
+      padding: 2px 10px;
+      background-color: #51246a;
+      -webkit-transition: all 0.6s;
+      transition: all 0.6s;
+      color: #fff;
+      vertical-align: middle;
+
+      &:hover {
+        background: #2a64ad;
+        box-shadow: 0 0 5px #33006e;
+      }
+    }
+  }
+
+  textarea#description {
+    font-size: 1.25rem;
+    resize: vertical;
+    width: 100%;
+    height: 120px;
+    border-radius: 20px;
+    border: 1px solid #aea9ac;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+
+  .imagefield__label {
+    button {
+      opacity: 0;
+    }
+  }
+
   form {
     color: #000;
     background: #fdfffc;
@@ -16,20 +74,21 @@ export const FormStyles = styled.div`
       0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     border: solid 1px #aea9ac;
-    padding: 30px 30px;
+    padding: 30px 20px;
     width: 70%;
     max-width: 600px;
     min-width: 300px;
     display: flex;
     flex-direction: column;
     .formField {
-      width: 80%;
+      width: 90%;
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
 
     .fieldCheckbox {
-      width: 80%;
+      width: 90%;
       display: flex;
       flex-direction: column;
 
@@ -45,6 +104,7 @@ export const FormStyles = styled.div`
         border-radius: 20px;
         padding: 20px;
       }
+
       &__checker {
         .form-control {
           font-size: 1.25rem;
