@@ -56,8 +56,8 @@ export const mockProject2: IProject = {
   image:
     "https://offloadmedia.feverup.com/madridsecreto.co/wp-content/uploads/2019/04/08105701/Madrid-Secreto-Legendario-Tempo-4-1024x683.jpg",
   genres: ["rock", "blues", "pop"],
-  roles: ["singer", "keyboard", "ukelele"],
-  owner: "user1",
+  roles: ["singer", "keyboard", "guitarrist"],
+  owner: "userId",
 };
 
 export const mocKProjectToCreate: IProject = {
