@@ -49,23 +49,51 @@ const Project = ({
   return (
     <ProjectStyles>
       <Card className="project">
-        <CardMedia
-          className="project__image"
-          component="img"
-          alt={`Project ${name}`}
-          height="330"
-          src={`${url}uploads/${image}`}
-          onError={(error: any) => {
-            let backupSrc = imagebackup
-              ? imagebackup
-              : "./images/default-project-image.jpg";
-            (error.target as HTMLImageElement).onerror = null;
-            (error.target as HTMLImageElement).src = backupSrc;
-          }}
-        />
+        {!projectIdDetails && (
+          <CardMedia
+            className="project__image"
+            component="img"
+            alt={`Project ${name}`}
+            height="330"
+            src={`${url}uploads/${image}`}
+            onError={(error: any) => {
+              let backupSrc = imagebackup
+                ? imagebackup
+                : "./images/default-project-image.jpg";
+              (error.target as HTMLImageElement).onerror = null;
+              (error.target as HTMLImageElement).src = backupSrc;
+            }}
+          />
+        )}
+        {projectIdDetails && (
+          <div>
+            <CardMedia
+              className="project__image"
+              component="img"
+              alt={`Project ${name}`}
+              height="330"
+              src={`${url}uploads/${image}`}
+              onError={(error: any) => {
+                let backupSrc = imagebackup
+                  ? imagebackup
+                  : "./images/default-project-image.jpg";
+                (error.target as HTMLImageElement).onerror = null;
+                (error.target as HTMLImageElement).src = backupSrc;
+              }}
+            />
+            <Typography className="project__description-details">
+              {description}
+            </Typography>
+          </div>
+        )}
+
         <div className="project__details-container">
           <CardContent className="project__details">
-            <div className="project__name">
+            <div
+              className={
+                projectIdDetails ? "project__name-details" : "project__name"
+              }
+            >
               <Typography gutterBottom variant="h3">
                 {name?.toUpperCase()}
               </Typography>
@@ -92,11 +120,6 @@ const Project = ({
                     rolesFirstLetterUpperCase.slice(-1)
                   }`}{" "}
                 </span>
-              </Typography>
-            )}
-            {projectIdDetails && (
-              <Typography className="project__description">
-                {description}
               </Typography>
             )}
           </CardContent>
