@@ -17,4 +17,11 @@ export const ProjectsListStyles = styled.div`
     list-style: none;
     padding-left: 0;
   }
+
+  @media (min-width: 600px) {
+    width: 100%;
+    .projects-container {
+      width: 100%;
+    }
+  }
 `;

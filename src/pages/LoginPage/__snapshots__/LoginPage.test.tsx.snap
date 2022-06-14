@@ -2,13 +2,13 @@
 
 exports[`Given a LoginPage component When the component is rendered Then it should match it's snapshot 1`] = `
 <div
-  className="sc-gsnTZi kdEGWh"
+  className="sc-gsnTZi cLcUqi"
 >
   <h2>
     LOGIN
   </h2>
   <div
-    className="sc-bczRLJ hmTf"
+    className="sc-bczRLJ iFtvyo"
   >
     <form
       autoComplete="off"

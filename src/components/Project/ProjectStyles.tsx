@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
 export const ProjectStyles = styled.li`
+  width: 100%;
+  padding: 0 20px;
   .project {
     max-width: 450px;
-    min-width: 300px;
+    min-width: 260px;
     background: #fdfffc;
     box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
       0.25em 0.25em 1em rgb(0 0 0 / 30%);
     border-radius: 20px;
-
+    &__description-details {
+      padding: 20px;
+    }
     &__name {
       h3 {
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         font-size: 30px;
         transform: translatey(-330px);
         color: #fdfffc;
@@ -20,6 +30,33 @@ export const ProjectStyles = styled.li`
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    &__name-details {
+      h3 {
+        min-width: 300px;
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 30px;
+        transform: translatey(-550px);
+        color: #fdfffc;
+        text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+        position: absolute;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__description-details {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.35em;
+      text-align: center;
+      text-justify: distribute;
     }
 
     &__details {
@@ -35,13 +72,6 @@ export const ProjectStyles = styled.li`
       padding: 20px;
       color: #51246a;
       font-weight: 500;
-    }
-    &__description {
-      display: flex;
-      flex-direction: column;
-      font-size: 1.25em;
-      text-align: center;
-      text-justify: distribute;
     }
 
     &__genres {
@@ -60,14 +90,22 @@ export const ProjectStyles = styled.li`
 
       &--details-version {
         width: 100%;
-        padding: 0 40px;
-        font-size: 1.1em;
+        padding: 0 20px;
+        font-size: 1.2em;
         gap: 20px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 20px;
+        padding-bottom: 20px;
         color: #082133;
+
+        .details-icon-main-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 20px;
+        }
 
         .icon-container {
           color: #fdfffc;
@@ -149,6 +187,87 @@ export const ProjectStyles = styled.li`
           background: #4b0614;
         }
       }
+    }
+  }
+
+  @media (min-width: 600px) {
+    width: 100%;
+    padding: 0;
+
+    .project {
+      min-width: 100%;
+      box-shadow: none;
+      border-radius: 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &__image {
+        max-width: 40%;
+        min-width: 40%;
+        height: 360px;
+      }
+      &__name {
+        padding: 0 50px;
+        h3 {
+          width: 100%;
+          transform: translatey(0px);
+
+          position: inherit;
+          font-size: 30px;
+          font-weight: 500;
+          color: #082133;
+          text-shadow: none;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &__name-details {
+        padding: 0 50px;
+        h3 {
+          width: 100%;
+          transform: translatey(0px);
+
+          position: inherit;
+          font-size: 30px;
+          font-weight: 500;
+          color: #082133;
+          text-shadow: none;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .project__details-container {
+        width: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 2%;
+      }
+    }
+    .project__genres {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .details-cover {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: #fdfffc;
+      background: #082133;
+    }
+    .project__image {
+      max-width: 100%;
+      min-width: 250px;
+
+      width: 100%;
+    }
+    .project__description-details {
+      padding: 40px 20px;
     }
   }
 `;

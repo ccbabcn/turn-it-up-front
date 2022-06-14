@@ -49,106 +49,131 @@ const Project = ({
   return (
     <ProjectStyles>
       <Card className="project">
-        <CardMedia
-          className="project__image"
-          component="img"
-          alt={`Project ${name}`}
-          height="330"
-          src={`${url}uploads/${image}`}
-          onError={(error: any) => {
-            let backupSrc = imagebackup
-              ? imagebackup
-              : "./images/default-project-image.jpg";
-            (error.target as HTMLImageElement).onerror = null;
-            (error.target as HTMLImageElement).src = backupSrc;
-          }}
-        />
-        <CardContent className="project__details">
-          <div className="project__name">
-            <Typography gutterBottom variant="h3">
-              {name?.toUpperCase()}
-            </Typography>
-          </div>
-          {!projectIdDetails && (
-            <Typography
-              className="project__description"
-              variant="body2"
-              color="text.secondary"
-            >
-              <span className="project__genres">
-                THIS{" "}
-                {`${
-                  genresUppercase.slice(0, -1).join(", ") +
-                  " & " +
-                  genresUppercase.slice(-1)
-                }`}{" "}
-                PROJECT NEEDS:
-              </span>
-              <span className="project__roles">
-                {`${
-                  rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
-                  " & " +
-                  rolesFirstLetterUpperCase.slice(-1)
-                }`}{" "}
-              </span>
-            </Typography>
-          )}
-          {projectIdDetails && (
-            <Typography className="project__description">
+        {!projectIdDetails && (
+          <CardMedia
+            className="project__image"
+            component="img"
+            alt={`Project ${name}`}
+            height="330"
+            src={`${url}uploads/${image}`}
+            onError={(error: any) => {
+              let backupSrc = imagebackup
+                ? imagebackup
+                : "./images/default-project-image.jpg";
+              (error.target as HTMLImageElement).onerror = null;
+              (error.target as HTMLImageElement).src = backupSrc;
+            }}
+          />
+        )}
+        {projectIdDetails && (
+          <div className="details-cover">
+            <CardMedia
+              className="project__image"
+              component="img"
+              alt={`Project ${name}`}
+              height="330"
+              src={`${url}uploads/${image}`}
+              onError={(error: any) => {
+                let backupSrc = imagebackup
+                  ? imagebackup
+                  : "./images/default-project-image.jpg";
+                (error.target as HTMLImageElement).onerror = null;
+                (error.target as HTMLImageElement).src = backupSrc;
+              }}
+            />
+            <Typography className="project__description-details">
               {description}
             </Typography>
-          )}
-        </CardContent>
-
-        <div
-          key={id + "details"}
-          className={
-            projectIdDetails
-              ? `project__genre-icons--details-version`
-              : `project__genre-icons`
-          }
-        >
-          <RolesIcons roles={roles} />
-        </div>
-        {projectIdDetails && (
-          <Typography className="project__author">
-            {`This project was created by ${owner}`}
-          </Typography>
+          </div>
         )}
-        <CardActions className="project__actions">
-          {owner === userId && (
-            <Button
-              className="project__actions--info"
-              size="small"
-              onClick={navigateToEdit}
-            >
-              EDIT
-            </Button>
-          )}
-          {owner !== userId && (
-            <Button
-              className="project__actions--info"
-              size="small"
-              onClick={
-                projectIdDetails ? navigateToProjects : navigateToDetails
+
+        <div className="project__details-container">
+          <CardContent className="project__details">
+            <div
+              className={
+                projectIdDetails ? "project__name-details" : "project__name"
               }
             >
-              {projectIdDetails ? "RETURN" : "+ INFO"}
-            </Button>
+              <Typography gutterBottom variant="h3">
+                {name?.toUpperCase()}
+              </Typography>
+            </div>
+            {!projectIdDetails && (
+              <Typography
+                className="project__description"
+                variant="body2"
+                color="text.secondary"
+              >
+                <span className="project__genres">
+                  THIS{" "}
+                  {`${
+                    genresUppercase.slice(0, -1).join(", ") +
+                    " & " +
+                    genresUppercase.slice(-1)
+                  }`}{" "}
+                  PROJECT NEEDS:
+                </span>
+                <span className="project__roles">
+                  {`${
+                    rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
+                    " & " +
+                    rolesFirstLetterUpperCase.slice(-1)
+                  }`}{" "}
+                </span>
+              </Typography>
+            )}
+          </CardContent>
+
+          <div
+            key={id + "details"}
+            className={
+              projectIdDetails
+                ? `project__genre-icons--details-version`
+                : `project__genre-icons`
+            }
+          >
+            <RolesIcons roles={roles} />
+          </div>
+          {projectIdDetails && (
+            <Typography className="project__author">
+              {`This project was created by ${owner}`}
+            </Typography>
           )}
-          <Button className="project__actions--join" size="small">
-            JOIN
-          </Button>
-          {owner === userId && (
-            <Button
-              className="project__actions--delete"
-              size="small"
-              onClick={deleteProject}
-            >
-              DELETE
+          <CardActions className="project__actions">
+            {owner === userId && (
+              <Button
+                className="project__actions--info"
+                size="small"
+                onClick={navigateToEdit}
+              >
+                EDIT
+              </Button>
+            )}
+            {owner !== userId && (
+              <Button
+                className="project__actions--info"
+                size="small"
+                onClick={
+                  projectIdDetails ? navigateToProjects : navigateToDetails
+                }
+              >
+                {projectIdDetails ? "RETURN" : "+ INFO"}
+              </Button>
+            )}
+            <Button className="project__actions--join" size="small">
+              JOIN
             </Button>
-          )}
-        </CardActions>
+            {owner === userId && (
+              <Button
+                className="project__actions--delete"
+                size="small"
+                onClick={deleteProject}
+              >
+                DELETE
+              </Button>
+            )}
+          </CardActions>
+        </div>
       </Card>
     </ProjectStyles>
   );
