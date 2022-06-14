@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const ProjectStyles = styled.li`
+  width: 100%;
+  padding: 0 20px;
   .project {
     max-width: 450px;
-    min-width: 300px;
+    min-width: 260px;
     background: #fdfffc;
     box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
       0.25em 0.25em 1em rgb(0 0 0 / 30%);
@@ -160,6 +162,7 @@ export const ProjectStyles = styled.li`
 
   @media (min-width: 600px) {
     width: 100%;
+    padding: 0;
 
     .project {
       min-width: 100%;
