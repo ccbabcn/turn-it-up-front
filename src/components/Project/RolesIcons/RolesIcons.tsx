@@ -45,7 +45,7 @@ export const RolesIcons = ({ roles }: Props): JSX.Element => {
         return (
           <div
             key={role}
-            className={projectIdDetails && "details-icon-main-container"}
+            className={projectIdDetails && "icon-container--details"}
           >
             <div title={role} className="icon-container">
               {RolesProps(role)}

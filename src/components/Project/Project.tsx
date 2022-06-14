@@ -46,90 +46,75 @@ const Project = ({
   );
   const url = process.env.REACT_APP_API_URL as string;
 
+  const srcErrorHandler = (error: any) => {
+    let backupSrc = imagebackup
+      ? imagebackup
+      : "./images/default-project-image.jpg";
+    (error.target as HTMLImageElement).onerror = null;
+    (error.target as HTMLImageElement).src = backupSrc;
+  };
+
   return (
     <ProjectStyles>
       <Card className="project">
-        {!projectIdDetails && (
+        <div className="project__cover">
+          <Typography
+            className="project__cover__name"
+            gutterBottom
+            variant="h3"
+          >
+            {name?.toUpperCase()}
+          </Typography>
+
           <CardMedia
-            className="project__image"
+            className="project__cover__image"
             component="img"
             alt={`Project ${name}`}
-            height="330"
+            height="360"
             src={`${url}uploads/${image}`}
-            onError={(error: any) => {
-              let backupSrc = imagebackup
-                ? imagebackup
-                : "./images/default-project-image.jpg";
-              (error.target as HTMLImageElement).onerror = null;
-              (error.target as HTMLImageElement).src = backupSrc;
-            }}
+            onError={srcErrorHandler}
           />
-        )}
-        {projectIdDetails && (
-          <div className="details-cover">
-            <CardMedia
-              className="project__image"
-              component="img"
-              alt={`Project ${name}`}
-              height="330"
-              src={`${url}uploads/${image}`}
-              onError={(error: any) => {
-                let backupSrc = imagebackup
-                  ? imagebackup
-                  : "./images/default-project-image.jpg";
-                (error.target as HTMLImageElement).onerror = null;
-                (error.target as HTMLImageElement).src = backupSrc;
-              }}
-            />
-            <Typography className="project__description-details">
-              {description}
-            </Typography>
+          <Typography
+            className={
+              projectIdDetails
+                ? "project__cover__description--details"
+                : "project__cover__description"
+            }
+          >
+            {description}
+          </Typography>
+        </div>
+        {/* )} */}
+
+        <CardContent className="project__details">
+          <div
+            className={
+              projectIdDetails
+                ? "project__details__needs--hiden"
+                : "project__details__needs"
+            }
+          >
+            <span className="project__details__needs genres">
+              THIS{" "}
+              {`${
+                genresUppercase.slice(0, -1).join(", ") +
+                " & " +
+                genresUppercase.slice(-1)
+              }`}{" "}
+              PROJECT NEEDS:
+            </span>
+            <span className="project__details__needs roles">
+              {`${
+                rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
+                " & " +
+                rolesFirstLetterUpperCase.slice(-1)
+              }`}{" "}
+            </span>
           </div>
-        )}
-
-        <div className="project__details-container">
-          <CardContent className="project__details">
-            <div
-              className={
-                projectIdDetails ? "project__name-details" : "project__name"
-              }
-            >
-              <Typography gutterBottom variant="h3">
-                {name?.toUpperCase()}
-              </Typography>
-            </div>
-            {!projectIdDetails && (
-              <Typography
-                className="project__description"
-                variant="body2"
-                color="text.secondary"
-              >
-                <span className="project__genres">
-                  THIS{" "}
-                  {`${
-                    genresUppercase.slice(0, -1).join(", ") +
-                    " & " +
-                    genresUppercase.slice(-1)
-                  }`}{" "}
-                  PROJECT NEEDS:
-                </span>
-                <span className="project__roles">
-                  {`${
-                    rolesFirstLetterUpperCase.slice(0, -1).join(", ") +
-                    " & " +
-                    rolesFirstLetterUpperCase.slice(-1)
-                  }`}{" "}
-                </span>
-              </Typography>
-            )}
-          </CardContent>
-
           <div
             key={id + "details"}
             className={
-              projectIdDetails
-                ? `project__genre-icons--details-version`
-                : `project__genre-icons`
+              projectIdDetails ? "project__roles--details" : "project__roles"
             }
           >
             <RolesIcons roles={roles} />
@@ -173,7 +158,7 @@ const Project = ({
               </Button>
             )}
           </CardActions>
-        </div>
+        </CardContent>
       </Card>
     </ProjectStyles>
   );
