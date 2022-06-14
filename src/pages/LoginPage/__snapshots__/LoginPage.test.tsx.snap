@@ -8,7 +8,7 @@ exports[`Given a LoginPage component When the component is rendered Then it shou
     LOGIN
   </h2>
   <div
-    className="sc-bczRLJ iMczJF"
+    className="sc-bczRLJ kvbbkJ"
   >
     <form
       autoComplete="off"

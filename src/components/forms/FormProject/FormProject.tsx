@@ -42,7 +42,11 @@ const FormProject = (): JSX.Element => {
     }
   }, [formData]);
 
-  const changeData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeData = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     if (event.target.type === "checkbox") {
       const actualField = event.target.name;
 
@@ -66,6 +70,9 @@ const FormProject = (): JSX.Element => {
     if (event.target.type === "text") {
       setFormData({ ...formData, [event.target.id]: event.target.value });
     }
+    if (event.target.type === "textarea") {
+      setFormData({ ...formData, [event.target.id]: event.target.value });
+    }
   };
 
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -80,7 +87,6 @@ const FormProject = (): JSX.Element => {
     projectId: string
   ) => {
     event.preventDefault();
-
     const newProject = new FormData();
     newProject.append("name", formData.name);
     newProject.append("description", formData.description);
@@ -124,8 +130,9 @@ const FormProject = (): JSX.Element => {
           </div>
           <div className="formField">
             <label htmlFor="description">Description</label>
-            <input
-              type="text"
+            <textarea
+              cols={30}
+              rows={5}
               id="description"
               value={formData.description}
               onChange={changeData}
