@@ -107,4 +107,36 @@ export const FilterStyles = styled.div`
       }
     }
   }
+  @media (min-width: 600px) {
+    font-size: 15px;
+
+    height: 40px;
+
+    .filter-category {
+      &__heading {
+        height: 40px;
+
+        &--selected {
+          height: 40px;
+        }
+      }
+      &__options {
+        display: flex;
+        flex-direction: row;
+      }
+      &__options-item {
+        height: 40px;
+      }
+      &__options-item-default {
+        height: 40px;
+      }
+    }
+    .panel-collapse {
+      position: absolute;
+      transform: translateY(-15px);
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      width: 100%;
+    }
+  }
 `;

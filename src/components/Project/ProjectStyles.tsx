@@ -181,14 +181,19 @@ export const ProjectStyles = styled.li`
   @media (min-width: 600px) {
     padding: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .project {
-      min-width: 100%;
+      max-width: 900px;
       box-shadow: none;
       border-radius: 0px;
       display: flex;
       flex-direction: row;
       align-items: center;
+      box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
+        0.25em 0.25em 1em rgb(0 0 0 / 30%);
 
       &__cover {
         width: 50%;
@@ -211,6 +216,17 @@ export const ProjectStyles = styled.li`
       .project__details__needs--hiden {
         visibility: none;
       }
+    }
+
+    button {
+      font-size: 1.1rem;
+      color: #fdfffc;
+      width: 30%;
+      max-width: 120px;
+
+      height: 50px;
+      border-radius: 25px;
+      padding: 0;
     }
   }
 `;
