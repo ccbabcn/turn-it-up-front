@@ -11,6 +11,12 @@ export const ProjectStyles = styled.li`
 
     &__name {
       h3 {
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         font-size: 30px;
         transform: translatey(-330px);
         color: #fdfffc;
@@ -149,6 +155,52 @@ export const ProjectStyles = styled.li`
           background: #4b0614;
         }
       }
+    }
+  }
+
+  @media (min-width: 600px) {
+    width: 100%;
+
+    .project {
+      min-width: 100%;
+      box-shadow: none;
+      border-radius: 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &__image {
+        max-width: 40%;
+        min-width: 40%;
+        height: 360px;
+      }
+      &__name {
+        padding: 0 50px;
+        h3 {
+          width: 100%;
+          transform: translatey(0px);
+
+          position: inherit;
+          font-size: 30px;
+          font-weight: 500;
+          color: #082133;
+          text-shadow: none;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .project__details-container {
+        width: 60%;
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+    .project__genres {
+      font-size: 15px;
+      font-weight: 600;
     }
   }
 `;
