@@ -71,6 +71,7 @@ const Project = ({
             component="img"
             alt={`Project ${name}`}
             height="360"
+            width="360"
             src={`${url}uploads/${image}`}
             onError={srcErrorHandler}
           />
