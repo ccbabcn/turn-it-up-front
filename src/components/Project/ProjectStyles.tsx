@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ProjectStyles = styled.li`
   width: 100%;
   padding: 0 20px;
+
   .project {
     max-width: 450px;
     min-width: 260px;
@@ -10,48 +11,69 @@ export const ProjectStyles = styled.li`
     box-shadow: inset 0 -1em 1rem rgb(0 0 0 / 10%), 0 0 rgb(255 255 255),
       0.25em 0.25em 1em rgb(0 0 0 / 30%);
     border-radius: 20px;
-    &__description-details {
-      padding: 20px;
-    }
-    &__name {
-      h3 {
+
+    &__cover {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__name {
+        position: absolute;
         width: 80%;
+        top: 20px;
+        text-align: center;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         font-size: 30px;
-        transform: translatey(-330px);
         color: #fdfffc;
         text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-        position: absolute;
       }
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+      &__description {
+        display: none;
+      }
     }
 
-    &__name-details {
-      h3 {
-        min-width: 300px;
-        width: 80%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        font-size: 30px;
-        transform: translatey(-550px);
-        color: #fdfffc;
-        text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-        position: absolute;
+    &__details {
+      &__needs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
       }
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+      &__icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+
+        .icon-container {
+          color: #fdfffc;
+          font-size: 25px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 60px;
+          width: 60px;
+          background-color: #1b435f;
+          border-radius: 50%;
+
+          .icon {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+          }
+        }
+      }
     }
-    &__description-details {
+
+    /* &__description-details {
       display: flex;
       flex-direction: column;
       font-size: 1.35em;
@@ -187,7 +209,7 @@ export const ProjectStyles = styled.li`
           background: #4b0614;
         }
       }
-    }
+    } */
   }
 
   @media (min-width: 600px) {
@@ -240,7 +262,7 @@ export const ProjectStyles = styled.li`
         align-items: center;
       }
       .project__details-container {
-        width: auto;
+        width: 900px;
         height: 100%;
         display: flex;
         flex-direction: column;
