@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Filter from "../../components/Filter/Filter";
-import Footer from "../../components/Footer/Footer";
+
 import Navigation from "../../components/Navigation/Navigation";
 import Paginator from "../../components/Paginator/Paginator";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
@@ -23,7 +23,6 @@ const ProjectsPage = (): JSX.Element => {
         <h2>ALL PROJECTS</h2>
         <ProjectsList projects={projects} />
         <Paginator />
-        <Footer />
       </PageStyles>
     </>
   );

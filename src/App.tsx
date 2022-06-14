@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import NotLoggedChecker from "./components/NotLoggedChecker/NotLoggedChecker";
 import LoggedChecker from "./components/LoggedChecker/LoggedChecker";
@@ -14,6 +14,8 @@ import { userLoginActionCreator } from "./redux/features/userSlice/userSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { UserLoggedIn } from "./types/UserTypes";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
+import Footer from "./components/Footer/Footer";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App(): JSX.Element {
   const token = localStorage.getItem("token");
@@ -34,7 +36,22 @@ function App(): JSX.Element {
       <Spinner visible={spinnerIsVisible} />
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route
+          path="*"
+          element={
+            <NotLoggedChecker>
+              <ErrorPage />
+            </NotLoggedChecker>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <NotLoggedChecker>
+              <ErrorPage />
+            </NotLoggedChecker>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -92,6 +109,7 @@ function App(): JSX.Element {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 }

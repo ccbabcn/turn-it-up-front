@@ -7,7 +7,7 @@ export const FormStyles = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 30px;
-
+  padding-bottom: 50px;
   form {
     color: #000;
     background: #fdfffc;
@@ -18,6 +18,7 @@ export const FormStyles = styled.div`
     border: solid 1px #aea9ac;
     padding: 30px 30px;
     width: 70%;
+    max-width: 600px;
     min-width: 300px;
     display: flex;
     flex-direction: column;
