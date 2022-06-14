@@ -6,6 +6,7 @@ export const PaginatorStyles = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fdfffc;
+  padding: 0 20px;
 
   .pager {
     max-width: 450px;
@@ -53,7 +54,7 @@ export const PaginatorStyles = styled.div`
     span {
       padding: 0 10px;
       text-align: center;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 600;
       color: #51246a;
     }

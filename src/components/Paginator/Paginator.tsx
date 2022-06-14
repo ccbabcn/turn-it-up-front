@@ -46,8 +46,8 @@ export default function Paginator() {
         </button>
 
         <span>
-          PAGE {actualPage} OF {Math.ceil(actualtotal / actualPageSize)} / TOTAL{" "}
-          {actualtotal}
+          PAGE {actualPage} OF {Math.ceil(actualtotal / actualPageSize)} <br />{" "}
+          TOTAL {actualtotal} PROJECTS
         </span>
 
         <button
