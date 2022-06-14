@@ -36,7 +36,8 @@
     "test": "react-scripts test --passWithNoTests",
     "test-coverage": "react-scripts test --coverage --watchAll=false --passWithNoTests",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +60,8 @@
   "devDependencies": {
     "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.25",
-    "husky": "^7.0.0"
+    "husky": "^7.0.0",
+    "cypress": "^10.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
