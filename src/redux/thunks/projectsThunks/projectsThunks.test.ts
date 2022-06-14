@@ -22,6 +22,7 @@ import {
   editProjectThunk,
   getProjectByIdThunk,
   loadAllProjectsThunk,
+  loadProjectsThunkbyQuery,
   loadUserProjectsThunk,
 } from "./projectsThunks";
 
@@ -83,7 +84,7 @@ describe("Given a projectsThunks", () => {
   });
 
   describe("When loadUserProjectsThunk it's invoked but an error occurs", () => {
-    test("Then it should call dispatch with loadingOffActionCreator", async () => {
+    test("Then it should call wrongaction with 'Something went wrong trying to load your projects'", async () => {
       axios.get = jest.fn().mockRejectedValueOnce(new Error());
       const mockUiState: UiState = { loading: false };
       const mockWrongAction = jest.spyOn(toasters, "wrongAction");
@@ -121,6 +122,29 @@ describe("Given a projectsThunks", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedDeleteAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
+    });
+  });
+
+  describe("When deleteProjectThunk it's invoked but an error ocurs", () => {
+    test("Then it should call wrongAction with 'Something went wrong deleting the project'", async () => {
+      const dispatch = jest.fn();
+      const mockloadingOff: UiState = { loading: false };
+      const mockloadingOn: UiState = { loading: true };
+
+      const mockWrongAction = jest.spyOn(toasters, "wrongAction");
+      axios.delete = jest.fn().mockRejectedValueOnce(new Error());
+
+      const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
+      const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
+
+      const thunk = await deleteProjectThunk(mockProject.id as string);
+      await thunk(dispatch);
+
+      expect(mockWrongAction).toHaveBeenLastCalledWith(
+        "Something went wrong deleting the project"
+      );
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
     });
@@ -197,7 +221,7 @@ describe("Given a projectsThunks", () => {
   });
 
   describe("When editProjectThunk it's invoked but an error occurs", () => {
-    test("Then it should call dispatch with loading oOn and Off ActionCreator", async () => {
+    test("Then it should call wrong action with 'Something went wrong updating the project'", async () => {
       const mockloadingOff: UiState = { loading: false };
       const mockloadingOn: UiState = { loading: true };
       const mockWrongAction = jest.spyOn(toasters, "wrongAction");
@@ -245,7 +269,7 @@ describe("Given a projectsThunks", () => {
   });
 
   describe("When getProjectByIdThunk it's invoked but there's no response", () => {
-    test("Then it should call dispatch with loading On and Off ActionCreator", async () => {
+    test("Then it should call worngAction with 'Something went wrong loading the project'", async () => {
       const dispatch = jest.fn();
       const mockloadingOff: UiState = { loading: false };
       const mockloadingOn: UiState = { loading: true };
@@ -262,6 +286,54 @@ describe("Given a projectsThunks", () => {
         "Something went wrong loading the project"
       );
 
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
+    });
+  });
+
+  describe("When loadProjectsThunkbyQuery it's invoked", () => {
+    test("Then it should call dispatch with loadProjectsActionCreator and a new state of Projects", async () => {
+      const dispatch = jest.fn();
+      const mockloadingOff: UiState = { loading: false };
+      const mockloadingOn: UiState = { loading: true };
+
+      const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
+      const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
+
+      const expectedAction = loadProjectsActionCreator(mockProjectState);
+      axios.get = jest.fn().mockResolvedValueOnce({
+        data: mockProjectState,
+        status: 200,
+      });
+      const thunk = await loadProjectsThunkbyQuery("mockquery");
+      await thunk(dispatch);
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
+      expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
+    });
+  });
+
+  describe("When loadProjectsThunkbyQuery it's invoked but an error occurs", () => {
+    test("Then it should call wrong action with 'Something went wrong trying to load the list of projects'", async () => {
+      const dispatch = jest.fn();
+      const mockloadingOff: UiState = { loading: false };
+      const mockloadingOn: UiState = { loading: true };
+      const mockWrongAction = jest.spyOn(toasters, "wrongAction");
+
+      const expectedloadingOnAction = loadingOnActionCreator(mockloadingOn);
+      const expectedloadingOffAction = loadingOffActionCreator(mockloadingOff);
+
+      axios.get = jest.fn().mockRejectedValueOnce(new Error());
+      const thunk = await loadProjectsThunkbyQuery("mockquery");
+      await thunk(dispatch);
+
+      expect(mockWrongAction).toHaveBeenLastCalledWith(
+        "Something went wrong trying to load the list of projects"
+      );
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOnAction);
       expect(dispatch).toHaveBeenCalledWith(expectedloadingOffAction);
     });
