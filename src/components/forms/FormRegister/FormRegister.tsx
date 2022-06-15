@@ -36,10 +36,7 @@ const FormRegister = (): JSX.Element => {
 
   const submitRegister = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    const message = await dispatch(registerThunk(formData));
-    if (message) {
-      return;
-    }
+    dispatch(registerThunk(formData));
     setFormData(blankFields);
     navigate("/login");
   };
