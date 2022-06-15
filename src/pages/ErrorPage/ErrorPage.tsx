@@ -19,7 +19,7 @@ const ErrorPage = (): JSX.Element => {
 
         <img
           className="errorImage"
-          src="./images/404background.jpg"
+          src="/images/404background.jpg"
           alt="404 not found page"
         />
       </ErrorPageStyles>
