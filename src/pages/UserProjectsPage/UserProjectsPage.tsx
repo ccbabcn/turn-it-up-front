@@ -12,7 +12,6 @@ import { PageStyles } from "../PageStyles";
 const UserProjectsPage = (): JSX.Element => {
   const queryPrefix = "projects?user=userId&";
   const projects = useAppSelector((state) => state.projects.results);
-  const total = useAppSelector((state) => state.projects.total);
   const { username } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -25,9 +24,7 @@ const UserProjectsPage = (): JSX.Element => {
       <Navigation />
       <PageStyles>
         <Filter queryPrefix={queryPrefix} />
-        <h2>
-          {username?.toUpperCase()} YOU HAVE {total} PROJECTS
-        </h2>
+        <h2>{username?.toUpperCase()}'S PROJECTS</h2>
         <ProjectsList projects={projects} />
         <Paginator />
       </PageStyles>

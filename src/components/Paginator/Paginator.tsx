@@ -19,12 +19,14 @@ export default function Paginator() {
 
   const loadNextPage = () => {
     if (nextpage) {
+      window.scroll(0, 0);
       dispatch(loadProjectsThunkbyQuery(actualNextpage));
     }
   };
 
   const loadPreviousPage = () => {
     if (previous) {
+      window.scroll(0, 0);
       dispatch(loadProjectsThunkbyQuery(actualPreviousPage));
     }
   };
@@ -52,7 +54,7 @@ export default function Paginator() {
 
         <button
           title="next"
-          disabled={nextpage ? false : true}
+          disabled={actualPage * 6 >= actualtotal}
           className="pager__button"
           onClick={loadNextPage}
         >
