@@ -14,7 +14,7 @@ Array [
         <img
           alt="Turn it Up"
           height={100}
-          src="./images/logo.png"
+          src="/images/logo.png"
           width={178}
         />
       </a>
