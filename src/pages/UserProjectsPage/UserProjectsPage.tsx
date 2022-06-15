@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import Filter from "../../components/Filter/Filter";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import Paginator from "../../components/Paginator/Paginator";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
@@ -19,6 +21,7 @@ const UserProjectsPage = (): JSX.Element => {
 
   return (
     <>
+      <Header />
       <Navigation />
       <PageStyles>
         <Filter queryPrefix={queryPrefix} />
@@ -28,6 +31,7 @@ const UserProjectsPage = (): JSX.Element => {
         <ProjectsList projects={projects} />
         <Paginator />
       </PageStyles>
+      <Footer />
     </>
   );
 };

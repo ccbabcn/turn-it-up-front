@@ -3,10 +3,10 @@ import { useAppDispatch } from "../../redux/hooks";
 import { loadProjectsThunkbyQuery } from "../../redux/thunks/projectsThunks/projectsThunks";
 import { FilterStyles } from "./FilterStyles";
 
-interface Props {
+interface FilterProps {
   queryPrefix: string;
 }
-const Filter = ({ queryPrefix }: Props): JSX.Element => {
+const Filter = ({ queryPrefix }: FilterProps): JSX.Element => {
   const [isGenrerExpanded, setIsGenrerExpanded] = useState<boolean>(false);
   const [isRoleExpanded, setIsRoleExpanded] = useState<boolean>(false);
   const url = (process.env.REACT_APP_API_URL as string) + queryPrefix;

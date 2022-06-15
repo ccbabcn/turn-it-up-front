@@ -1,88 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Given a RegisterPage component When the component is rendered Then it should match it's snapshot 1`] = `
-<div
-  className="sc-gsnTZi cLcUqi"
->
-  <h2>
-    REGISTER
-  </h2>
+Array [
   <div
-    className="sc-bczRLJ kvbbkJ"
+    className="sc-dkzDqf chCzKC"
   >
-    <form
-      autoComplete="off"
-      noValidate={true}
-      onSubmit={[Function]}
+    <h1>
+      <a
+        className=""
+        href="/projects"
+        onClick={[Function]}
+      >
+        <img
+          alt="Turn it Up"
+          height={100}
+          src="./images/logo.png"
+          width={178}
+        />
+      </a>
+    </h1>
+  </div>,
+  <div
+    className="sc-hKMtZM kUZWga"
+  >
+    <h2>
+      REGISTER
+    </h2>
+    <div
+      className="sc-gsnTZi eGKwff"
     >
-      <div
-        className="formField"
+      <form
+        autoComplete="off"
+        noValidate={true}
+        onSubmit={[Function]}
       >
-        <label
-          htmlFor="name"
+        <div
+          className="formField"
         >
-          Name
-        </label>
-        <input
-          id="name"
-          onChange={[Function]}
-          placeholder="Name"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        className="formField"
-      >
-        <label
-          htmlFor="username"
+          <label
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <input
+            id="name"
+            onChange={[Function]}
+            placeholder="Name"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="formField"
         >
-          Username
-        </label>
-        <input
-          id="username"
-          onChange={[Function]}
-          placeholder="Username"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        className="formField"
-      >
-        <label
-          htmlFor="password"
+          <label
+            htmlFor="username"
+          >
+            Username
+          </label>
+          <input
+            id="username"
+            onChange={[Function]}
+            placeholder="Username"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="formField"
         >
-          Password
-        </label>
-        <input
-          id="password"
-          onChange={[Function]}
-          placeholder="Password"
-          type="password"
-          value=""
-        />
-      </div>
-      <button
-        className="form-button"
-        disabled={false}
-        type="submit"
-      >
-        REGISTER
-      </button>
-      <div
-        className="form-options"
-      >
-        Already have an account? 
-        <a
-          className=""
-          href="/login"
-          onClick={[Function]}
+          <label
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="form-button"
+          disabled={false}
+          type="submit"
         >
-          Login now
-        </a>
+          REGISTER
+        </button>
+        <div
+          className="form-options"
+        >
+          Already have an account? 
+          <a
+            className=""
+            href="/login"
+            onClick={[Function]}
+          >
+            Login now
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <footer
+    className="sc-bczRLJ VwBwN footer"
+  >
+    <div
+      className="footer__container"
+    >
+      <span>
+        Copyright ©2022 more info about turn it up created by cristian bermúdez
+      </span>
+      <div
+        className="footer__row"
+      >
+        <div
+          className="footer__col"
+        >
+          <ul>
+            <li
+              className="title"
+            >
+              About
+            </li>
+            <li>
+              The Web
+            </li>
+            <li>
+              More Info
+            </li>
+            <li>
+              Coming soon
+            </li>
+          </ul>
+        </div>
+        <div
+          className="footer__col"
+        >
+          <ul>
+            <li
+              className="title"
+            >
+              Sponsors
+            </li>
+            <li>
+              Music and more
+            </li>
+            <li>
+              Theme Store
+            </li>
+            <li>
+              Rednef
+            </li>
+          </ul>
+        </div>
+        <div
+          className="footer__col"
+        >
+          <ul>
+            <li
+              className="title"
+            >
+              FAQs
+            </li>
+            <li>
+              What project
+            </li>
+            <li>
+              Which role
+            </li>
+            <li>
+              More
+            </li>
+          </ul>
+        </div>
       </div>
-    </form>
-  </div>
-</div>
+    </div>
+  </footer>,
+]
 `;
