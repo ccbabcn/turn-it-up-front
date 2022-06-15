@@ -10,9 +10,14 @@ export const FormStyles = styled.div`
   padding-bottom: 50px;
 
   .imagefield {
-    /* button {
+    display: flex;
+    input[type="file"]::-webkit-file-upload-button {
       visibility: hidden;
-    } */
+      text-align: center;
+      position: absolute;
+      margin: 20px;
+    }
+
     width: 100%;
     &__name {
       position: relative;
@@ -29,13 +34,10 @@ export const FormStyles = styled.div`
     }
 
     &__input {
-      #file-upload-button {
-        background: none;
-      }
       background: #3479ce;
 
       width: 100%;
-      padding: 2px 10px;
+      padding: 15px 20px;
       background-color: #51246a;
       -webkit-transition: all 0.6s;
       transition: all 0.6s;
@@ -61,9 +63,9 @@ export const FormStyles = styled.div`
   }
 
   .imagefield__label {
-    button {
-      opacity: 0;
-    }
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   form {

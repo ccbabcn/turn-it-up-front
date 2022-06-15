@@ -146,6 +146,7 @@ const FormProject = (): JSX.Element => {
             <input
               id="image"
               type="file"
+              accept="image/*"
               className="imagefield__input"
               onChange={uploadImage}
             />
