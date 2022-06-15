@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { registerThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { FormStyles } from "../FormStyles";
@@ -7,6 +7,7 @@ import { FormRegisterData } from "../FormTypes";
 
 const FormRegister = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const blankFields: FormRegisterData = {
     name: "",
@@ -35,8 +36,12 @@ const FormRegister = (): JSX.Element => {
 
   const submitRegister = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    dispatch(registerThunk(formData));
+    const message = await dispatch(registerThunk(formData));
+    if (message) {
+      return;
+    }
     setFormData(blankFields);
+    navigate("/login");
   };
 
   return (

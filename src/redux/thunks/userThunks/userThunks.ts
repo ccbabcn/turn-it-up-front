@@ -51,8 +51,10 @@ export const registerThunk =
       await axios.post(`${url}${endPoint}`, userRegisterData);
 
       correctAction("Registered, you can log in now!");
-    } catch {
+    } catch (error) {
+      dispatch(loadingOffActionCreator({ loading: false }));
       wrongAction("Cannot register, try anoter username or password");
+      return "Error creating new user";
     }
     dispatch(loadingOffActionCreator({ loading: false }));
   };
