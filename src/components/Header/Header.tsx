@@ -9,7 +9,7 @@ const Header = (): JSX.Element => {
           <img
             width={178}
             height={100}
-            src="./images/logo.png"
+            src="/images/logo.png"
             alt="Turn it Up"
           />
         </NavLink>
