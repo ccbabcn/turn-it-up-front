@@ -49,7 +49,7 @@ const Project = ({
   const srcErrorHandler = (error: any) => {
     let backupSrc = imagebackup
       ? imagebackup
-      : "./images/default-project-image.jpg";
+      : "/images/default-project-image.webp";
     (error.target as HTMLImageElement).onerror = null;
     (error.target as HTMLImageElement).src = backupSrc;
   };
