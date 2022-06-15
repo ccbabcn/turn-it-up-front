@@ -10,11 +10,11 @@ import { ReactNode } from "react";
 
 import { useParams } from "react-router-dom";
 
-interface Props {
+interface RolesIconsProps {
   roles: string[];
 }
 
-const RolesProps = (role: string): ReactNode => {
+const RolesPropsMapper = (role: string): ReactNode => {
   const ComponentRoles: any = {
     bassplayer: <GiGuitarBassHead className="icon" />,
     guitarrist: <GiGuitarHead className="icon" />,
@@ -27,7 +27,7 @@ const RolesProps = (role: string): ReactNode => {
   return ComponentRoles[role];
 };
 
-export const RolesIcons = ({ roles }: Props): JSX.Element => {
+export const RolesIcons = ({ roles }: RolesIconsProps): JSX.Element => {
   const { id: projectIdDetails } = useParams();
   let limit: number = projectIdDetails ? roles.length : 3;
   return (
@@ -48,7 +48,7 @@ export const RolesIcons = ({ roles }: Props): JSX.Element => {
             className={projectIdDetails && "icon-container--details"}
           >
             <div title={role} className="icon-container">
-              {RolesProps(role)}
+              {RolesPropsMapper(role)}
             </div>
             <span>{projectIdDetails && `This projects needs a ${role}`}</span>
           </div>

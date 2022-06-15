@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import ProjectsList from "../../components/ProjectsList/ProjectsList";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -17,11 +19,13 @@ const ProjectDetailsPage = (): JSX.Element => {
 
   return (
     <>
+      <Header />
       <Navigation />
       <PageStyles>
         <h2>PROJECT DETAILS</h2>
         <ProjectsList projects={project} />
       </PageStyles>
+      <Footer />
     </>
   );
 };

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 
-type Props = {
+type NotLoggedCheckerProps = {
   children: JSX.Element;
 };
-const NotLoggedChecker = ({ children }: Props) => {
+const NotLoggedChecker = ({ children }: NotLoggedCheckerProps) => {
   const navigate = useNavigate();
   const userIsLogged = useAppSelector((state) => state.user.logged);
 

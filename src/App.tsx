@@ -1,6 +1,5 @@
 import jwtDecode from "jwt-decode";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
 import NotLoggedChecker from "./components/NotLoggedChecker/NotLoggedChecker";
 import LoggedChecker from "./components/LoggedChecker/LoggedChecker";
 import Spinner from "./components/Spinner/Spinner";
@@ -14,7 +13,6 @@ import { userLoginActionCreator } from "./redux/features/userSlice/userSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { UserLoggedIn } from "./types/UserTypes";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
-import Footer from "./components/Footer/Footer";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App(): JSX.Element {
@@ -34,24 +32,16 @@ function App(): JSX.Element {
   return (
     <>
       <Spinner visible={spinnerIsVisible} />
-      <Header />
       <Routes>
-        <Route
-          path="*"
-          element={
-            <NotLoggedChecker>
-              <ErrorPage />
-            </NotLoggedChecker>
-          }
-        />
         <Route
           path="/"
           element={
             <NotLoggedChecker>
-              <ErrorPage />
+              <ProjectsPage />
             </NotLoggedChecker>
           }
         />
+
         <Route
           path="/login"
           element={
@@ -108,8 +98,15 @@ function App(): JSX.Element {
             </NotLoggedChecker>
           }
         />
+        <Route
+          path="*"
+          element={
+            <NotLoggedChecker>
+              <ErrorPage />
+            </NotLoggedChecker>
+          }
+        />
       </Routes>
-      <Footer />
     </>
   );
 }

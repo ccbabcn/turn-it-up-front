@@ -11,13 +11,13 @@ import { deleteProjectThunk } from "../../redux/thunks/projectsThunks/projectsTh
 import { useNavigate, useParams } from "react-router-dom";
 import { RolesIcons } from "./RolesIcons/RolesIcons";
 
-interface Props {
+interface ProjectProps {
   project: IProject;
 }
 
 const Project = ({
   project: { name, genres, image, imagebackup, roles, id, owner, description },
-}: Props): JSX.Element => {
+}: ProjectProps): JSX.Element => {
   const { id: projectIdDetails } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -85,7 +85,6 @@ const Project = ({
             {description}
           </Typography>
         </div>
-        {/* )} */}
 
         <CardContent className="project__details">
           <div

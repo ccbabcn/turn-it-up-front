@@ -2,11 +2,11 @@ import { IProject } from "../../types/ProjectsTypes";
 import Project from "../Project/Project";
 import { ProjectsListStyles } from "./ProjectsListStyles";
 
-interface Props {
+interface ProjectsListProps {
   projects: IProject[];
 }
 
-const ProjectsList = ({ projects }: Props): JSX.Element => {
+const ProjectsList = ({ projects }: ProjectsListProps): JSX.Element => {
   return (
     <ProjectsListStyles>
       <ul className="projects-container">
