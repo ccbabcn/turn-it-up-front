@@ -1,15 +1,18 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store";
 import {
   mockProject,
   mockProject2,
+  mockProjectState,
+  mocKProjectWithBackUpImg,
 } from "../../mocks/mockProjects/mockProjects";
 import Project from "./Project";
 import { UserState } from "../../types/UserTypes";
 import { mockUserLogged } from "../../mocks/mockUsers/mockUsers";
 import userEvent from "@testing-library/user-event";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 let mockuserState: UserState;
 
@@ -183,6 +186,101 @@ describe("Given Project component", () => {
 
       const returnButton = screen.getByRole("button", { name: /info/i });
       userEvent.click(returnButton);
+    });
+  });
+
+  describe("When its invoked with a project as a prop and it contains an image files", () => {
+    test("Then the user shoulbe able to click it", async () => {
+      const mockProjectwithImage = mocKProjectWithBackUpImg;
+      const mockProjectImageAltText = "Project new project";
+
+      mockuserState = {
+        username: "username",
+        id: "mockBadId",
+        logged: true,
+      };
+
+      const mockUserSlice = createSlice({
+        name: "user",
+        initialState: mockuserState,
+        reducers: {},
+      });
+      const mockProjectSlice = createSlice({
+        name: "projects",
+        initialState: mockProjectState,
+        reducers: {},
+      });
+      const mockStore = configureStore({
+        reducer: {
+          user: mockUserSlice.reducer,
+          projects: mockProjectSlice.reducer,
+        },
+      });
+
+      render(
+        <Provider store={mockStore}>
+          <BrowserRouter>
+            <Project project={mockProjectwithImage} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const image = screen.getByAltText(mockProjectImageAltText);
+      fireEvent.error(image);
+
+      expect(image).toHaveProperty(
+        "src",
+        "http://localhost/project/mockfilename"
+      );
+      expect(image).toHaveProperty("onerror", null);
+    });
+  });
+
+  describe("When its invoked with a project as a prop and it contains only the back up image", () => {
+    test("Then the user shoulbe able to click it", async () => {
+      const mockProjectonlyBackUpImage = mocKProjectWithBackUpImg;
+      mockProjectonlyBackUpImage.image = "";
+      const mockProjectImageAltText = "Project new project";
+
+      mockuserState = {
+        username: "username",
+        id: "mockBadId",
+        logged: true,
+      };
+
+      const mockUserSlice = createSlice({
+        name: "user",
+        initialState: mockuserState,
+        reducers: {},
+      });
+      const mockProjectSlice = createSlice({
+        name: "projects",
+        initialState: mockProjectState,
+        reducers: {},
+      });
+      const mockStore = configureStore({
+        reducer: {
+          user: mockUserSlice.reducer,
+          projects: mockProjectSlice.reducer,
+        },
+      });
+
+      render(
+        <Provider store={mockStore}>
+          <BrowserRouter>
+            <Project project={mockProjectonlyBackUpImage} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const image = screen.getByAltText(mockProjectImageAltText);
+      fireEvent.error(image);
+
+      expect(image).toHaveProperty(
+        "src",
+        "http://localhost/project/mockfilename"
+      );
+      expect(image).toHaveProperty("onerror", null);
     });
   });
 });
