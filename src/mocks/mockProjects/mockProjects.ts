@@ -64,7 +64,18 @@ export const mocKProjectToCreate: IProject = {
   id: "newid",
   name: "new project",
   description: "project to add to the state",
-  image: "https://Secreto-Legendario-Tempo-4-1024x683.jpg",
+  image: "https://secreto-legendario-Tempo-4-1024x683.jpg",
+  genres: ["rock", "pop"],
+  roles: ["singer", "keyboard", "guitarrist"],
+  owner: "user2",
+};
+
+export const mocKProjectWithBackUpImg: IProject = {
+  id: "newid",
+  name: "new project",
+  description: "project to add to the state",
+  image: "http://localhost/mockfilename",
+  imagebackup: "mockfilename",
   genres: ["rock", "pop"],
   roles: ["singer", "keyboard", "guitarrist"],
   owner: "user2",
