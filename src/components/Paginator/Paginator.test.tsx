@@ -1,5 +1,5 @@
 import Paginator from "./Paginator";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store";
@@ -30,12 +30,16 @@ describe("Given Paginator component", () => {
     });
   });
 
-  describe("When it's invoked and user click on next button", () => {
-    test("Then it should render two buttons name 'previous' and 'next'", () => {
+  describe("When it's invoked, renders next button and user click on it", () => {
+    test("Then it should dispatch loadProjectsThunkbyQuery and scroll to 0,0", () => {
       const dispatch = jest.fn();
-      jest
-        .spyOn(hooks, "useAppSelector")
-        .mockImplementation(() => ({ nextpage: "mockUrl", results: [] }));
+      window.scroll = jest.fn();
+
+      jest.spyOn(hooks, "useAppSelector").mockImplementation(() => ({
+        nextpage: "mockUrl",
+        results: ["", "", ""],
+        total: 8,
+      }));
       render(
         <Provider store={store}>
           <BrowserRouter>
@@ -52,12 +56,14 @@ describe("Given Paginator component", () => {
       dispatch(loadProjectsThunkbyQuery(""));
 
       expect(dispatch).toHaveBeenCalled();
+      expect(window.scroll).toHaveBeenCalledWith(0, 0);
     });
   });
 
-  describe("When it's invoked and user click on previous button", () => {
-    test("Then it should render two buttons name 'previous' and 'next'", async () => {
+  describe("When it's invoked, renders nexprevious button and user click on it", () => {
+    test("Then it should dispatch loadProjectsThunkbyQuery and scroll to 0,0", async () => {
       const dispatch = jest.fn();
+      window.scroll = jest.fn();
 
       jest
         .spyOn(hooks, "useAppSelector")
@@ -71,12 +77,15 @@ describe("Given Paginator component", () => {
         </Provider>
       );
 
-      const expectedPreviousButton = screen.getByTestId("TEST");
+      const expectedPreviousButton = screen.getByRole("button", {
+        name: /previous/i,
+      });
 
-      await fireEvent.click(expectedPreviousButton);
+      await userEvent.click(expectedPreviousButton);
       await dispatch(loadProjectsThunkbyQuery(""));
 
       expect(dispatch).toHaveBeenCalled();
+      expect(window.scroll).toHaveBeenCalledWith(0, 0);
     });
   });
 });
